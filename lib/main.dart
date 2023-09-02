@@ -454,7 +454,7 @@ class _homepageState extends State<homePage> {
                     flex: 1,
                     child: RotatedBox(
                         quarterTurns: 3,
-                        child: Text("PROGRAMS",style: TextStyle(color: Colors.redAccent,),
+                        child:  Text("PROGRAMS",style: TextStyle(color: Colors.redAccent,),
                         )
                     )
                 ),
