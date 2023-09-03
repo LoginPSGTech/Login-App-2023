@@ -19,7 +19,7 @@ class EventCardWidget extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return Card(
         color: const Color(0xFF143F6B),
-        margin: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+        margin: const EdgeInsets.fromLTRB(24, 16, 24, 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Container(
           constraints: const BoxConstraints(minHeight: 120),
@@ -30,8 +30,8 @@ class EventCardWidget extends StatelessWidget {
               Column(
                 children: [
                   SizedBox(
-                    height: 100,
-                    width: 100,
+                    height: 75,
+                    width: 75,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.asset(eventLogoUrl),
@@ -62,6 +62,8 @@ class EventCardWidget extends StatelessWidget {
                           Flexible(
                             child: Text(
                               eventTagline,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
                               style: const TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 12,
@@ -71,6 +73,9 @@ class EventCardWidget extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                      const SizedBox(
+                        height: 8,
                       ),
                       const Row(
                         children: [

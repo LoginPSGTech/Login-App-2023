@@ -12,14 +12,14 @@ class TitleBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         color: Colors.transparent,
-        margin: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+        margin: const EdgeInsets.fromLTRB(24, 16, 24, 16),
         child: Row(
           children: [
             Text(
               title,
               style: const TextStyle(
                   fontFamily: 'Poppins',
-                  fontSize: 40,
+                  fontSize: 30,
                   fontWeight: FontWeight.w600,
                   color: Colors.white)),
         ]));
