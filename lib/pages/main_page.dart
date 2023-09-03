@@ -3,6 +3,8 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:login/pages/home_page.dart';
 import 'package:login/pages/schedule_page.dart';
+import 'package:login/pages/events_page.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -42,15 +44,15 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
 
     switch(selected){
-      // case 0:
-      //   page=eventsPage();
-      //   events=const Icon(Icons.assignment,size: 30,color: Colors.transparent,);
-      //   schedule=const Icon(Icons.timer_outlined,size: 30,color: Colors.white,);
-      //   home=const Icon(Icons.home_outlined,size: 30,color: Colors.white,);
-      //   homedecoration=null;
-      //   scheduledecoration=null;
-      //   eventsdecoration=decoration;
-      //   break;
+      case 0:
+        page=EventsPage();
+        events=const Icon(Icons.assignment,size: 30,color: Colors.transparent,);
+        schedule=const Icon(Icons.timer_outlined,size: 30,color: Colors.white,);
+        home=const Icon(Icons.home_outlined,size: 30,color: Colors.white,);
+        homedecoration=null;
+        scheduledecoration=null;
+        eventsdecoration=decoration;
+        break;
       case 1:
         page=HomePage();
         events=const Icon(Icons.assignment_outlined,size: 30,color: Colors.white,);
