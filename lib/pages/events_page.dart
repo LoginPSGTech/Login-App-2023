@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:login/widgets/event_card_widget.dart';
 import 'package:login/widgets/title_bar_widget.dart';
 import 'package:login/pages/event_details_page.dart';
+import 'package:provider/provider.dart';
+import 'package:login/providers/app_data_provider.dart';
+import 'package:login/models/event_model.dart';
 
 class EventsPage extends StatefulWidget {
   const EventsPage({super.key});
@@ -12,9 +15,9 @@ class EventsPage extends StatefulWidget {
 
 class _EventsPageState extends State<EventsPage> {
 
-  Widget buildEvents(){
+  Widget buildEvents(List<Event> events){
     return ListView.builder(
-        itemCount: 10,
+        itemCount: events.length,
         itemBuilder: (context, index){
           return GestureDetector(
             onTap : () async {
@@ -22,10 +25,10 @@ class _EventsPageState extends State<EventsPage> {
                   builder: (context) => const EventDetailsPage(),
               ));
             },
-            child: const EventCardWidget(
-              eventLogoUrl: "assets/images/hackin_logo.png",
-              eventName: "Hack-in",
-              eventTagline: "Unravel the Digital Enigma: Hack, Crack & Conquer in the Ultimate Cyber Challenge"),
+            child: EventCardWidget(
+              eventLogoUrl: events[index].eventLogo,
+              eventName: events[index].eventName,
+              eventTagline: events[index].eventTagline),
           );
         },
     );
@@ -33,6 +36,7 @@ class _EventsPageState extends State<EventsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appData = Provider.of<AppDataProvider>(context).appData;
     return SafeArea(
       child: Column(
         children: [
@@ -42,7 +46,7 @@ class _EventsPageState extends State<EventsPage> {
             ]
           ),
           Expanded( // Wrap the ListView.builder with Expanded
-            child: buildEvents(),
+            child: buildEvents(appData.mscEvents),
           ),
         ],
       ),
