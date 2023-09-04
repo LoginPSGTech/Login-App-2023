@@ -22,7 +22,7 @@ class _EventsPageState extends State<EventsPage> {
           return GestureDetector(
             onTap : () async {
               await Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const EventDetailsPage(),
+                  builder: (context) => EventDetailsPage(event: events[index]),
               ));
             },
             child: EventCardWidget(
@@ -36,7 +36,8 @@ class _EventsPageState extends State<EventsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appData = Provider.of<AppDataProvider>(context).appData;
+    final mcaEvents = Provider.of<AppDataProvider>(context).appData.mcaEvents;
+    final mscEvents = Provider.of<AppDataProvider>(context).appData.mscEvents;
     return SafeArea(
       child: Column(
         children: [
@@ -46,7 +47,7 @@ class _EventsPageState extends State<EventsPage> {
             ]
           ),
           Expanded( // Wrap the ListView.builder with Expanded
-            child: buildEvents(appData.mscEvents),
+            child: buildEvents(mscEvents + mcaEvents),
           ),
         ],
       ),

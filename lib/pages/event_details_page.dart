@@ -3,38 +3,19 @@ import 'package:login/widgets/gradient_background_widget.dart';
 import 'package:login/widgets/title_bar_widget.dart';
 import 'package:login/widgets/back_icon_widget.dart';
 import 'package:login/widgets/contacts_card_widget.dart';
+import 'package:login/models/event_model.dart';
 
 class EventDetailsPage extends StatefulWidget {
-  const EventDetailsPage({super.key});
+
+  final Event event;
+  const EventDetailsPage({super.key, required this.event});
 
   @override
   State<EventDetailsPage> createState() => _EventDetailsPageState();
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
-  static String eventName = "Hack-In";
-  static String eventLogo = "assets/images/hackin_logo.png";
-  static String eventTagline =
-      'Join us in the DATATHON of LOGIN 2023 to unleash the TALE that lies underneath the data!';
-  static String eventDescription =
-      'Data! A weave of a million stories! Every detail tells a saga. So roll up your sleeves to come up with a perfect blend of modeling, visualization and prediction to uncover the TALE underneath! Join us in the DATATHON of LOGIN 2023.';
-  static List<String> rules = ['A team shall consist of a maximum of 2 members.','Highest scoring team wins','Decision of judge is Final'];
-  static List<Round> rounds = [
-          Round(
-            roundNumber:"1",
-            roundName: "Round",
-            roundDescription: "Get, Set, Stack: Given a few paper cups and a pair of balloons, blow the balloons in order to shift the paper cups and stack it as a pyramid."
-          ),
-          Round(
-            roundNumber:"2",
-            roundName: "Round",
-            roundDescription: "Bottle flips : Given a water-filled bottle and an obstacle, perform a few bottle flips by successfully tackling the hindrance."
-          ),
-          Round(
-            roundNumber:"3",
-            roundName: "Round",
-            roundDescription: "Treasure hunt : Clues will be provided at various venues throughout the game. The players have to decode all the clues to finally reach the treasure!"
-          )];
+
   @override
   Widget build(BuildContext context) {
 
@@ -64,12 +45,11 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       );
     }
 
-    Widget buildRules(){
-      return ListView.builder(
-        itemCount: rules.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index){
-          return ListTile(
+    List<Widget> buildRules(){
+      List<Widget> widgets = [];
+      for(var rule in widget.event.eventRules){
+        widgets.add(
+          ListTile(
             dense: true,
             contentPadding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0), // Adjust the vertical padding as needed
             leading: const Text(
@@ -77,20 +57,20 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       style: TextStyle(fontSize: 30, color: Colors.white),
                     ), // Bullet point icon
             title: Text(
-              rules[index],
+              rule,
               style: const TextStyle(fontSize: 16, color: Colors.white)
             ), // Text content
-          );
-        },
-      );
+          )
+        );
+      }
+      return widgets;
     }
 
-    Widget buildRounds() {
-      return ListView.builder(
-        itemCount: rounds.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Container(
+    List<Widget> buildRounds() {
+      List<Widget> widgets = [];
+      for (var round in widget.event.roundWiseDescription) {
+        widgets.add(
+          Container(
             margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +82,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       child: Column(
                         children: [
                           Text(
-                            rounds[index].roundName,
+                            round.roundName,
                             style: const TextStyle(
                               color: Color(0xFFF55353),
                               fontSize: 12,
@@ -113,7 +93,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       ),
                     ),
                     Text(
-                      rounds[index].roundNumber,
+                      round.roundNumber.toString(),
                       style: const TextStyle(
                         color: Color(0xFFF55353),
                         fontSize: 32,
@@ -127,7 +107,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   child: Container(
                     margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
                     child: Text(
-                      rounds[index].roundDescription,
+                      round.roundDescription,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -137,9 +117,20 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 ),
               ],
             ),
-          );
-        },
-      );
+          )
+        );
+      }
+      return widgets;
+    }
+
+    List<Widget> buildContacts() {
+      List<Widget> widgets = [];
+      for (var convenor in widget.event.eventConvenors) {
+        widgets.add(
+          ContactCardWidget(contactName: convenor.eventConvenorName, contactPhone: convenor.eventConvenorPhone, contactEmail: convenor.eventConvenorEmail)
+        );
+      }
+      return widgets;
     }
 
     return GradientBackgroundWidget(
@@ -177,7 +168,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   width: 100,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(15),
-                                    child: Image.asset(eventLogo),
+                                    child: Image.asset(widget.event.eventLogo),
                                   )
                                 )
                               ],
@@ -189,7 +180,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  eventName,
+                                  widget.event.eventName,
                                   style: const TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.w800,
@@ -206,7 +197,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Flexible(
-                                  child: Text(eventTagline,
+                                  child: Text(
+                                    widget.event.eventTagline,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontFamily: 'Poppins',
@@ -225,7 +217,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               children: [
                                 Flexible(
                                   child: Text(
-                                    eventDescription,
+                                    widget.event.eventDescription,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontFamily: 'Poppins',
@@ -238,18 +230,38 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               ],
                             ),
                           ),
-                          sectionHeading("RULES"),
-                          Container(
-                            margin: const EdgeInsets.fromLTRB(24,8,0,0),
-                            child: buildRules(),
+                          Visibility(
+                            visible: widget.event.eventRules.isNotEmpty,
+                            child: Column(
+                              children: [
+                                sectionHeading("RULES"),
+                                Container(
+                                  margin: const EdgeInsets.fromLTRB(24,8,24,0),
+                                  child: Column(
+                                    children: buildRules(),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          sectionHeading("ROUNDS DESCRIPTION"),
-                          Container(
-                            margin: const EdgeInsets.fromLTRB(24,8,0,0),
-                            child: buildRounds(),
+                          Visibility(
+                            visible: widget.event.roundWiseDescription.isNotEmpty,
+                            child: Column(
+                              children: [
+                                sectionHeading("ROUNDS DESCRIPTION"),
+                                Container(
+                                  margin: const EdgeInsets.fromLTRB(24,8,0,0),
+                                  child: Column(
+                                    children: buildRounds(),
+                                  )
+                                ),
+                              ],
+                            ),
                           ),
                           sectionHeading("Contacts"),
-                          const ContactCardWidget(contactName: "Hariharan S", contactPhone: "7339543452", contactEmail: "19pd27@psgtech.ac.in")
+                          Column(
+                            children: buildContacts(),
+                          )
                       ],
                     )
                   ),
@@ -284,13 +296,4 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       ),
     );
   }
-}
-
-class Round {
-  final String roundNumber;
-  final String roundName;
-  final String roundDescription;
-
-  Round({required this.roundNumber, required this.roundName, required this.roundDescription});
-
 }

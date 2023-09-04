@@ -6,38 +6,58 @@
     "events": [
       {
         "eventName": "Datathon",
-        "eventConvenorName": "HariharanS",
-        "eventConvenorPhone": "7339543452",
-        "eventConvenorRollNo": "19PD27",
-        "eventConvenorEmail": "19pd27@psgtech.ac.in",
-        "eventLogo":"",
+        "eventConvenors": [
+          {
+            "eventConvenorName": "HariharanS",
+            "eventConvenorPhone": "7339543452",
+            "eventConvenorRollNo": "19PD27",
+            "eventConvenorEmail": "19pd27@psgtech.ac.in"
+          }
+        ],
+        "eventLogo":"assets/images/events/datathon_logo.png",
         "eventTagline": "Join us in the DATATHON of LOGIN 2023 to unleash the TALE that lies underneath the data!",
         "eventDescription": "Data! A weave of a million stories! Every detail tells a saga. So roll up your sleeves to come up with a perfect blend of modeling, visualization and prediction to uncover the TALE underneath! Join us in the DATATHON of LOGIN 2023.",
+        "eventRules":[
+          "Round 1: The idea for the problem statement should be submitted and need not contain any code.",
+          "Round 2: The final code should be submitted within 24hrs along with documentation highlighting the models used and the observations.",
+          "Submissions after the completion of the competition will not be considered.",
+          "Organizer's decision will be final.",
+          "Collaboration between participating teams is not allowed and can lead to disqualification."
+        ],
         "roundWiseDescription": [
           {
             "roundNumber":1,
             "roundName": "Round",
-            "roundDescription": "Preliminary Round: Participants propose solutions to the problem statement. The participants should submit their ideas as documentation. The assumptions, strategy, and problem modeling should be included."
+            "roundDescription": "Participants propose solutions to the problem statement. The participants should submit their ideas as documentation. The assumptions, strategy, and problem modeling should be included."
           },
           {
             "roundNumber":2,
             "roundName": "Round",
-            "roundDescription": "Datathon: Lasting around 24 hours during which participants analyze the data to present observations based on the problem description. A dashboard or report of the analysis and insights must be provided for evaluation. Any models built based on the data must also be shared."
+            "roundDescription": "(Datathon) : Lasting around 24 hours during which participants analyze the data to present observations based on the problem description. A dashboard or report of the analysis and insights must be provided for evaluation. Any models built based on the data must also be shared."
           }
         ],
-        "teamSize":"2-3",
+        "teamSize": "2-3",
         "facultyAdvisor": "Dr Sridevi UK",
         "expectedNoOfParticipants": "20 Teams"
       },
       {
         "eventName": "Inquizitives",
-        "eventConvenorName": "S Subhikshaa",
-        "eventConvenorPhone": "9980196402",
-        "eventConvenorRollNo": "19PD36",
-        "eventConvenorEmail": "19pd36@psgtech.ac.in",
-        "eventLogo":"",
+        "eventConvenors": [
+          {
+            "eventConvenorName": "S Subhikshaa",
+            "eventConvenorPhone": "9980196402",
+            "eventConvenorRollNo": "19PD36",
+            "eventConvenorEmail": "19pd36@psgtech.ac.in"
+          }
+        ],
+        "eventLogo":"assets/images/events/inquistives_logo.png",
         "eventTagline": "A Quiz Symphony of Music and Sports, let the beat fuel your victory!",
         "eventDescription": "Dive into the harmony of knowledge and the thrill of competition at Inquizitives! Join us during the 'Login' symposium for an electrifying fusion of music and general sports in a quiz like no other. Let your mind groove to the tunes of melodies and conquer the field of sports facts. Get ready to play, learn, and win – Inquizitives: Where Music meets Sports, and excitement knows no bounds!",
+        "eventRules":[
+          "A team shall consist of a maximum of 2 persons.",
+          "Top performing teams in the prelims will be selected for finals.",
+          "The decision of the quiz-master will be final and will not be subjected to any change."
+        ],
         "roundWiseDescription": [
           {
             "roundNumber":1,
@@ -50,19 +70,26 @@
             "roundDescription": "The culminating round promises to be a thrilling experience for the six fortunate teams that have been selected. This final round is designed to encompass a variety of enjoyable games centered around the realms of entertainment, including movies, series, sports, and music, adding an element of surprise and excitement to the competition."
           }
         ],
-        "teamSize":"2-3",
+        "teamSize": "2",
         "facultyAdvisor": "Dr Thanalakshmi P",
         "expectedNoOfParticipants": "50 Teams"
       },
       {
         "eventName": "Math Pirates",
-        "eventConvenorName": "Aarthi K",
-        "eventConvenorPhone": "9980196402",
-        "eventConvenorRollNo": "19PT40",
-        "eventConvenorEmail": "aarth2910@gmail.com",
-        "eventLogo":"",
+        "eventConvenors": [{
+          "eventConvenorName": "Aarthi K",
+          "eventConvenorPhone": "9980196402",
+          "eventConvenorRollNo": "19PT40",
+          "eventConvenorEmail": "aarth2910@gmail.com"
+        }],
+        "eventLogo":"assets/images/events/mathpirates_logo.png",
         "eventTagline": "Hoist the anchor and set the sail for a math adventure!",
         "eventDescription": " Do you want to explore the high seas and improve your math skills !?... Come join the math pirates crew, flaunt your quick wit and become the ultimate math pirate…from addition to navigation, our quiz will setyou on a math adventure like no other!",
+        "eventRules":[
+          "Smartphone usage is not allowed during the event.",
+          "No need to bring calculators for either of the rounds. There won't be any questions that will require tedious calculations.",
+          "Question papers, pens, and rough sheets for workout will be provided."
+        ],
         "roundWiseDescription": [
           {
             "roundNumber":1,
@@ -80,34 +107,57 @@
         "expectedNoOfParticipants": "30 Teams"
       },
       {
-        "eventName": "Hack-IN",
-        "eventConvenorName": "Thiruvenkata krishnan",
-        "eventConvenorPhone": "9944692114",
-        "eventConvenorRollNo": "19PD39",
-        "eventConvenorEmail": "19pd39@psgtech.ac.in",
-        "eventLogo":"",
-        "eventTagline": "Unravel the Digital Enigma: Hack, Crack & Conquer in the Ultimate Cyber Challenge",
-        "eventDescription": "Are you one of those fascinated by 'hacking' scenes in movies where your favorite character sneaks into the enemy's system? Then you are the right person for this mission. A Saboteur is here to mess with LOGIN and it is in your own hands to find his identity. HACK-IN to the arena of flags, why you ask? Well, aren't you gonna be our event savior - dare to find the cracks, hack it and Capture The Flags. The clock is already tickinggg !",
+        "eventName": "Last Stand",
+        "eventConvenors": [
+          {
+            "eventConvenorName": "Sreenivas R",
+            "eventConvenorPhone": "7598340364",
+            "eventConvenorRollNo": "19PW41",
+            "eventConvenorEmail": "19pw41@psgtech.ac.in"
+          }
+        ],
+        
+        "eventLogo":"assets/images/events/laststand_logo.png",
+        "eventTagline": "Defy the Limits, Go Beyond",
+        "eventDescription": "Kick and Score or Smack and Knock. No luck , All skill. It's time to prove your skills at the Last Stand as it brings together the worlds of FIFA and WWE to limitless entertainment. ",
+        "eventRules": [
+          "Teams must report to the venue 10 mins prior to their allotted time slot.",
+          "Use of any unfair means whatsoever shall result in disqualification.",
+          "Participants shall obey the event coordinator at all times. The Event Coordinator's decision is final.",
+          "The Participants should not mishandle the PCs and Controllers if provided. Any damage caused will be borne by the participants.",
+          "All participants must join Last Stand's Discord server where all further information and announcements will be sent through.",
+          "All event and game-specific rules and regulations will be available in the respective discord channels."
+        ],
         "roundWiseDescription": [
           {
             "roundNumber":1,
             "roundName": "Round",
-            "roundDescription": "The round will be based on several topics including Web, Cryptography, Reverse Engineering, OSINT, Forensics and 2 mystery categories that will be revealed on the competition day. Each topic will contain a set of questions which will be on a web platform where each team will be given credentials for authentication. A team can approach any problem at any time and try to solve them by finding clues and acquiring the flags. Each question will be assigned a score and points will be awarded once the flag is obtained."
+            "roundDescription": "FIFA and WWE :  The registered participants will be organised into brackets in a single elimination knockout format. The competitors will face off in head-to-head matches , with the winners advancing to the next round while the losers are eliminated. As the competition progresses, the bracket will narrow down until only two finalists remain , competing for the coveted title of Grand Champion."
           }
         ],
-        "teamSize": "2-3",
-        "facultyAdvisor": "Mrs Suganthi S D (Assistant Professor)",
-        "expectedNoOfParticipants": "50 Teams"
+        "teamSize": "FIFA - 1, WWE - 1",
+        "facultyAdvisor": "Dr R Priya",
+        "expectedNoOfParticipants": "40 Teams"
       },
       {
         "eventName": "Triple trouble",
-        "eventConvenorName": "Abinaya U",
-        "eventConvenorPhone": "9940450903",
-        "eventConvenorRollNo": "19PD02",
-        "eventConvenorEmail": "19pd02@psgtech.ac.in",
-        "eventLogo":"",
+        "eventConvenors": [
+          {
+            "eventConvenorName": "Abinaya U",
+            "eventConvenorPhone": "9940450903",
+            "eventConvenorRollNo": "19PD02",
+            "eventConvenorEmail": "19pd02@psgtech.ac.in"
+          }
+        ],
+        "eventLogo":"assets/images/events/triple_trouble_logo.png",
         "eventTagline": "Team as double, to raffle the trouble",
         "eventDescription": "Have you ever felt a rush of excitement and intrigue while you chance upon puzzles? Here we are to delight you with witty troubles and tricky stumpers. Let your memory pave your path to the destination. Hop aboard as a traveller, unravel the treasure. Geeks unleash your fun part!! ",
+        "eventRules":[
+          "A team shall consist of a maximum of 2 players.",
+          "Top-performing teams in the prelims will be selected for finals.",
+          "The decision of the judges will be final and will not be subjected to any change.",
+          "Looking forward to having fair play."
+        ],
         "roundWiseDescription": [
           {
             "roundNumber":1,
@@ -134,13 +184,26 @@
   "mscEvents": [
     {
       "eventName": "Datathon",
-      "eventConvenorName": "HariharanS",
-      "eventConvenorPhone": "7339543452",
-      "eventConvenorRollNo": "19PD27",
-      "eventConvenorEmail": "19pd27@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "HariharanS",
+          "eventConvenorPhone": "7339543452",
+          "eventConvenorRollNo": "19PD27",
+          "eventConvenorEmail": "19pd27@psgtech.ac.in"
+        }
+      ],
       "eventLogo":"assets/images/events/datathon_logo.png",
       "eventTagline": "Join us in the DATATHON of LOGIN 2023 to unleash the TALE that lies underneath the data!",
       "eventDescription": "Data! A weave of a million stories! Every detail tells a saga. So roll up your sleeves to come up with a perfect blend of modeling, visualization and prediction to uncover the TALE underneath! Join us in the DATATHON of LOGIN 2023.",
+      "eventRules":[
+        "Each team must contain a maximum of 2 members",
+        "The top performing teams in Prelims will be selected for finals",
+        "In case of a tie-breaker, the team that solves the problem first wins",
+        "The leaderboard is used to determine the winner",
+        "The participants should not involve in any unacceptable behavior, it will lead to the disqualification of the team",
+        "Question paper, pen, rough sheets for workout will be provided.",
+        "Smartphone usage is not allowed during the event."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -159,13 +222,22 @@
     },
     {
       "eventName": "Inquizitives",
-      "eventConvenorName": "S Subhikshaa",
-      "eventConvenorPhone": "9980196402",
-      "eventConvenorRollNo": "19PD36",
-      "eventConvenorEmail": "19pd36@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "S Subhikshaa",
+          "eventConvenorPhone": "9980196402",
+          "eventConvenorRollNo": "19PD36",
+          "eventConvenorEmail": "19pd36@psgtech.ac.in"
+        }
+      ],
       "eventLogo":"assets/images/events/inquistives_logo.png",
       "eventTagline": "A Quiz Symphony of Music and Sports, let the beat fuel your victory!",
       "eventDescription": "Dive into the harmony of knowledge and the thrill of competition at Inquizitives! Join us during the 'Login' symposium for an electrifying fusion of music and general sports in a quiz like no other. Let your mind groove to the tunes of melodies and conquer the field of sports facts. Get ready to play, learn, and win – Inquizitives: Where Music meets Sports, and excitement knows no bounds!",
+      "eventRules":[
+        "A team shall consist of a maximum of 2 persons.",
+        "Top performing teams in the prelims will be selected for finals.",
+        "The decision of the quiz-master will be final and will not be subjected to any change."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -184,13 +256,20 @@
     },
     {
       "eventName": "Math Pirates",
-      "eventConvenorName": "Aarthi K",
-      "eventConvenorPhone": "9980196402",
-      "eventConvenorRollNo": "19PT40",
-      "eventConvenorEmail": "aarth2910@gmail.com",
+      "eventConvenors": [{
+        "eventConvenorName": "Aarthi K",
+        "eventConvenorPhone": "9980196402",
+        "eventConvenorRollNo": "19PT40",
+        "eventConvenorEmail": "aarth2910@gmail.com"
+      }],
       "eventLogo":"assets/images/events/mathpirates_logo.png",
       "eventTagline": "Hoist the anchor and set the sail for a math adventure!",
       "eventDescription": " Do you want to explore the high seas and improve your math skills !?... Come join the math pirates crew, flaunt your quick wit and become the ultimate math pirate…from addition to navigation, our quiz will setyou on a math adventure like no other!",
+      "eventRules":[
+        "Smartphone usage is not allowed during the event.",
+        "No need to bring calculators for either of the rounds. There won't be any questions that will require tedious calculations.",
+        "Question papers, pens, and rough sheets for workout will be provided."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -209,13 +288,26 @@
     },
     {
       "eventName": "Last Stand",
-      "eventConvenorName": "Sreenivas R",
-      "eventConvenorPhone": "7598340364",
-      "eventConvenorRollNo": "19PW41",
-      "eventConvenorEmail": "19pw41@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Sreenivas R",
+          "eventConvenorPhone": "7598340364",
+          "eventConvenorRollNo": "19PW41",
+          "eventConvenorEmail": "19pw41@psgtech.ac.in"
+        }
+      ],
+      
       "eventLogo":"assets/images/events/laststand_logo.png",
       "eventTagline": "Defy the Limits, Go Beyond",
       "eventDescription": "Kick and Score or Smack and Knock. No luck , All skill. It's time to prove your skills at the Last Stand as it brings together the worlds of FIFA and WWE to limitless entertainment. ",
+      "eventRules": [
+        "Teams must report to the venue 10 mins prior to their allotted time slot.",
+        "Use of any unfair means whatsoever shall result in disqualification.",
+        "Participants shall obey the event coordinator at all times. The Event Coordinator's decision is final.",
+        "The Participants should not mishandle the PCs and Controllers if provided. Any damage caused will be borne by the participants.",
+        "All participants must join Last Stand's Discord server where all further information and announcements will be sent through.",
+        "All event and game-specific rules and regulations will be available in the respective discord channels."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -229,13 +321,23 @@
     },
     {
       "eventName": "Triple trouble",
-      "eventConvenorName": "Abinaya U",
-      "eventConvenorPhone": "9940450903",
-      "eventConvenorRollNo": "19PD02",
-      "eventConvenorEmail": "19pd02@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Abinaya U",
+          "eventConvenorPhone": "9940450903",
+          "eventConvenorRollNo": "19PD02",
+          "eventConvenorEmail": "19pd02@psgtech.ac.in"
+        }
+      ],
       "eventLogo":"assets/images/events/triple_trouble_logo.png",
       "eventTagline": "Team as double, to raffle the trouble",
       "eventDescription": "Have you ever felt a rush of excitement and intrigue while you chance upon puzzles? Here we are to delight you with witty troubles and tricky stumpers. Let your memory pave your path to the destination. Hop aboard as a traveller, unravel the treasure. Geeks unleash your fun part!! ",
+      "eventRules":[
+        "A team shall consist of a maximum of 2 players.",
+        "Top-performing teams in the prelims will be selected for finals.",
+        "The decision of the judges will be final and will not be subjected to any change.",
+        "Looking forward to having fair play."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -259,13 +361,22 @@
     },
     {
       "eventName": "Hack-IN",
-      "eventConvenorName": "Thiruvenkata krishnan",
-      "eventConvenorPhone": "9944692114",
-      "eventConvenorRollNo": "19PD39",
-      "eventConvenorEmail": "19pd39@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Thiruvenkata krishnan",
+          "eventConvenorPhone": "9944692114",
+          "eventConvenorRollNo": "19PD39",
+          "eventConvenorEmail": "19pd39@psgtech.ac.in"
+        }
+      ],
       "eventLogo":"assets/images/events/hackin_logo.png",
       "eventTagline": "Unravel the Digital Enigma: Hack, Crack & Conquer in the Ultimate Cyber Challenge",
       "eventDescription": "Are you one of those fascinated by 'hacking' scenes in movies where your favorite character sneaks into the enemy's system? Then you are the right person for this mission. A Saboteur is here to mess with LOGIN and it is in your own hands to find his identity. HACK-IN to the arena of flags, why you ask? Well, aren't you gonna be our event savior - dare to find the cracks, hack it and Capture The Flags. The clock is already tickinggg !",
+      "eventRules":[
+        "A team shall consist of a maximum of 3 persons.",
+        "The highest scoring team wins.",
+        "The decision of the judge is final."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -279,13 +390,26 @@
     },
     {
       "eventName": "Algocode",
-      "eventConvenorName": "Rakshith C.R.M",
-      "eventConvenorPhone": "6374076204",
-      "eventConvenorRollNo": "19PT20",
-      "eventConvenorEmail": "19pt20@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Rakshith C.R.M",
+          "eventConvenorPhone": "6374076204",
+          "eventConvenorRollNo": "19PT20",
+          "eventConvenorEmail": "19pt20@psgtech.ac.in"
+        }
+      ],
       "eventLogo":"assets/images/events/algocode_logo.png",
       "eventTagline": "Code and Conquer",
       "eventDescription": "We present you with yet another excuse to code your brain and heart out - ALGOCODE. Stack skills and queue tricks up your sleeve! This event will surely provide you with an array of problems that will untangle your mind. Fire up your editor and compile your way through this event to reach the root of this tournament tree",
+      "eventRules": [
+        "Each team must contain a maximum of 2 members",
+        "The top performing teams in Prelims will be selected for finals",
+        "In case of a tie-breaker, the team that solves the problem first wins",
+        "The leaderboard is used to determine the winner",
+        "The participants should not involve in any unacceptable behavior, it will lead to the disqualification of the team",
+        "Question paper, pen, rough sheets for workout will be provided.",
+        "Smartphone usage is not allowed during the event."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -304,13 +428,18 @@
     },
     {
       "eventName": "Eureka",
-      "eventConvenorName": "Rakshith C.R.M",
-      "eventConvenorPhone": "6374076204",
-      "eventConvenorRollNo": "19PT20",
-      "eventConvenorEmail": "19pt20@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Fayaz Ahamed S",
+          "eventConvenorPhone": "9150262893",
+          "eventConvenorRollNo": "22PA08",
+          "eventConvenorEmail": "22pa08@psgtech.ac.in"
+        }
+      ],
       "eventLogo":"assets/images/events/eureka_logo.png",
       "eventTagline": "Excellence via ingenuity",
       "eventDescription": "The slightest inkling in your mind could be pivotal down the road. An idea in you, could birth a new reality. Tell the world, the word you want to. Take every chance. Drop every fear. Talk every nerve.The stage awaits your ideas to blend with the spark and make an innovation.Fuel your brain, ideate and spiel your Eureka moment.",
+      "eventRules":[],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -331,13 +460,22 @@
   "mcaEvents": [
     {
       "eventName": "Code Sprint",
-      "eventConvenorName": "Sathiya Lingesh V",
-      "eventConvenorPhone": "7598153895",
-      "eventConvenorRollNo": "22MX122",
-      "eventConvenorEmail": "22mx122@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Sathiya Lingesh V",
+          "eventConvenorPhone": "7598153895",
+          "eventConvenorRollNo": "22MX122",
+          "eventConvenorEmail": "22mx122@psgtech.ac.in"
+        }
+      ],
       "eventLogo": "assets/images/events/codesprint_logo.png",
       "eventTagline": "Code your Way to your Excellence",
       "eventDescription": "Having a thought process inclined towards logic and exhibiting it through exemplary problem solving skills is what we look for in a technocrat like you. Fasten your belts and get set for the most intriguing event of Login 2023 - Codesprint. Unleash your coding skills while you abide by the memory ,time and space constraints. Charge your brains and get ready for Codesprint.",
+      "eventRules":[
+        "Teams will be ranked as per the number of problems solved in the final round.",
+        "A maximum of 3 participants are allowed from the same college.",
+        "Teams who fail to abide by the above-mentioned rules shall be disqualified."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -356,13 +494,24 @@
     },
     {
       "eventName": "Cybernerd",
-      "eventConvenorName": "Augxy Moon SM",
-      "eventConvenorPhone": "9489442574",
-      "eventConvenorRollNo": "22MX108",
-      "eventConvenorEmail": " 22mx108@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Augxy Moon SM",
+          "eventConvenorPhone": "9489442574",
+          "eventConvenorRollNo": "22MX108",
+          "eventConvenorEmail": " 22mx108@psgtech.ac.in"
+        }
+      ],
       "eventLogo": "assets/images/events/cybernerd_logo.png",
       "eventTagline": "There is always a way to trespass",
       "eventDescription": "Today, computers run the planet. And a person who can trick computers can dominate the entire planet by himself. Do you not concur? Try and solve the life-changing puzzle. There are always undesirable loopholes, but the goal here is to select the best one. Can you do it?",
+      "eventRules":[
+        "Maximum three individual participants are allowed from each college.",
+        "Mobile phones are not allowed.",
+        "Participants violating the rules will be disqualified.",
+        "Only individual participation is allowed.",
+        "The decision made by event organizers will be final."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -376,19 +525,34 @@
     },
     {
       "eventName": "Nethunt",
-      "eventConvenorName": "Santhosh Kumar A",
-      "eventConvenorPhone": "6381683077",
-      "eventConvenorRollNo": "22MX222",
-      "eventConvenorEmail": "22mx222@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Santhosh Kumar A",
+          "eventConvenorPhone": "6381683077",
+          "eventConvenorRollNo": "22MX222",
+          "eventConvenorEmail": "22mx222@psgtech.ac.in"
+        }
+      ],
       "eventLogo": "assets/images/events/nethunt_logo.png",
       "eventTagline": " An Unsolved Mystery with the usual Suspects",
       "eventDescription": "A Picture conveys multiple things which words can neither express nor explain Depictions sometimes can be decepictions sometimes can be deceptive too. Are you someone with eagle eyes, critiquing every critical details ? If yes is your answer; we throw you a challenge. Not a challenge which makes you think, but one that twists every strand of neuron in your head.Are you ready ? Here you go..!!",
-      "roundWiseDescription": [
-        {
-          "roundNumber":1,
-          "roundName": "Round",
-          "roundDescription": ""
-        }
+      "roundWiseDescription": [],
+      "eventRules":[
+        "Guess the computer-related technical term from the image displayed.",
+        "Answers are to be entered in the textbox provided.",
+        "The answers should not contain any special characters (, + * / < > - $ &).",
+        "Ignore the space between the words in the answer.",
+        "Example: 'Net-Hunt' must be entered as 'nethunt'. The number '1' must be entered as 'one'.",
+        "Clues will be provided for every image after a few tries or hits.",
+        "Scores will be reduced according to your hit count for every image.",
+        "The first clue appears after 75 hits.",
+        "A second clue appears after 150 hits.",
+        "Internet resources can be used.",
+        "In case of a tie, the winner will be selected based on the number of tries.",
+        "In a leaderboard, if both leading teams are from the same college, then only one team will be considered as the winner, which is selected based on tries.",
+        "Any form of malpractice will lead to disqualification. Organizers have all the rights to disqualify anyone without any prior notice.",
+        "Selection will be made after verification of the student's credentials. Students with invalid credentials will be disqualified.",
+        "Winners will be announced after verification on LOGIN 2K23."
       ],
       "teamSize": "1",
       "facultyAdvisor": "Mrs Kalyani A",
@@ -396,18 +560,39 @@
     },
     {
       "eventName": "Star of Login",
-      "eventConvenorName": "Arivuselvan S",
-      "eventConvenorPhone": "6382262530,6369870124",
-      "eventConvenorRollNo": "22MX106,22MX229",
-      "eventConvenorEmail": "22mx106@psgtech.ac.in,22mx229@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Arivuselvan S",
+          "eventConvenorPhone": "6382262530",
+          "eventConvenorRollNo": "22MX106",
+          "eventConvenorEmail": "22mx106@psgtech.ac.in"
+        },
+        {
+          "eventConvenorName": "Arivuselvan S",
+          "eventConvenorPhone": "6369870124",
+          "eventConvenorRollNo": "22MX229",
+          "eventConvenorEmail": "22mx229@psgtech.ac.in"
+        }
+      ],
       "eventLogo": "assets/images/events/star_of_login_logo.png",
-      "eventTagline": "",
+      "eventTagline": "Why fit in when you are born to stand out!",
       "eventDescription": "Whether you claim victory or secure a runner-up position, this is your prime opportunity to shine in the ultimate round. Unleash your skills, push your limits, and strive to be the ultimate champion, earning the esteemed title 'Star of Login'. This is the chance to prove your worth and ensure your place in the annals of the Record Book!",
+      "eventRules":[
+        "Only the winners and runners-up of all other events in LOGIN 2022 are eligible to participate.",
+        "If a participant doesn't report for prelims on time, he/she will not be permitted to participate.",
+        "Copying answers from the internet or any other resources is prohibited.",
+        "Judges' decisions are final."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
           "roundName": "Round",
-          "roundDescription": ""
+          "roundDescription": "A set of muddling mind questions will be given in which the participant has to answer smartly. The smart ones are selected for next round."
+        },
+        {
+          "roundNumber":2,
+          "roundName": "Round",
+          "roundDescription": "Participants will have to perform the tasks given by the judges on stage. Each participant will be given 15 minutes to perform on stage."
         }
       ],
       "teamSize": "",
@@ -416,13 +601,26 @@
     },
     {
       "eventName": "Techiadz",
-      "eventConvenorName": "Rajkumar B",
-      "eventConvenorPhone": "9842216369",
-      "eventConvenorRollNo": "22MX120",
-      "eventConvenorEmail": "22MX120@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Rajkumar B",
+          "eventConvenorPhone": "9842216369",
+          "eventConvenorRollNo": "22MX120",
+          "eventConvenorEmail": "22MX120@psgtech.ac.in"
+        }
+      ],
       "eventLogo": "assets/images/events/techiadz_logo.png",
       "eventTagline": "Our Vision! Your Innovation!",
       "eventDescription": "Here's to the crazy ones. The one who sees things differently, this is the time to showcase your art of convincing people and the science of attracting human intelligence and creativity. And here we go, it's time to wake up the marketing genius inside you. It's an idea of magic, depending on the creativity of the people and the convincing art of people to sell their products to the audience.",
+      "eventRules": [
+        "In the First round, a team of two members can be formed, and mobiles are not allowed during the event.",
+        "From the First round, 5 teams are selected to the Final round. In the Final Round, the count of team members can be a maximum of 5.",
+        "The team for the Final round can be formed by a selected team, and the other three members can be the friends of the team selected.",
+        "The team should come up with the logo, slogan, and other details about their product within the given time of 30 mins.",
+        "The teams will be provided with an unimaginable product, which they are supposed to market within the given time of 15 mins.",
+        "Evaluation will be based on creativity, humor, skill, and marketing ethics.",
+        "The judges and the event's organizers' decision is final."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -441,13 +639,25 @@
     },
     {
       "eventName": "Flip Flop",
-      "eventConvenorName": "Varuna R",
-      "eventConvenorPhone": "9994974962",
-      "eventConvenorRollNo": "22MX130",
-      "eventConvenorEmail": " 22mx130@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Varuna R",
+          "eventConvenorPhone": "9994974962",
+          "eventConvenorRollNo": "22MX130",
+          "eventConvenorEmail": " 22mx130@psgtech.ac.in"
+        }
+      ],
       "eventLogo": "assets/images/events/flipflop_logo.png",
       "eventTagline": "Contend, Contradict and Convince",
       "eventDescription": "Perspective. People have confused playing devil's advocate with being intelligent, but if you play devil's advocate with correctness, you get the horns. And if you play it at a high tempo, you're already ahead of the curve, having seen it all.",
+      "eventRules":[
+        "Maximum two individuals per college are allowed.",
+        "Judge's decision will be considered final.",
+        "If a person doesn't report on time, he/she will not be permitted to participate.",
+        "On the buzzer sound, participants should flip-flop on the given topic.",
+        "Participants should maintain proper stage manners.",
+        "Participants should keep track of time and must stick to the specified topic."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -461,13 +671,21 @@
     },
     {
       "eventName": "Artistry",
-      "eventConvenorName": "Manoharan R",
-      "eventConvenorPhone": "6369969599",
-      "eventConvenorRollNo": "22MX114",
-      "eventConvenorEmail": "22mx114@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Manoharan R",
+          "eventConvenorPhone": "6369969599",
+          "eventConvenorRollNo": "22MX114",
+          "eventConvenorEmail": "22mx114@psgtech.ac.in"
+        }
+      ],
       "eventLogo": "assets/images/events/artistry_logo.png",
       "eventTagline": "Look at Usual Things with Unusual Eyes!",
       "eventDescription": "Do crazy things which are hard to imagine ! Create your own visual style let it be unique to yourself and yet identifiable for others. Creativity is making your own version. With a good photo and creativity, you can easily transform your photograph into a work of art. Do dig up a little and find the right one.",
+      "eventRules": [
+        "If a photo is found to be plagiarized/downloaded, it will be disqualified.",
+        ".psd files should be shared only via the registered email address."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
@@ -481,13 +699,28 @@
     },
     {
       "eventName": "Thinklytics",
-      "eventConvenorName": "Ramanathan M, Akshairaj G",
-      "eventConvenorPhone": "8056856956, 7339272345",
-      "eventConvenorRollNo": "22MX217,22MX201",
-      "eventConvenorEmail": "22mx217@psgtech.ac.in,22mx201@psgtech.ac.in",
+      "eventConvenors": [
+        {
+          "eventConvenorName": "Ramanathan M",
+          "eventConvenorPhone": "8056856956",
+          "eventConvenorRollNo": "22MX217",
+          "eventConvenorEmail": "22mx217@psgtech.ac.in"
+        },
+        {
+          "eventConvenorName": "Akshairaj G",
+          "eventConvenorPhone": "7339272345",
+          "eventConvenorRollNo": "22MX201",
+          "eventConvenorEmail": "22mx201@psgtech.ac.in"
+        }
+      ],
       "eventLogo": "assets/images/events/thinklytics_logo.png",
       "eventTagline": "Contemplate Data Differently",
       "eventDescription": "Are you a Data Abstractor? Ready to measure and manage the data? Seeking a platform to strengthen your critical thinking? Here is a fascinating event to explore your analytical skills. Questions provide you answers; Thinklytics will gain you unfathomable heights of understanding.Open your eyes and prepare yourself to participate into the appropriate option. Take the moment friends! If not analyzed now, then when? ",
+      "eventRules":[
+        "The participants will be disqualified in case of malpractice.",
+        "Using a calculator or mobile phone is prohibited.",
+        "The decision of the judges will be final and will not be subjected to any change."
+      ],
       "roundWiseDescription": [
         {
           "roundNumber":1,

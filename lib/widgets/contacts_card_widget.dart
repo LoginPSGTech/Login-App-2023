@@ -42,12 +42,14 @@ class ContactCardWidget extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            contactName,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 20,
-                              color: Color.fromRGBO(230, 162, 16, 1),
+                          Flexible(
+                            child: Text(
+                              contactName,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 20,
+                                color: Color.fromRGBO(230, 162, 16, 1),
+                              ),
                             ),
                           ),
                         ],
@@ -60,9 +62,11 @@ class ContactCardWidget extends StatelessWidget {
                             color: Color.fromRGBO(18, 31, 44, 61),
                           ),
                           const SizedBox(width: 8),
-                          Text(
-                            contactPhone,
-                            style: const TextStyle(fontSize: 14, color: Colors.white),
+                          Flexible(
+                            child: Text(
+                              contactPhone,
+                              style: const TextStyle(fontSize: 14, color: Colors.white),
+                            ),
                           ),
                         ],
                       ),
@@ -77,9 +81,11 @@ class ContactCardWidget extends StatelessWidget {
                             color: Color.fromRGBO(18, 31, 44, 61),
                           ),
                           const SizedBox(width: 8),
-                          Text(
-                            contactEmail,
-                            style: const TextStyle(fontSize: 14, color: Colors.white),
+                          Flexible(
+                            child: Text(
+                              contactEmail,
+                              style: const TextStyle(fontSize: 14, color: Colors.white),
+                            ),
                           ),
                         ],
                       ),

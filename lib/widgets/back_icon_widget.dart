@@ -11,7 +11,7 @@ class BackIconWidget extends StatelessWidget {
           Navigator.of(context).pop();
         },
         child: Container(
-          margin: const EdgeInsets.fromLTRB(24, 16, 0, 16),          
+          padding: const EdgeInsets.fromLTRB(24, 16, 0, 16),          
           child: const Icon(
             CupertinoIcons.back,
             size: 32, 
