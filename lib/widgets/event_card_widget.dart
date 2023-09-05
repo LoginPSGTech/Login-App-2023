@@ -46,13 +46,15 @@ class EventCardWidget extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            eventName,
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800,
-                              color: Color(0xFFFEB139),
+                          Flexible(
+                            child: Text(
+                              eventName,
+                              style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 24,
+                                fontWeight: FontWeight.w800,
+                                color: Color(0xFFFEB139),
+                              ),
                             ),
                           ),
                         ],
