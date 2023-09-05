@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/pages/login_page.dart';
 import 'package:login/pages/main_page.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
@@ -16,12 +17,17 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => AppDataProvider(),
         child: MaterialApp(
-        title: 'Login App',
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        home: const MainPage(),
-        debugShowCheckedModeBanner: false,
+          title: 'Login App',
+          initialRoute: '/login',
+          routes: {
+            '/login': (context) => const LoginPage(),
+            
+          },
+          theme: ThemeData(
+            useMaterial3: true,
+          ),
+          home: const MainPage(),
+          debugShowCheckedModeBanner: false,
       )
     );
   }

@@ -1,14 +1,13 @@
+import 'package:login/models/event_convenor_model.dart';
 import 'package:login/models/round_model.dart';
 
 class Event {
   final String eventName;
-  final String eventConvenorName;
-  final String eventConvenorPhone;
-  final String eventConvenorRollNo;
-  final String eventConvenorEmail;
+  final List<EventConvenor> eventConvenors;
   final String eventLogo;
   final String eventTagline;
   final String eventDescription;
+  final List<String> eventRules;
   final List<Round> roundWiseDescription;
   final String teamSize;
   final String facultyAdvisor;
@@ -16,13 +15,11 @@ class Event {
 
   Event({
     required this.eventName,
-    required this.eventConvenorName,
-    required this.eventConvenorPhone,
-    required this.eventConvenorRollNo,
-    required this.eventConvenorEmail,
+    required this.eventConvenors,
     required this.eventLogo,
     required this.eventTagline,
     required this.eventDescription,
+    required this.eventRules,
     required this.roundWiseDescription,
     required this.teamSize,
     required this.facultyAdvisor,
@@ -34,15 +31,19 @@ class Event {
         .map((roundJson) => Round.fromJson(roundJson))
         .toList();
 
+    final eventConvenorList = (json['eventConvenors'] as List<dynamic>)
+        .map((eventConvenorJson) => EventConvenor.fromJson(eventConvenorJson))
+        .toList();
+
+    final rulesList = (json['eventRules'] as List).cast<String>();
+
     return Event(
       eventName: json['eventName'],
-      eventConvenorName: json['eventConvenorName'],
-      eventConvenorPhone: json['eventConvenorPhone'],
-      eventConvenorRollNo: json['eventConvenorRollNo'],
-      eventConvenorEmail: json['eventConvenorEmail'],
+      eventConvenors: eventConvenorList,
       eventLogo: json['eventLogo'],
       eventTagline: json['eventTagline'],
       eventDescription: json['eventDescription'],
+      eventRules: rulesList,
       roundWiseDescription: roundList,
       teamSize: json['teamSize'],
       facultyAdvisor: json['facultyAdvisor'],
