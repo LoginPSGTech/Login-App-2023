@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:login/providers/app_data_provider.dart';
+
 
 class HomePage extends StatefulWidget{
   @override
@@ -7,31 +10,40 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage> {
   List<int> colored=<int>[600,500,100];
-  late var text1;
-  late var text2;
-  int text1State=0;
-  int text2State=0;
+  late var descriptionButtonText;
+  late var aboutButtonText;
+  late var descriptiontext,abouttext;
+  int descriptionState=0;
+  int aboutState=0;
+  late var event;
   @override
   Widget build(BuildContext context){
-    switch(text1State){
+    final appData = Provider.of<AppDataProvider>(context).appData;
+    final event=appData.mscEvents;
+    switch(descriptionState){
       case 0:
-        text1="We live in the world of interconnected technologies, where there is exponential growth and transformation impacting industries, societies, and individuals alike. Notably, the swift adoption rate of cutting-edge technology outpaces previous advancements.";
+        descriptionButtonText="Read More";
+        descriptiontext=appData.home.description;
         break;
       case 1:
-        text1="We live in the world of interconnected technologies, where there is exponential growth and transformation impacting industries, societies, and individuals alike. Notably, the swift adoption rate of cutting-edge technology outpaces previous advancements.A prime example is Al revolutionizing virtual assistants, autonomous vehicles, medical diagnoses and personalized content.Embracing this horizon requires responsible adaptation, addressing ethical concerns, privacy, and bridging the digital divide. By leveraging its potential, we pave the way for an exciting future!";
+        descriptionButtonText="Read Less";
+        descriptiontext=appData.home.description+appData.home.addeddescription;
         break;
     }
-    switch(text2State){
+    switch(aboutState){
       case 0:
-        text2="The 32nd edition of LOGIN, a highly celebarated technical symposium in PSG Tech, is brought to you by the Computer Applications, and the Computational Sciences Associations who look towards continuing to spread the far-reaching wings of their longstanding partnership, to expand their footprint on the digital horizon. ";
+        aboutButtonText="Read More";
+        abouttext=appData.home.about;
         break;
       case 1:
-        text2="The 32nd edition of LOGIN, a highly celebarated technical symposium in PSG Tech, is brought to you by the Computer Applications, and the Computational Sciences Associations who look towards continuing to spread the far-reaching wings of their longstanding partnership, to expand their footprint on the digital horizon. Post graduate students of any stream from colleges around the globe are welcome to code, compete and conquer this quest for the creative and collaborative. The two-day symposium held on the 23rd and 24th of September, serves up a smorgasbord of sumptuous events that refine, recognize and reward students for their zeal and zest.";
+        aboutButtonText="Read Less";
+        abouttext=appData.home.about+appData.home.addedabout;
         break;
 
     }
     return ListView(
       children: [
+        //title image
         Padding(
           padding: EdgeInsets.fromLTRB(86, 70, 86, 30),
           child:Container(
@@ -42,6 +54,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        //title digital horizon
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
           child: Container(
@@ -74,6 +87,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        //title navigating the
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
           child: Text(
@@ -86,6 +100,7 @@ class _HomePageState extends State<HomePage> {
               )
           ),
         ),
+        //title hyper -connected world
         Padding(
           padding: EdgeInsets.fromLTRB(20, 0, 30, 0),
           child: Container(
@@ -116,49 +131,61 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        //description
         Padding(
           padding: const EdgeInsets.fromLTRB(22, 0, 18, 8),
-          child: Container(
-            child:Column(
-              children: [
-                Text(
-                  text1,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 12,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-                  child: ElevatedButton(
-                    onPressed: (){
-                      setState(() {
-                        if(text1State==0){
-                          text1State=1;
-                        }else{
-                          text1State=0;
-                        }
-                      });
-                    },
-                    child: const Text("Read More",style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'Poppins'
-                    ),),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffF55353),
+          child: AnimatedSwitcher(
+            duration: Duration(milliseconds: 1500),
+            child: Container(
+              child:Column(
+                children: [
+                  Text(
+                    descriptiontext,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 12,
                     ),
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                    child: Container(
+                      child: ElevatedButton(
+                        onPressed: (){
+                          setState(() {
+                            if(descriptionState==0){
+                              descriptionState=1;
+                            }else{
+                              descriptionState=0;
+                            }
+                          });
+                        },
+                        child: Text(
+                          descriptionButtonText,style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontFamily: 'Poppins'
+                        ),),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          minimumSize: Size(double.infinity, 40),
+                          backgroundColor: Color(0xffF55353),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
+        //about login
         Padding(
           padding: EdgeInsets.fromLTRB(22, 0, 18, 8),
           child:Container(
@@ -191,13 +218,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        //about
         Padding(
-          padding: const EdgeInsets.fromLTRB(22, 0, 18, 8),
+          padding: const EdgeInsets.fromLTRB(22, 0, 18, 0),
           child: Container(
             child:Column(
               children: [
                 Text(
-                  text2,
+                  abouttext,
                   style: const TextStyle(
                     color: Colors.white,
                     fontFamily: 'Poppins',
@@ -209,23 +237,27 @@ class _HomePageState extends State<HomePage> {
                   height: 20,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(22, 0, 18, 70),
+                  padding: const EdgeInsets.fromLTRB(22, 0, 18, 50),
                   child: ElevatedButton(
                     onPressed: (){
                       setState(() {
-                        if(text2State==0){
-                          text2State=1;
+                        if(aboutState==0){
+                          aboutState=1;
                         }else{
-                          text2State=0;
+                          aboutState=0;
                         }
                       });
                     },
-                    child: const Text("Read More",style: TextStyle(
+                    child: Text(aboutButtonText,style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,
                         fontFamily: 'Poppins'
                     ),),
                     style: ElevatedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       backgroundColor: Color(0xffF55353),
                     ),
                   ),
@@ -234,45 +266,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Flex(
-              direction: Axis.horizontal,
-              children:<Widget> [
-                Flexible(
-                  flex:11,
-                  child: Container(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      reverse: true,
-                      itemBuilder: (BuildContext context, int index){
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.redAccent,
-                            ),
-                            height: 50,
-                            width: 100,
-                          ),
-                        );
-                      },
-                      itemCount: 10,
-                    ),
-                  ),
-                ),
-                const Flexible(
-                    flex: 1,
-                    child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Text("EVENTS",style: TextStyle(color: Colors.redAccent,),
-                        )
-                    )
-                )
-              ]),
-        ),
+        //events
         Padding(
           padding: const EdgeInsets.all(10),
           child: Flex(
@@ -282,75 +276,99 @@ class _HomePageState extends State<HomePage> {
                     flex: 1,
                     child: RotatedBox(
                         quarterTurns: 3,
+                        child: Text("EVENTS",style: TextStyle(color: Colors.redAccent,),
+                        )
+                    )
+                ),
+                Flexible(
+                  flex:11,
+                  child: Container(
+                    height: 192,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      reverse: false,
+                      itemBuilder: (BuildContext context, int index){
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              // image: DecorationImage(
+                              //     image: AssetImage(event[index].eventLogo),
+                              //     fit: BoxFit.cover,
+                              // ),
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xff123E6B),
+                            ),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Text(event[index].eventName,style: TextStyle(color: Colors.white,fontSize: 11),),
+                              ),
+                            ),
+                            height: 192,
+                            width: 108,
+                          ),
+                        );
+                      },
+                      itemCount: 8,
+                    ),
+                  ),
+                ),
+              ]),
+        ),
+        //programs
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Flex(
+              direction: Axis.horizontal,
+              children:<Widget> [
+                Flexible(
+                  flex:11,
+                  child: Container(
+                    height: 192,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      reverse: false,
+                      itemBuilder: (BuildContext context, int index){
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              // image: DecorationImage(
+                              //     image: AssetImage(event[index].eventLogo),
+                              //     fit: BoxFit.cover,
+                              // ),
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xff123E6B),
+                            ),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Text("Programs",style: TextStyle(color: Colors.white,fontSize: 11),),
+                              ),
+                            ),
+                            height: 192,
+                            width: 108,
+                          ),
+                        );
+                      },
+                      itemCount: 8,
+                    ),
+                  ),
+                ),
+                const Flexible(
+                    flex: 1,
+                    child: RotatedBox(
+                        quarterTurns: 1,
                         child:  Text("PROGRAMS",style: TextStyle(color: Colors.redAccent,),
                         )
                     )
                 ),
-                Flexible(
-                  flex:11,
-                  child: Container(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      reverse: false,
-                      itemBuilder: (BuildContext context, int index){
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 50,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.redAccent,
-                            ),
-                          ),
-                        );
-                      },
-                      itemCount: 10,
-                    ),
-                  ),
-                ),
               ]),
         ),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Flex(
-              direction: Axis.horizontal,
-              children:<Widget> [
-                Flexible(
-                  flex:11,
-                  child: Container(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      reverse: true,
-                      itemBuilder: (BuildContext context, int index){
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 50,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.redAccent,
-                            ),
-                          ),
-                        );
-                      },
-                      itemCount: 10,
-                    ),
-                  ),
-                ),
-                const Flexible(
-                    flex: 1,
-                    child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Text("STALLS",style: TextStyle(color: Colors.redAccent,),
-                        )
-                    )
-                )
-              ]),
-        ),
+        //stalls
         Padding(
           padding: const EdgeInsets.all(10),
           child: Flex(
@@ -360,14 +378,14 @@ class _HomePageState extends State<HomePage> {
                     flex: 1,
                     child: RotatedBox(
                         quarterTurns: 3,
-                        child: Text("ACCESSORIES",style: TextStyle(color: Colors.redAccent,),
+                        child: Text("STALLS",style: TextStyle(color: Colors.redAccent,),
                         )
                     )
                 ),
                 Flexible(
                   flex:11,
                   child: Container(
-                    height: 100,
+                    height: 192,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       reverse: false,
@@ -375,18 +393,81 @@ class _HomePageState extends State<HomePage> {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                            height: 50,
-                            width: 100,
                             decoration: BoxDecoration(
+                              // image: DecorationImage(
+                              //     image: AssetImage(event[index].eventLogo),
+                              //     fit: BoxFit.cover,
+                              // ),
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.redAccent,
+                              color: Color(0xff123E6B),
                             ),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Text("Stalls",style: TextStyle(color: Colors.white,fontSize: 11),),
+                              ),
+                            ),
+                            height: 192,
+                            width: 108,
                           ),
                         );
                       },
-                      itemCount: 10,
+                      itemCount: 8,
                     ),
                   ),
+                ),
+
+              ]),
+        ),
+        //accessories
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Flex(
+              direction: Axis.horizontal,
+              children:<Widget> [
+                Flexible(
+                  flex:11,
+                  child: Container(
+                    height: 192,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      reverse: false,
+                      itemBuilder: (BuildContext context, int index){
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              // image: DecorationImage(
+                              //     image: AssetImage(event[index].eventLogo),
+                              //     fit: BoxFit.cover,
+                              // ),
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xff123E6B),
+                            ),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Text("Accessories",style: TextStyle(color: Colors.white,fontSize: 11),),
+                              ),
+                            ),
+                            height: 192,
+                            width: 108,
+                          ),
+                        );
+                      },
+                      itemCount: 8,
+                    ),
+                  ),
+                ),
+                const Flexible(
+                    flex: 1,
+                    child: RotatedBox(
+                        quarterTurns: 1,
+                        child: Text("ACCESSORIES",style: TextStyle(color: Colors.redAccent,),
+                        )
+                    )
                 ),
               ]),
         ),

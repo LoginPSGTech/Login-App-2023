@@ -76,8 +76,8 @@ class _SchedulePageState extends State<SchedulePage> {
           timemin23,
           ampm23,
         ];
-        state23=Color(0xFF123E6B);
-        state24=Color(0xFF121F2C);
+        state23=const Color(0xFF123E6B);
+        state24=const Color(0xFF121F2C);
         break;
       case 1:
         finallist=[
@@ -87,34 +87,37 @@ class _SchedulePageState extends State<SchedulePage> {
           timemin24,
           ampm24,
         ];
-        state23=Color(0xFF121F2C);
-        state24=Color(0xFF123E6B);
+        state23=const Color(0xFF121F2C);
+        state24=const Color(0xFF123E6B);
         break;
     }
 
     return Scaffold(
       body: Container(
           color: Colors.black,
-          //padding:EdgeInsets.all(25),
           child: Flex(
             direction: Axis.vertical,
             children: [
               Flexible(
                 flex: 2,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(35,35,0,0),
+                child: Card(
+                  color: Colors.transparent,
+                  margin: const EdgeInsets.fromLTRB(10, 45, 10, 10),
                   child: Row(
                     children: [
-                      Text(
+                      const Spacer(
+                        flex:1,
+                      ),
+                      const Text(
                         'Schedule',
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.bold,
-                            fontSize: 30,
+                            fontSize: 20,
                             color: Colors.white),
                       ),
-                      SizedBox(
-                        width: 64,
+                      const Spacer(
+                        flex: 6,
                       ),
                       ElevatedButton(
                         onPressed: (){
@@ -127,9 +130,9 @@ class _SchedulePageState extends State<SchedulePage> {
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: state23,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10)))
+                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10)))
                         ),
-                        child: Text("23rd",style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 16,),),
+                        child: const Text("23rd",style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 12,),),
                       ),
                       ElevatedButton(
                         onPressed: (){
@@ -142,9 +145,12 @@ class _SchedulePageState extends State<SchedulePage> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: state24,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(10),bottomRight: Radius.circular(10))),
+                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(10),bottomRight: Radius.circular(10))),
                         ),
-                        child: Text("24th",style: TextStyle(color: Color(0xFF858585),fontSize: 16),),
+                        child: const Text("24th",style: TextStyle(color: Color(0xFF858585),fontSize: 12),),
+                      ),
+                      const Spacer(
+                          flex:1
                       ),
                     ],
                   ),
@@ -152,62 +158,60 @@ class _SchedulePageState extends State<SchedulePage> {
               ),
               Flexible(
                 flex: 10,
-                child: ListView.builder(
-                  itemBuilder: (BuildContext context,int index){
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(52,31,23,0),
-                      child: Container(
+                child: Container(
+                  height: double.infinity,
+                  child: ListView.builder(
+                    itemBuilder: (BuildContext context,int index){
+                      return Container(
+                        margin: const EdgeInsets.fromLTRB(10, 0, 10, 31),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFF123E6B),
+                          color: const Color(0xFF123E6B),
                         ),
                         height: 100,
 
                         child:Row(
                           children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(16,24,0,28),
-                              child: Text(finallist[2][index],style: TextStyle(color: Color(0xFFF55353),fontSize: 40,fontFamily: 'Poppins',
-                                fontWeight: FontWeight.bold,),),
-                            ),
+                            const SizedBox(width: 20,),
+                            Text(finallist[2][index],style: const TextStyle(color: Color(0xFFF55353),fontSize: 45,fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,),),
 
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(6,28,0,24),
+                              padding: const EdgeInsets.fromLTRB(0,20,0,20),
                               child: Column(
                                   children: [
-                                    Text(finallist[3][index],style: TextStyle(color: Color(0xFFF55353),fontSize: 16,fontFamily: 'Poppins',
+                                    Text(finallist[3][index],style: const TextStyle(color: Color(0xFFF55353),fontSize: 16,fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,),),
-                                    Text(finallist[4][index],style: TextStyle(color: Color(0xFFF55353),fontSize: 16,fontFamily: 'Poppins',
+                                    Text(finallist[4][index],style: const TextStyle(color: Color(0xFFF55353),fontSize: 16,fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,),),
                                   ]
                               ),
                             ),
-
-
+                            const Spacer(flex: 1,),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(18,20,0,0),
+                              padding: const EdgeInsets.fromLTRB(18,20,0,0),
                               child: Column(
-                                  children:[Text(finallist[0][index],style: TextStyle(color: Color(0xFFFEB139),fontSize: 20,fontFamily: 'Poppins',
+                                  children:[Text(finallist[0][index],style: const TextStyle(color: Color(0xFFFEB139),fontSize: 20,fontFamily: 'Poppins',
                                     fontWeight: FontWeight.bold,),),
-                                    SizedBox(height: 7,),
-                                    Text(finallist[1][index],style: TextStyle(color: Colors.white,fontSize: 12,fontFamily: 'Poppins',
+                                    const SizedBox(height: 7,),
+                                    Text(finallist[1][index],style: const TextStyle(color: Colors.white,fontSize: 12,fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,),),
                                   ]
                               ),
                             ),
+                            const Spacer(flex: 1,),
                           ],
                         ),
 
                         // title: Text("event"),
                         // subtitle: Text("venue"),
 
-                      ),
-                    );
-                  },
-                  itemCount: 6,
+                      );
+                    },
+                    itemCount: 6,
+                  ),
                 ),
               )
-
             ],
           )
       ),

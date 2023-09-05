@@ -46,27 +46,27 @@ class _MainPageState extends State<MainPage> {
     switch(selected){
       case 0:
         page=EventsPage();
-        events=const Icon(Icons.assignment,size: 30,color: Colors.transparent,);
-        schedule=const Icon(Icons.timer_outlined,size: 30,color: Colors.white,);
-        home=const Icon(Icons.home_outlined,size: 30,color: Colors.white,);
+        events=const Icon(Icons.assignment,size: 25,color: Colors.transparent,);
+        schedule=const Icon(Icons.timer_outlined,size: 25,color: Colors.white,);
+        home=const Icon(Icons.home_outlined,size: 25,color: Colors.white,);
         homedecoration=null;
         scheduledecoration=null;
         eventsdecoration=decoration;
         break;
       case 1:
         page=HomePage();
-        events=const Icon(Icons.assignment_outlined,size: 30,color: Colors.white,);
-        schedule=const Icon(Icons.timer_outlined,size: 30,color: Colors.white,);
-        home=const Icon(Icons.home,size: 30,color: Colors.transparent,);
+        events=const Icon(Icons.assignment_outlined,size: 25,color: Colors.white,);
+        schedule=const Icon(Icons.timer_outlined,size: 25,color: Colors.white,);
+        home=const Icon(Icons.home,size: 25,color: Colors.transparent,);
         homedecoration=decoration;
         scheduledecoration=null;
         eventsdecoration=null;
         break;
       case 2:
         page=SchedulePage();
-        events=const Icon(Icons.assignment_outlined,size: 30,color: Colors.white,);
-        schedule=const Icon(Icons.timer,size: 30,color: Colors.transparent,);
-        home=const Icon(Icons.home_outlined,size: 30,color: Colors.white,);
+        events=const Icon(Icons.assignment_outlined,size: 25,color: Colors.white,);
+        schedule=const Icon(Icons.timer,size: 25,color: Colors.transparent,);
+        home=const Icon(Icons.home_outlined,size: 25,color: Colors.white,);
         homedecoration=null;
         scheduledecoration=decoration;
         eventsdecoration=null;
@@ -90,16 +90,17 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.transparent,
         body: page,
         bottomNavigationBar: CurvedNavigationBar(
-          iconPadding: 10,
+          iconPadding: 3,
           color: const Color(0xff1D4167),
           index: 1,
-          height: 75,
+          height: 70,
           backgroundColor: Colors.transparent,
           buttonBackgroundColor: Colors.transparent,
+
           items:[
             CurvedNavigationBarItem(
               child: Container(
-                padding:const EdgeInsets.all(8),
+                padding:const EdgeInsets.all(5),
                 decoration: eventsdecoration,
                 child: events,
               ),
