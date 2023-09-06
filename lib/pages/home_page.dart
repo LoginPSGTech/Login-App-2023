@@ -329,7 +329,7 @@ class _HomePageState extends State<HomePage> {
                     height: 192,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      reverse: false,
+                      reverse: true,
                       itemBuilder: (BuildContext context, int index){
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -432,7 +432,7 @@ class _HomePageState extends State<HomePage> {
                     height: 192,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      reverse: false,
+                      reverse: true,
                       itemBuilder: (BuildContext context, int index){
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
