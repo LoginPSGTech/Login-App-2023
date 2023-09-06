@@ -6,12 +6,14 @@ class EventCardWidget extends StatelessWidget {
     super.key,
     required this.eventLogoUrl,
     required this.eventName,
-    required this.eventTagline
+    required this.eventTagline,
+    required this.eventTeamSize
   });
 
   final String eventLogoUrl;
   final String eventName;
   final String eventTagline;
+  final String eventTeamSize;
   
 
   @override
@@ -79,21 +81,23 @@ class EventCardWidget extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      const Row(
+                      Row(
                         children: [
-                          Icon(
+                          const Icon(
                             CupertinoIcons.group_solid,
                             color: Color(0xFFF55353), // Icon color
                             size: 18, // Icon size
                           ),
-                          SizedBox(width: 8), // Space between icon and text
-                          Text(
-                            "Team : 2-3", // Replace with your team size text
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white, // Text color
+                          const SizedBox(width: 8), // Space between icon and text
+                          Flexible(
+                            child: Text(
+                              'Team Size : $eventTeamSize', // Replace with your team size text
+                              style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white, // Text color
+                              ),
                             ),
                           ),
                         ],
