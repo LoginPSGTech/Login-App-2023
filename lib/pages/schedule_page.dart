@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-class SchedulePage extends StatefulWidget{
+class  SchedulePage extends StatefulWidget{
   @override
   State<SchedulePage> createState() => _SchedulePageState();
 }
@@ -92,72 +92,73 @@ class _SchedulePageState extends State<SchedulePage> {
         break;
     }
 
-    return Scaffold(
-      body: Container(
-          color: Colors.black,
+    return Container(
           child: Flex(
             direction: Axis.vertical,
             children: [
               Flexible(
-                flex: 2,
+                flex: 4,
                 child: Card(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                  elevation: 30,
                   color: Colors.transparent,
-                  margin: const EdgeInsets.fromLTRB(10, 45, 10, 10),
-                  child: Row(
-                    children: [
-                      const Spacer(
-                        flex:1,
-                      ),
-                      const Text(
-                        'Schedule',
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white),
-                      ),
-                      const Spacer(
-                        flex: 6,
-                      ),
-                      ElevatedButton(
-                        onPressed: (){
-                          setState(() {
-                            if(buttonvalue!=0)
-                            {
-                              buttonvalue=0;
-                            }
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: state23,
-                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10)))
+                  margin: const EdgeInsets.fromLTRB(10, 45, 10,0),
+                  child: SizedBox(
+                    height: 100,
+                    child: Row(
+                      children: [
+                        Spacer(flex: 2,),
+                        const Text(
+                          'Schedule',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white),
                         ),
-                        child: const Text("23rd",style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 12,),),
-                      ),
-                      ElevatedButton(
-                        onPressed: (){
-                          setState(() {
-                            if(buttonvalue!=1)
-                            {
-                              buttonvalue=1;
-                            }
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: state24,
-                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(10),bottomRight: Radius.circular(10))),
+                        const Spacer(
+                          flex: 6,
                         ),
-                        child: const Text("24th",style: TextStyle(color: Color(0xFF858585),fontSize: 12),),
-                      ),
-                      const Spacer(
-                          flex:1
-                      ),
-                    ],
+                        ElevatedButton(
+                          onPressed: (){
+                            setState(() {
+                              if(buttonvalue!=0)
+                              {
+                                buttonvalue=0;
+                              }
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: state23,
+                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10)))
+                          ),
+                          child: const Text("23rd",style: TextStyle(color: Color(0xFFFFFFFF),fontSize: 12,),),
+                        ),
+                        ElevatedButton(
+                          onPressed: (){
+                            setState(() {
+                              if(buttonvalue!=1)
+                              {
+                                buttonvalue=1;
+                              }
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: state24,
+                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(10),bottomRight: Radius.circular(10))),
+                          ),
+                          child: const Text("24th",style: TextStyle(color: Color(0xFF858585),fontSize: 12),),
+                        ),
+                        const Spacer(
+                            flex:1
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               Flexible(
-                flex: 10,
+                flex: 20,
                 child: Container(
                   height: double.infinity,
                   child: ListView.builder(
@@ -174,7 +175,8 @@ class _SchedulePageState extends State<SchedulePage> {
                           children: [
                             const SizedBox(width: 20,),
                             Text(finallist[2][index],style: const TextStyle(color: Color(0xFFF55353),fontSize: 45,fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,),),
+                              fontWeight: FontWeight.bold,),
+                            ),
 
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0,20,0,20),
@@ -187,19 +189,35 @@ class _SchedulePageState extends State<SchedulePage> {
                                   ]
                               ),
                             ),
-                            const Spacer(flex: 1,),
+                            const SizedBox(width: 10,),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(18,20,0,0),
                               child: Column(
-                                  children:[Text(finallist[0][index],style: const TextStyle(color: Color(0xFFFEB139),fontSize: 20,fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.bold,),),
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                  children:[
+                                    Row(
+                                      children: [
+                                        Text(finallist[0][index],style: const TextStyle(color: Color(0xFFFEB139),fontSize: 20,fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.bold,),),
+                                      ],
+                                    ),
                                     const SizedBox(height: 7,),
-                                    Text(finallist[1][index],style: const TextStyle(color: Colors.white,fontSize: 12,fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,),),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                              Icons.place,
+                                            color: Color(0xFFFEB139),
+                                          ),
+                                          Text("  "+finallist[1][index],style: const TextStyle(color: Colors.white,fontSize: 12,fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.bold,),),
+                                        ],
+                                      ),
+                                    ),
                                   ]
                               ),
                             ),
-                            const Spacer(flex: 1,),
+                            const Spacer(flex: 3,),
                           ],
                         ),
 
@@ -214,7 +232,6 @@ class _SchedulePageState extends State<SchedulePage> {
               )
             ],
           )
-      ),
-    );
+      );
   }
 }

@@ -8,7 +8,6 @@ import 'package:login/pages/events_page.dart';
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
-
   @override
   State<MainPage> createState() => _MainPageState();
 }
@@ -47,16 +46,16 @@ class _MainPageState extends State<MainPage> {
       case 0:
         page=EventsPage();
         events=const Icon(Icons.assignment,size: 25,color: Colors.transparent,);
-        schedule=const Icon(Icons.timer_outlined,size: 25,color: Colors.white,);
-        home=const Icon(Icons.home_outlined,size: 25,color: Colors.white,);
+        schedule=const Icon(Icons.calendar_month,size: 25,color: Colors.white,);
+        home=const Icon(Icons.home_filled,size: 25,color: Colors.white,);
         homedecoration=null;
         scheduledecoration=null;
         eventsdecoration=decoration;
         break;
       case 1:
         page=HomePage();
-        events=const Icon(Icons.assignment_outlined,size: 25,color: Colors.white,);
-        schedule=const Icon(Icons.timer_outlined,size: 25,color: Colors.white,);
+        events=const Icon(Icons.emoji_events,size: 25,color: Colors.white,);
+        schedule=const Icon(Icons.calendar_month,size: 25,color: Colors.white,);
         home=const Icon(Icons.home,size: 25,color: Colors.transparent,);
         homedecoration=decoration;
         scheduledecoration=null;
@@ -64,9 +63,9 @@ class _MainPageState extends State<MainPage> {
         break;
       case 2:
         page=SchedulePage();
-        events=const Icon(Icons.assignment_outlined,size: 25,color: Colors.white,);
+        events=const Icon(Icons.emoji_events,size: 25,color: Colors.white,);
         schedule=const Icon(Icons.timer,size: 25,color: Colors.transparent,);
-        home=const Icon(Icons.home_outlined,size: 25,color: Colors.white,);
+        home=const Icon(Icons.home_filled,size: 25,color: Colors.white,);
         homedecoration=null;
         scheduledecoration=decoration;
         eventsdecoration=null;
@@ -105,7 +104,7 @@ class _MainPageState extends State<MainPage> {
                 child: events,
               ),
               label: 'Events',
-              labelStyle: const TextStyle(color: Colors.white),
+              labelStyle: const TextStyle(color: Colors.white,fontSize: 10),
             ),
             CurvedNavigationBarItem(
               child: Container(
@@ -114,7 +113,7 @@ class _MainPageState extends State<MainPage> {
                 child:home,
               ),
               label: 'Home',
-              labelStyle: const TextStyle(color: Colors.white),
+              labelStyle: const TextStyle(color: Colors.white,fontSize: 10),
             ),
             CurvedNavigationBarItem(
               child: Container(
@@ -123,7 +122,7 @@ class _MainPageState extends State<MainPage> {
                 child:schedule,
               ),
               label: 'Schedule',
-              labelStyle: const TextStyle(color: Colors.white),
+              labelStyle: const TextStyle(color: Colors.white,fontSize: 10),
             ),
           ],
           onTap: (index){
