@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:login/api/auth.dart';
+import 'package:login/models/token.dart';
 import 'package:login/pages/register_page.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
 import 'package:login/pages/main_page.dart';
@@ -20,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     void handleLogin() {
+      AuthApi.login(LoginModel(email: _emailController.toString(), password: _emailController.toString()));
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const MainPage()),
       );
