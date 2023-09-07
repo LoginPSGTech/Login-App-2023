@@ -6,7 +6,8 @@ class AppDataProvider with ChangeNotifier {
   late AppData _appData;
 
   AppDataProvider() {
-    _appData = AppData(home:Home(tagline:'',description: '',addeddescription: '',about: '',addedabout: '',events: []),mscEvents: [],mcaEvents: []);
+    _appData = AppData(
+      home:Home(tagline:'',description: '',addeddescription: '',about: '',addedabout: '',events: []),mscEvents: [],mcaEvents: [], eventInstructions: []);
     // Initialize the _appData instance by loading data
     _loadData();
   }

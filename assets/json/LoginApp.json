@@ -739,5 +739,44 @@
       "facultyAdvisor": "Mrs Gowri Thangam J",
       "expectedNoOfParticipants": "30 Teams"
     }
+  ],
+  "eventInstructions":[
+    {
+      "stepName": "Step 1: Student - Event Registration:",
+      "steps": [
+        "1. Click the \"Register\" button next to your chosen event.",
+        "2. Click \"Submit\" to proceed forward in your event registration process. Must Generate Team ID even for individual players."
+      ]
+    },
+    {
+      "stepName": "Step 2: Team Registration (Compulsory for even 1 player):",
+      "steps": [
+        "1. After registering for the event, you'll be directed to the Team Registration section.",
+        "2. If you're the first member, select \"Create Team.\"",
+        "3. Enter a unique Team Name representing your group.",
+        "4. Even if you're the only member, you must create a team.",
+        "5. Click \"Create Team\" to generate your Team ID – remember it! Note it for the future refrence."
+        
+      ]
+    },
+    {
+      "stepName": "Step 3: Joining an Existing Team (Additional Members):",
+      "steps": [
+        "1. If your team has been created, you'll have a Team ID from a team member.",
+        "2. After you register yourself for that event, ask your teammate for the Team ID.",
+        "3. In the event registration page.",
+        "4. Click \"Join Team\" and enter the provided Team ID.",
+        "5. 5. The system will confirm the ID and add you to the team."
+        
+      ]
+    },
+    {
+      "stepName": "Step 4: Confirmation and Successful Registration:",
+      "steps": [
+        "1. Once you join or create a team, a confirmation page will appear.",
+        "2. This page includes event details and your team's info.",
+        "3. Your registration is now confirmed!"
+      ]
+    }
   ]
 }
