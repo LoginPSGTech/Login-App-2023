@@ -87,8 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                                     }
                                     return null;
                                   },
-                                  suffixIcon:
-                                      Icons.visibility, // Pass the suffix icon
+                                  suffixIcon: Icons.visibility, // Pass the suffix icon
                                   onSuffixIconPressed: () {
                                     // Handle the suffix icon press (e.g., toggle password visibility)
                                   },
@@ -104,10 +103,9 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             onPressed: () {
                               // Validate and perform login
-                              if (verifyLoginformKey.currentState!
-                                  .validate()) {
-                                    handleLogin();
-                                  }
+                              if (verifyLoginformKey.currentState!.validate()) {
+                                handleLogin();
+                              }
                             },
                             child: const Text('Login',
                                 style: TextStyle(
@@ -115,9 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                                 )),
                           ),
                         ),
-                        const SizedBox(
-                            height:
-                                16), // Add spacing between login UI and links
+                        const SizedBox(height: 16), // Add spacing between login UI and links
                         RichText(
                           text: TextSpan(
                             children: [
@@ -138,9 +134,8 @@ class _LoginPageState extends State<LoginPage> {
                                   ..onTap = () {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
-                                        builder: (context) => const RegisterPage(
-                                            isAlumni:
-                                                false), // Replace with your LoginPage class
+                                        builder: (context) =>
+                                            const RegisterPage(isAlumni: false), // Replace with your LoginPage class
                                       ),
                                     );
                                   },
@@ -166,8 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                                   color: Color(0xFFFEB139),
                                   decoration: TextDecoration.none,
                                 ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {},
+                                recognizer: TapGestureRecognizer()..onTap = () {},
                               ),
                             ],
                           ),

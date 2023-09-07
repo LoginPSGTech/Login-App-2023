@@ -27,9 +27,8 @@ class Event {
   });
 
   factory Event.fromJson(Map<String, dynamic> json) {
-    final roundList = (json['roundWiseDescription'] as List<dynamic>)
-        .map((roundJson) => Round.fromJson(roundJson))
-        .toList();
+    final roundList =
+        (json['roundWiseDescription'] as List<dynamic>).map((roundJson) => Round.fromJson(roundJson)).toList();
 
     final eventConvenorList = (json['eventConvenors'] as List<dynamic>)
         .map((eventConvenorJson) => EventConvenor.fromJson(eventConvenorJson))

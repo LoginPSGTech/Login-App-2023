@@ -4,7 +4,6 @@ import 'package:login/pages/main_page.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AppDataProvider(),
+        create: (context) => AppDataProvider(),
         child: MaterialApp(
           title: 'Login App',
           initialRoute: '/login',
@@ -28,7 +27,6 @@ class MyApp extends StatelessWidget {
           ),
           home: const MainPage(),
           debugShowCheckedModeBanner: false,
-      )
-    );
+        ));
   }
 }

@@ -7,17 +7,17 @@ class BackIconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          Navigator.of(context).pop();
-        },
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(24, 16, 0, 16),          
-          child: const Icon(
-            CupertinoIcons.back,
-            size: 32, 
-            color: Colors.white,
-          ),
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(24, 16, 0, 16),
+        child: const Icon(
+          CupertinoIcons.back,
+          size: 32,
+          color: Colors.white,
         ),
-      );
+      ),
+    );
   }
 }

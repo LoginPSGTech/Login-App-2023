@@ -15,13 +15,10 @@ class Home {
     required this.about,
     required this.addedabout,
     required this.events,
-
   });
 
   factory Home.fromJson(Map<String, dynamic> json) {
-    final eventsList = (json['events'] as List<dynamic>)
-        .map((eventJson) => Event.fromJson(eventJson))
-        .toList();
+    final eventsList = (json['events'] as List<dynamic>).map((eventJson) => Event.fromJson(eventJson)).toList();
 
     return Home(
       tagline: json['tagline'],

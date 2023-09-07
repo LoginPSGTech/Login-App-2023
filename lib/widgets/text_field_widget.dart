@@ -9,10 +9,8 @@ class TextFieldWidget extends StatefulWidget {
   final Function()? onSuffixIconPressed;
   final Widget? suffixButton;
   final String? Function(String?)? validator;
-  final List<DropdownMenuItem<String>>?
-      dropdownItems; // Added field for dropdown items
-  final ValueChanged<String?>?
-      onDropdownChanged; // Added callback for dropdown changes
+  final List<DropdownMenuItem<String>>? dropdownItems; // Added field for dropdown items
+  final ValueChanged<String?>? onDropdownChanged; // Added callback for dropdown changes
   final String? dropdownValue; // Added initial value for dropdown
   final TextInputType? keyboardType;
 
