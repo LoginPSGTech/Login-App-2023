@@ -65,40 +65,398 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 Container(
                   margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-                  padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 24),
-                  decoration:  BoxDecoration(
-                    color: Color(0xFF143F6B),
-                    borderRadius: BorderRadius.circular(10)
-                  ),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                  decoration: BoxDecoration(
+                      color: Color(0xFF143F6B),
+                      borderRadius: BorderRadius.circular(10)),
                   child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
                           Expanded(
+                            flex: 1,
                             child: Text(
-                              'NAME:',
+                              'ROLL NUMBER',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
+                          SizedBox(
+                            width: 5,
+                          ),
                           // Spacer(),
                           Expanded(
+                            flex: 2,
                             child: Text(
-                              "Muhammed Razeen Amanullah bbbbbbbbbbbbbbG",
+                              "19PW17",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
-
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                           )
                         ],
-                      )
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'EMAIL',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "19pw17@psgtech.ac.in",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'CONTACT',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "9585565533",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'COLLEGE',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "PSG TECH",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'GENDER',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "Male",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'CONTACT',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "9585565533",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'DEGREE',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "MSC",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'STREAM',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "SOFTWARE SYSTEMS",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'CONTACT',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "9585565533",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'YEAR OF STUDY',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              "5TH YEAR",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
                     ],
                   ),
                 ),
