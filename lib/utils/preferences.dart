@@ -1,4 +1,4 @@
-import 'package:login/models/token.dart';
+import 'package:login/models/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreferences {

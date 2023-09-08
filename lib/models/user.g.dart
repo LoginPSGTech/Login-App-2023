@@ -6,19 +6,22 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserEventModel _$UserEventModelFromJson(Map<String, dynamic> json) => UserEventModel(
+UserEventModel _$UserEventModelFromJson(Map<String, dynamic> json) =>
+    UserEventModel(
       id: json['id'] as int,
       event: json['event'] as String,
       user: json['user'] as String,
     );
 
-Map<String, dynamic> _$UserEventModelToJson(UserEventModel instance) => <String, dynamic>{
+Map<String, dynamic> _$UserEventModelToJson(UserEventModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'event': instance.event,
       'user': instance.user,
     };
 
-UserTeamModel _$UserTeamModelFromJson(Map<String, dynamic> json) => UserTeamModel(
+UserTeamModel _$UserTeamModelFromJson(Map<String, dynamic> json) =>
+    UserTeamModel(
       id: json['id'] as int,
       team_id: json['team_id'] as String,
       team_name: json['team_name'] as String,
@@ -26,7 +29,8 @@ UserTeamModel _$UserTeamModelFromJson(Map<String, dynamic> json) => UserTeamMode
       created_by: json['created_by'] as String,
     );
 
-Map<String, dynamic> _$UserTeamModelToJson(UserTeamModel instance) => <String, dynamic>{
+Map<String, dynamic> _$UserTeamModelToJson(UserTeamModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'team_id': instance.team_id,
       'team_name': instance.team_name,
@@ -35,7 +39,7 @@ Map<String, dynamic> _$UserTeamModelToJson(UserTeamModel instance) => <String, d
     };
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-      userId: json['userId'] as String,
+      user_id: json['user_id'] as String,
       email: json['email'] as String,
       college: json['college'] as String,
       code: json['code'] as String,
@@ -44,16 +48,20 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       phoneNumber: json['phoneNumber'] as String,
       rollNumber: json['rollNumber'] as String,
       yearOfStudy: json['yearOfStudy'] as String,
-      isAccommodationRequired: json['isAccommodationRequired'] as String,
+      isAccommodationRequired: json['isAccommodationRequired'] as bool,
       dietType: json['dietType'] as String,
       degree: json['degree'] as String,
       stream: json['stream'] as String,
-      events: (json['events'] as List<dynamic>).map((e) => UserEventModel.fromJson(e as Map<String, dynamic>)).toList(),
-      teams: (json['teams'] as List<dynamic>).map((e) => UserTeamModel.fromJson(e as Map<String, dynamic>)).toList(),
+      events: (json['events'] as List<dynamic>)
+          .map((e) => UserEventModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      teams: (json['teams'] as List<dynamic>)
+          .map((e) => UserTeamModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
-      'userId': instance.userId,
+      'user_id': instance.user_id,
       'email': instance.email,
       'college': instance.college,
       'code': instance.code,

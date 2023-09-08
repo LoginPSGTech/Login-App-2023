@@ -1,5 +1,5 @@
 import 'package:login/api/constants.dart';
-import 'package:login/models/token.dart';
+import 'package:login/models/auth.dart';
 import 'package:login/models/user.dart';
 import 'package:login/utils/preferences.dart';
 
@@ -25,7 +25,7 @@ class AuthApi {
   }
 
   static Future<UserModel> getUser() async {
-    Map<String, dynamic> response = await APIWrapper.get(ApiConstants.tokenRefresh);
+    Map<String, dynamic> response = await APIWrapper.get(ApiConstants.user);
     return UserModel.fromJson(response);
   }
 }

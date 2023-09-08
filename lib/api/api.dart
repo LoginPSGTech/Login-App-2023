@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:login/models/token.dart';
+import 'package:login/models/auth.dart';
 import 'package:login/utils/preferences.dart';
 
 class APIException implements Exception {
@@ -14,7 +14,7 @@ class APIWrapper {
   static Future<Map<String, String>> getHeaders() async {
     String accessToken = await UserPreferences.getToken(TokenType.access);
     return {
-      HttpHeaders.acceptHeader: "application/json",
+      HttpHeaders.contentTypeHeader: "application/json",
       HttpHeaders.authorizationHeader: "Bearer $accessToken",
     };
   }

@@ -39,7 +39,7 @@ class UserTeamModel {
 
 @JsonSerializable(explicitToJson: true)
 class UserModel {
-  String userId;
+  String user_id;
   String email;
   String college;
   String code;
@@ -48,7 +48,7 @@ class UserModel {
   String phoneNumber;
   String rollNumber;
   String yearOfStudy;
-  String isAccommodationRequired;
+  bool isAccommodationRequired;
   String dietType;
   String degree;
   String stream;
@@ -56,7 +56,7 @@ class UserModel {
   List<UserTeamModel> teams;
 
   UserModel(
-      {required this.userId,
+      {required this.user_id,
       required this.email,
       required this.college,
       required this.code,
