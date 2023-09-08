@@ -100,7 +100,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 flex: 4,
                 child: Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-                  elevation: 30,
+                  elevation: 0,
                   color: Colors.transparent,
                   margin: const EdgeInsets.fromLTRB(10, 45, 10,0),
                   child: SizedBox(

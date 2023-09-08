@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           //title image
           Padding(
-            padding: EdgeInsets.fromLTRB(86, 70, 86, 30),
+            padding: const EdgeInsets.fromLTRB(86, 70, 86, 30),
             child:Container(
               height: 61,
               width: 188,
@@ -89,8 +89,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           //title navigating the
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 30, 0),
             child: Text(
                 "NAVIGATING THE ",
                 style: TextStyle(
@@ -103,10 +103,10 @@ class _HomePageState extends State<HomePage> {
           ),
           //title hyper -connected world
           Padding(
-            padding: EdgeInsets.fromLTRB(20, 0, 30, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
             child: Container(
               color: Colors.transparent,
-              child: MergeSemantics(
+              child: const MergeSemantics(
                 child: Wrap(
                   children: [
                     Text(
@@ -136,48 +136,53 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.fromLTRB(22, 0, 18, 8),
             child: AnimatedSwitcher(
-              duration: Duration(milliseconds: 1500),
+              duration: const Duration(milliseconds: 1500),
               child: Container(
                 child:Column(
                   children: [
-                    Text(
-                      descriptiontext,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.normal,
-                        fontSize: 12,
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 400),
+                      transitionBuilder: (Widget child, Animation<double> animation){
+                        return FadeTransition(opacity: animation,child: child,);
+                      },
+                      child: Text(
+                        descriptiontext,
+                        key: ValueKey<String>(descriptiontext),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-                      child: Container(
-                        child: ElevatedButton(
-                          onPressed: (){
-                            setState(() {
-                              if(descriptionState==0){
-                                descriptionState=1;
-                              }else{
-                                descriptionState=0;
-                              }
-                            });
-                          },
-                          child: Text(
-                            descriptionButtonText,style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontFamily: 'Poppins'
-                          ),),
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            minimumSize: Size(double.infinity, 40),
-                            backgroundColor: Color(0xffF55353),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      child: ElevatedButton(
+                        onPressed: (){
+                          setState(() {
+                            if(descriptionState==0){
+                              descriptionState=1;
+                            }else{
+                              descriptionState=0;
+                            }
+                          });
+                        },
+                        child: Text(
+                          descriptionButtonText,style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontFamily: 'Poppins'
+                        ),),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
+                          minimumSize: const Size(double.infinity, 40),
+                          backgroundColor: const Color(0xffF55353),
                         ),
                       ),
                     )
@@ -188,9 +193,9 @@ class _HomePageState extends State<HomePage> {
           ),
           //about login
           Padding(
-            padding: EdgeInsets.fromLTRB(22, 0, 18, 8),
+            padding: const EdgeInsets.fromLTRB(22, 0, 18, 8),
             child:Container(
-              child: MergeSemantics(
+              child: const MergeSemantics(
                 child: Wrap(
                   children: [
                     Text(
@@ -225,20 +230,27 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               child:Column(
                 children: [
-                  Text(
-                    abouttext,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 12,
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 400),
+                    transitionBuilder: (Widget child, Animation<double> animation){
+                      return FadeTransition(opacity: animation,child: child,);
+                    },
+                    child: Text(
+                      abouttext,
+                      key: ValueKey<String>(abouttext),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12,
+                      ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(22, 0, 18, 50),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
                     child: ElevatedButton(
                       onPressed: (){
                         setState(() {
@@ -249,17 +261,17 @@ class _HomePageState extends State<HomePage> {
                           }
                         });
                       },
-                      child: Text(aboutButtonText,style: TextStyle(
+                      child: Text(aboutButtonText,style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,
                           fontFamily: 'Poppins'
                       ),),
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 40),
+                        minimumSize: const Size(double.infinity, 40),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        backgroundColor: Color(0xffF55353),
+                        backgroundColor: const Color(0xffF55353),
                       ),
                     ),
                   )
@@ -298,13 +310,13 @@ class _HomePageState extends State<HomePage> {
                                 //     fit: BoxFit.cover,
                                 // ),
                                 borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff123E6B),
+                                color: const Color(0xff123E6B),
                               ),
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Container(
                                   color: Colors.transparent,
-                                  child: Text(event[index].eventName,style: TextStyle(color: Colors.white,fontSize: 11),),
+                                  child: Text(event[index].eventName,style: const TextStyle(color: Colors.white,fontSize: 11),),
                                 ),
                               ),
                               height: 192,
@@ -341,13 +353,13 @@ class _HomePageState extends State<HomePage> {
                                 //     fit: BoxFit.cover,
                                 // ),
                                 borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff123E6B),
+                                color: const Color(0xff123E6B),
                               ),
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Container(
                                   color: Colors.transparent,
-                                  child: Text("Programs",style: TextStyle(color: Colors.white,fontSize: 11),),
+                                  child: const Text("Programs",style: TextStyle(color: Colors.white,fontSize: 11),),
                                 ),
                               ),
                               height: 192,
@@ -400,13 +412,13 @@ class _HomePageState extends State<HomePage> {
                                 //     fit: BoxFit.cover,
                                 // ),
                                 borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff123E6B),
+                                color: const Color(0xff123E6B),
                               ),
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Container(
                                   color: Colors.transparent,
-                                  child: Text("Stalls",style: TextStyle(color: Colors.white,fontSize: 11),),
+                                  child: const Text("Stalls",style: TextStyle(color: Colors.white,fontSize: 11),),
                                 ),
                               ),
                               height: 192,
@@ -444,13 +456,13 @@ class _HomePageState extends State<HomePage> {
                                 //     fit: BoxFit.cover,
                                 // ),
                                 borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff123E6B),
+                                color: const Color(0xff123E6B),
                               ),
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Container(
                                   color: Colors.transparent,
-                                  child: Text("Accessories",style: TextStyle(color: Colors.white,fontSize: 11),),
+                                  child: const Text("Accessories",style: TextStyle(color: Colors.white,fontSize: 11),),
                                 ),
                               ),
                               height: 192,

@@ -94,7 +94,7 @@ class _EventsPageState extends State<EventsPage>
             children: [
               buildEvents(mscEvents + mcaEvents),
               const Icon(Icons.directions_transit),
-              buildTeams()
+              const Icon(Icons.directions_transit)
             ],
           )),
         ],
