@@ -10,6 +10,11 @@ class APIException implements Exception {
   APIException({this.message = "API error"});
 }
 
+class UnauthorizedException implements APIException {
+  @override
+  String message = "Unauthorized";
+}
+
 class APIWrapper {
   static Future<Map<String, String>> getHeaders() async {
     String accessToken = await UserPreferences.getToken(TokenType.access);
@@ -19,21 +24,23 @@ class APIWrapper {
     };
   }
 
-  static Future<Map<String, dynamic>> get(String url) async {
-    http.Response response = await http.get(Uri.parse(url), headers: await getHeaders());
+  static Future<Map<String, dynamic>> parseResponse(http.Response response) async {
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
+    } else if (response.statusCode == 401) {
+      throw UnauthorizedException();
     } else {
-      throw APIException(message: "Failed to get");
+      throw APIException();
     }
+  }
+
+  static Future<Map<String, dynamic>> get(String url) async {
+    http.Response response = await http.get(Uri.parse(url), headers: await getHeaders());
+    return parseResponse(response);
   }
 
   static Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body) async {
     http.Response response = await http.post(Uri.parse(url), headers: await getHeaders(), body: jsonEncode(body));
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw APIException(message: "Failed to post");
-    }
+    return parseResponse(response);
   }
 }

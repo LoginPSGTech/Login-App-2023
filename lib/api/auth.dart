@@ -12,6 +12,18 @@ class LoginException implements Exception {
 }
 
 class AuthApi {
+  // checkAuth(func)();
+  static Future<Function> checkAuth(Function func) async {
+    return () async {
+      try {
+        await func();
+      } on UnauthorizedException {
+        await refreshAccess();
+        await func();
+      }
+    };
+  }
+
   static Future<void> login(LoginModel loginModel) async {
     Map<String, dynamic> response = await APIWrapper.post(ApiConstants.token, loginModel.toJson());
     LoginResponseModel loginResponse = LoginResponseModel.fromJson(response);
@@ -24,8 +36,18 @@ class AuthApi {
     UserPreferences.setToken(TokenType.access, response["access"]);
   }
 
-  static Future<UserModel> getUser() async {
+  static Future<UserModel?> getUser() async {
     Map<String, dynamic> response = await APIWrapper.get(ApiConstants.user);
     return UserModel.fromJson(response);
+  }
+
+  static Future<bool> checkLogin() async {
+    Function func = await checkAuth(getUser);
+    try {
+      await func();
+    } on APIException {
+      return false;
+    }
+    return true;
   }
 }

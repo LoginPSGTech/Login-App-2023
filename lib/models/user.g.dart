@@ -6,22 +6,19 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserEventModel _$UserEventModelFromJson(Map<String, dynamic> json) =>
-    UserEventModel(
+UserEventModel _$UserEventModelFromJson(Map<String, dynamic> json) => UserEventModel(
       id: json['id'] as int,
       event: json['event'] as String,
       user: json['user'] as String,
     );
 
-Map<String, dynamic> _$UserEventModelToJson(UserEventModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UserEventModelToJson(UserEventModel instance) => <String, dynamic>{
       'id': instance.id,
       'event': instance.event,
       'user': instance.user,
     };
 
-UserTeamModel _$UserTeamModelFromJson(Map<String, dynamic> json) =>
-    UserTeamModel(
+UserTeamModel _$UserTeamModelFromJson(Map<String, dynamic> json) => UserTeamModel(
       id: json['id'] as int,
       team_id: json['team_id'] as String,
       team_name: json['team_name'] as String,
@@ -29,8 +26,7 @@ UserTeamModel _$UserTeamModelFromJson(Map<String, dynamic> json) =>
       created_by: json['created_by'] as String,
     );
 
-Map<String, dynamic> _$UserTeamModelToJson(UserTeamModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UserTeamModelToJson(UserTeamModel instance) => <String, dynamic>{
       'id': instance.id,
       'team_id': instance.team_id,
       'team_name': instance.team_name,
@@ -52,12 +48,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       dietType: json['dietType'] as String,
       degree: json['degree'] as String,
       stream: json['stream'] as String,
-      events: (json['events'] as List<dynamic>)
-          .map((e) => UserEventModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      teams: (json['teams'] as List<dynamic>)
-          .map((e) => UserTeamModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      events: (json['events'] as List<dynamic>).map((e) => UserEventModel.fromJson(e as Map<String, dynamic>)).toList(),
+      teams: (json['teams'] as List<dynamic>).map((e) => UserTeamModel.fromJson(e as Map<String, dynamic>)).toList(),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{

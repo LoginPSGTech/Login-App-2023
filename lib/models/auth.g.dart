@@ -11,14 +11,12 @@ LoginModel _$LoginModelFromJson(Map<String, dynamic> json) => LoginModel(
       password: json['password'] as String,
     );
 
-Map<String, dynamic> _$LoginModelToJson(LoginModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LoginModelToJson(LoginModel instance) => <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
     };
 
-RegisterModel _$RegisterModelFromJson(Map<String, dynamic> json) =>
-    RegisterModel(
+RegisterModel _$RegisterModelFromJson(Map<String, dynamic> json) => RegisterModel(
       email: json['email'] as String,
       password: json['password'] as String,
       college: json['college'] as String,
@@ -35,8 +33,7 @@ RegisterModel _$RegisterModelFromJson(Map<String, dynamic> json) =>
       otp: json['otp'] as String,
     );
 
-Map<String, dynamic> _$RegisterModelToJson(RegisterModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RegisterModelToJson(RegisterModel instance) => <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
       'college': instance.college,
@@ -53,14 +50,12 @@ Map<String, dynamic> _$RegisterModelToJson(RegisterModel instance) =>
       'otp': instance.otp,
     };
 
-LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) =>
-    LoginResponseModel(
+LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) => LoginResponseModel(
       refresh: json['refresh'] as String,
       access: json['access'] as String,
     );
 
-Map<String, dynamic> _$LoginResponseModelToJson(LoginResponseModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LoginResponseModelToJson(LoginResponseModel instance) => <String, dynamic>{
       'refresh': instance.refresh,
       'access': instance.access,
     };
