@@ -5,8 +5,6 @@ import 'package:login/pages/home_page.dart';
 import 'package:login/pages/profile_page.dart';
 import 'package:login/pages/schedule_page.dart';
 import 'package:login/pages/events_page.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:random_avatar/random_avatar.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

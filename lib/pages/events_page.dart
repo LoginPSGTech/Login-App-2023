@@ -23,7 +23,8 @@ class _EventsPageState extends State<EventsPage>
     _tabController = TabController(length: 3, vsync: this); // Number of tabs
   }
 
-  // Widget buildMyEvents(List<Event> events){
+  // Widget buildTeams(){
+
 
   // }
 
@@ -93,7 +94,7 @@ class _EventsPageState extends State<EventsPage>
             children: [
               buildEvents(mscEvents + mcaEvents),
               const Icon(Icons.directions_transit),
-              const Icon(Icons.directions_bike)
+              buildTeams()
             ],
           )),
         ],

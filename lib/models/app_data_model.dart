@@ -54,7 +54,7 @@ class AppData {
       return appData;
     } catch (error) {
       // Handle any errors that occur during data loading
-      print('Error loading data: $error');
+      // print('Error loading data: $error');
       rethrow; // Rethrow the error to handle it at a higher level
     }
   }
