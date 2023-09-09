@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/api/auth.dart';
+import 'package:login/models/user.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/widgets/title_bar_widget.dart';
 
@@ -40,142 +41,132 @@ class _ProfilePageState extends State<ProfilePage> {
         });
   }
 
-  static const profilePage = ProfilePage(
-    name: "Razeen",
-    rollNumber: "19PW17",
-    email: "19pw17@psgtech.ac.in",
-    contact: "9585565533",
-    collegeName: "PSG College of Technology",
-    degree: "M.Sc.",
-    gender: "Male",
-    stream: "Sofware Systems",
-    yearOfStudy: "5th year",
-  );
-
-  // Widget build2(BuildContext context) {
-  //   return SafeArea(
-  //       child: FutureBuilder(
-  //         future: AuthApi.getUser(),
-  //       )
-  //   )
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TitleBarWidget(title: "My Account"),
-          Container(
-            margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text(
-                "Prashanth S",
-                style: TextStyle(color: Colors.white, fontSize: 32),
-              ),
+        child: FutureBuilder<UserModel>(
+      future: AuthApi.getUser(),
+      builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
+        if (snapshot.hasData) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TitleBarWidget(title: "My Account"),
               Container(
-                margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(color: const Color(0xFF143F6B), borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ProfileTitleContentWidget(
-                      title: "Roll Number",
-                      content: profilePage.rollNumber ?? "",
+                margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    snapshot.data!.name,
+                    style: const TextStyle(color: Colors.white, fontSize: 32),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(color: const Color(0xFF143F6B), borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ProfileTitleContentWidget(
+                          title: "Roll Number",
+                          content: snapshot.data?.rollNumber ?? "",
+                        ),
+                        ProfileTitleContentWidget(
+                          title: "Email",
+                          content: snapshot.data?.email ?? "",
+                        ),
+                        ProfileTitleContentWidget(
+                          title: "Contact",
+                          content: snapshot.data?.phoneNumber ?? "",
+                        ),
+                        ProfileTitleContentWidget(
+                          title: "College",
+                          content: snapshot.data?.college ?? "",
+                        ),
+                        ProfileTitleContentWidget(
+                          title: "Gender",
+                          content: snapshot.data?.gender ?? "",
+                        ),
+                        ProfileTitleContentWidget(
+                          title: "Degree",
+                          content: snapshot.data?.degree ?? "",
+                        ),
+                        ProfileTitleContentWidget(
+                          title: "Stream",
+                          content: snapshot.data?.stream ?? "",
+                        ),
+                        ProfileTitleContentWidget(
+                          title: "Year of Study",
+                          content: snapshot.data?.yearOfStudy ?? "",
+                          isDivider: false,
+                        ),
+                      ],
                     ),
-                    ProfileTitleContentWidget(
-                      title: "Email",
-                      content: profilePage.email ?? "",
-                    ),
-                    ProfileTitleContentWidget(
-                      title: "Contact",
-                      content: profilePage.contact ?? "",
-                    ),
-                    ProfileTitleContentWidget(
-                      title: "College",
-                      content: profilePage.collegeName ?? "",
-                    ),
-                    ProfileTitleContentWidget(
-                      title: "Gender",
-                      content: profilePage.gender ?? "",
-                    ),
-                    ProfileTitleContentWidget(
-                      title: "Degree",
-                      content: profilePage.degree ?? "",
-                    ),
-                    ProfileTitleContentWidget(
-                      title: "Stream",
-                      content: profilePage.stream ?? "",
-                    ),
-                    ProfileTitleContentWidget(
-                      title: "Year of Study",
-                      content: profilePage.yearOfStudy ?? "",
-                      isDivider: false,
-                    ),
-                  ],
-                ),
-              ),
-              // Container(
-              //   margin: const EdgeInsets.only(top: 8),
-              //   width: double.infinity,
-              //   child: ElevatedButton(
-              //     style: ElevatedButton.styleFrom(
-              //       backgroundColor: const Color(0xFFFEB139),
-              //       // Text color
+                  ),
+                  // Container(
+                  //   margin: const EdgeInsets.only(top: 8),
+                  //   width: double.infinity,
+                  //   child: ElevatedButton(
+                  //     style: ElevatedButton.styleFrom(
+                  //       backgroundColor: const Color(0xFFFEB139),
+                  //       // Text color
 
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(10.0),
-              //       ),
-              //     ),
-              //     onPressed: () {
-              //       // Validate and perform login
-              //     },
-              //     child: const Text(
-              //       'Edit Profile',
-              //       style: TextStyle(
-              //         color: Colors.white,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              Container(
-                margin: const EdgeInsets.only(top: 8),
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF55353),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(10.0),
+                  //       ),
+                  //     ),
+                  //     onPressed: () {
+                  //       // Validate and perform login
+                  //     },
+                  //     child: const Text(
+                  //       'Edit Profile',
+                  //       style: TextStyle(
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 8),
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFF55353),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        handleLogout();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.exit_to_app_outlined,
+                            color: Colors.white,
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 8),
+                            child: const Text('Log Out',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  onPressed: () {
-                    handleLogout();
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.exit_to_app_outlined,
-                        color: Colors.white,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 8),
-                        child: const Text('Log Out',
-                            style: TextStyle(
-                              color: Colors.white,
-                            )),
-                      ),
-                    ],
-                  ),
-                ),
+                ]),
               ),
-            ]),
-          ),
-        ],
-      ),
-    );
+            ],
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    ));
   }
 }
 

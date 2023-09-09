@@ -50,7 +50,7 @@ class AuthApi {
     UserPreferences.setToken(TokenType.access, response["access"]);
   }
 
-  static Future<UserModel?> getUser() async {
+  static Future<UserModel> getUser() async {
     Function authGetUser = await authGet(APIWrapper.get);
     Map<String, dynamic> response = await authGetUser(ApiConstants.user);
     return UserModel.fromJson(response);
