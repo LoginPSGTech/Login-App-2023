@@ -12,14 +12,24 @@ class LoginException implements Exception {
 }
 
 class AuthApi {
-  // checkAuth(func)();
-  static Future<Function> checkAuth(Function func) async {
-    return () async {
+  static Future<Function> authGet(Function apiGet) async {
+    return (String url) async {
       try {
-        await func();
+        return await apiGet(url);
       } on UnauthorizedException {
         await refreshAccess();
-        await func();
+        return await apiGet(url);
+      }
+    };
+  }
+
+  static Future<Function> authPost(Function apiPost) async {
+    return (String url, Map<String, dynamic> body) async {
+      try {
+        return await apiPost(url, body);
+      } on UnauthorizedException {
+        await refreshAccess();
+        return await apiPost(url, body);
       }
     };
   }
@@ -30,6 +40,10 @@ class AuthApi {
     UserPreferences.setTokens(loginResponse);
   }
 
+  static Future<void> logout() async {
+    await UserPreferences.removeTokens();
+  }
+
   static Future<void> refreshAccess() async {
     String refreshToken = await UserPreferences.getToken(TokenType.refresh);
     Map<String, dynamic> response = await APIWrapper.post(ApiConstants.tokenRefresh, {"refresh": refreshToken});
@@ -37,17 +51,8 @@ class AuthApi {
   }
 
   static Future<UserModel?> getUser() async {
-    Map<String, dynamic> response = await APIWrapper.get(ApiConstants.user);
+    Function authGetUser = await authGet(APIWrapper.get);
+    Map<String, dynamic> response = await authGetUser(ApiConstants.user);
     return UserModel.fromJson(response);
-  }
-
-  static Future<bool> checkLogin() async {
-    Function func = await checkAuth(getUser);
-    try {
-      await func();
-    } on APIException {
-      return false;
-    }
-    return true;
   }
 }
