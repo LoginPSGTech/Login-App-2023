@@ -69,3 +69,37 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'events': instance.events.map((e) => e.toJson()).toList(),
       'teams': instance.teams.map((e) => e.toJson()).toList(),
     };
+
+UserCreateModel _$UserCreateModelFromJson(Map<String, dynamic> json) => UserCreateModel(
+      email: json['email'] as String,
+      password: json['password'] as String,
+      college: json['college'] as String,
+      code: json['code'] as String,
+      name: json['name'] as String,
+      gender: json['gender'] as String,
+      phoneNumber: json['phoneNumber'] as String,
+      rollNumber: json['rollNumber'] as String,
+      yearOfStudy: json['yearOfStudy'] as String,
+      isAccommodationRequired: json['isAccommodationRequired'] as bool,
+      dietType: json['dietType'] as String,
+      degree: json['degree'] as String,
+      stream: json['stream'] as String,
+      otp: json['otp'] as String,
+    );
+
+Map<String, dynamic> _$UserCreateModelToJson(UserCreateModel instance) => <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+      'college': instance.college,
+      'code': instance.code,
+      'name': instance.name,
+      'gender': instance.gender,
+      'phoneNumber': instance.phoneNumber,
+      'rollNumber': instance.rollNumber,
+      'yearOfStudy': instance.yearOfStudy,
+      'isAccommodationRequired': instance.isAccommodationRequired,
+      'dietType': instance.dietType,
+      'degree': instance.degree,
+      'stream': instance.stream,
+      'otp': instance.otp,
+    };

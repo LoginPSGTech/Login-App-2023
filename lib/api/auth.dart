@@ -1,6 +1,5 @@
-import 'package:login/api/constants.dart';
+import 'package:login/api/endpoints.dart';
 import 'package:login/models/auth.dart';
-import 'package:login/models/user.dart';
 import 'package:login/utils/preferences.dart';
 
 import 'api.dart';
@@ -13,29 +12,29 @@ class LoginException implements Exception {
 
 class AuthApi {
   static Future<Function> authGet(Function apiGet) async {
-    return (String url) async {
+    return (String url, {bool authenticate = false}) async {
       try {
-        return await apiGet(url);
+        return await apiGet(url, authenticate: authenticate);
       } on UnauthorizedException {
         await refreshAccess();
-        return await apiGet(url);
+        return await apiGet(url, authenticate: authenticate);
       }
     };
   }
 
   static Future<Function> authPost(Function apiPost) async {
-    return (String url, Map<String, dynamic> body) async {
+    return (String url, Map<String, dynamic> body, {bool authenticate = false}) async {
       try {
-        return await apiPost(url, body);
+        return await apiPost(url, body, authenticate: authenticate);
       } on UnauthorizedException {
         await refreshAccess();
-        return await apiPost(url, body);
+        return await apiPost(url, body, authenticate: authenticate);
       }
     };
   }
 
   static Future<void> login(LoginModel loginModel) async {
-    Map<String, dynamic> response = await APIWrapper.post(ApiConstants.token, loginModel.toJson());
+    Map<String, dynamic> response = await APIWrapper.post(APIEndpoints.token, loginModel.toJson());
     LoginResponseModel loginResponse = LoginResponseModel.fromJson(response);
     UserPreferences.setTokens(loginResponse);
   }
@@ -46,13 +45,11 @@ class AuthApi {
 
   static Future<void> refreshAccess() async {
     String refreshToken = await UserPreferences.getToken(TokenType.refresh);
-    Map<String, dynamic> response = await APIWrapper.post(ApiConstants.tokenRefresh, {"refresh": refreshToken});
+    Map<String, dynamic> response = await APIWrapper.post(APIEndpoints.tokenRefresh, {"refresh": refreshToken});
     UserPreferences.setToken(TokenType.access, response["access"]);
   }
 
-  static Future<UserModel> getUser() async {
-    Function authGetUser = await authGet(APIWrapper.get);
-    Map<String, dynamic> response = await authGetUser(ApiConstants.user);
-    return UserModel.fromJson(response);
+  static Future<void> verifyEmail(String email) async {
+    await APIWrapper.post(APIEndpoints.otp, {"email": email});
   }
 }

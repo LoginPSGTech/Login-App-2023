@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/api/auth.dart';
+import 'package:login/api/user.dart';
 import 'package:login/models/user.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/widgets/title_bar_widget.dart';
@@ -45,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: FutureBuilder<UserModel>(
-      future: AuthApi.getUser(),
+      future: UserApi.getUser(),
       builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
         if (snapshot.hasData) {
           return Column(

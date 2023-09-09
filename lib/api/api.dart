@@ -16,16 +16,19 @@ class UnauthorizedException implements APIException {
 }
 
 class APIWrapper {
-  static Future<Map<String, String>> getHeaders() async {
-    String accessToken = await UserPreferences.getToken(TokenType.access);
-    return {
+  static Future<Map<String, String>> getHeaders(bool authenticate) async {
+    Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: "application/json",
-      HttpHeaders.authorizationHeader: "Bearer $accessToken",
     };
+    if (authenticate) {
+      String accessToken = await UserPreferences.getToken(TokenType.access);
+      headers[HttpHeaders.authorizationHeader] = "Bearer $accessToken";
+    }
+    return headers;
   }
 
   static Future<Map<String, dynamic>> parseResponse(http.Response response) async {
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body);
     } else if (response.statusCode == 401) {
       throw UnauthorizedException();
@@ -34,13 +37,14 @@ class APIWrapper {
     }
   }
 
-  static Future<Map<String, dynamic>> get(String url) async {
-    http.Response response = await http.get(Uri.parse(url), headers: await getHeaders());
+  static Future<Map<String, dynamic>> get(String url, {bool authenticate = false}) async {
+    http.Response response = await http.get(Uri.parse(url), headers: await getHeaders(authenticate));
     return parseResponse(response);
   }
 
-  static Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body) async {
-    http.Response response = await http.post(Uri.parse(url), headers: await getHeaders(), body: jsonEncode(body));
+  static Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body, {bool authenticate = false}) async {
+    http.Response response =
+        await http.post(Uri.parse(url), headers: await getHeaders(authenticate), body: jsonEncode(body));
     return parseResponse(response);
   }
 }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:login/api/api.dart';
+import 'package:login/api/user.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/pages/main_page.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
-
-import 'api/auth.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
 
   static Future<bool> checkLogin() async {
     try {
-      await AuthApi.getUser();
+      await UserApi.getUser();
     } on APIException {
       return false;
     }
