@@ -1,10 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:login/widgets/event_card_widget.dart';
+import 'package:login/widgets/event_team_card_widget.dart';
+import 'package:login/widgets/my_event_card_widget.dart';
 import 'package:login/widgets/title_bar_widget.dart';
 import 'package:login/pages/event_details_page.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
 import 'package:login/models/event_model.dart';
+
+class Team {
+  final String teamId;
+  final String teamName;
+  final String eventName;
+  final String eventLogoUrl;
+
+  Team({
+    required this.teamId,
+    required this.teamName,
+    required this.eventName,
+    required this.eventLogoUrl,
+  });
+}
+
+class MyEvent {
+  final String eventName;
+  final String eventLogoUrl;
+  final bool hasTeamAlready;
+
+  MyEvent(
+      {required this.eventName,
+      required this.eventLogoUrl,
+      required this.hasTeamAlready});
+}
 
 class EventsPage extends StatefulWidget {
   const EventsPage({super.key});
@@ -23,10 +50,27 @@ class _EventsPageState extends State<EventsPage>
     _tabController = TabController(length: 3, vsync: this); // Number of tabs
   }
 
-  // Widget buildTeams(){
+  Widget buildTeams(List<Team> teams) {
+    return ListView.builder(
+      itemCount: teams.length,
+      itemBuilder: (context, index) {
+        return EventTeamCardWidget(
+            teamId: teams[index].teamId,
+            teamName: teams[index].teamName,
+            eventName: teams[index].eventName,
+            eventLogoUrl: teams[index].eventLogoUrl);
+      },
+    );
+  }
 
-
-  // }
+  Widget buildMyEvents(List<MyEvent> myEvents) {
+    return ListView.builder(
+      itemCount: myEvents.length,
+      itemBuilder: (context, index) {
+        return MyEventCardWidget(eventName: myEvents[index].eventName, eventLogoUrl: myEvents[index].eventLogoUrl, hasTeamAlready: myEvents[index].hasTeamAlready);
+      },
+    );
+  }
 
   Widget buildEvents(List<Event> events) {
     return ListView.builder(
@@ -50,6 +94,62 @@ class _EventsPageState extends State<EventsPage>
 
   @override
   Widget build(BuildContext context) {
+    List<MyEvent> myEvents = [
+      MyEvent(
+          eventName: 'Algocode',
+          eventLogoUrl: "assets/images/hackin_logo.png",
+          hasTeamAlready: false),
+      MyEvent(
+          eventName: 'Algocode',
+          eventLogoUrl: "assets/images/hackin_logo.png",
+          hasTeamAlready: true),
+      MyEvent(
+          eventName: 'Algocode',
+          eventLogoUrl: "assets/images/hackin_logo.png",
+          hasTeamAlready: false),
+      MyEvent(
+          eventName: 'Algocode',
+          eventLogoUrl: "assets/images/hackin_logo.png",
+          hasTeamAlready: true),
+      MyEvent(
+          eventName: 'Algocode',
+          eventLogoUrl: "assets/images/hackin_logo.png",
+          hasTeamAlready: false),
+    ];
+
+    List<Team> teams = [
+      Team(
+        eventName: 'Algocode',
+        teamId: "905466",
+        teamName: "Test App Team",
+        eventLogoUrl: "assets/images/hackin_logo.png",
+      ),
+      Team(
+        eventName: 'Algocode',
+        teamId: "905466",
+        teamName: "Test App Team",
+        eventLogoUrl: "assets/images/hackin_logo.png",
+      ),
+      Team(
+        eventName: 'Algocode',
+        teamId: "905466",
+        teamName: "Test App Team",
+        eventLogoUrl: "assets/images/hackin_logo.png",
+      ),
+      Team(
+        eventName: 'Algocode',
+        teamId: "905466",
+        teamName: "Test App Team",
+        eventLogoUrl: "assets/images/hackin_logo.png",
+      ),
+      Team(
+        eventName: 'Algocode',
+        teamId: "905466",
+        teamName: "Test App Team",
+        eventLogoUrl: "assets/images/hackin_logo.png",
+      ),
+    ];
+
     final mcaEvents = Provider.of<AppDataProvider>(context).appData.mcaEvents;
     final mscEvents = Provider.of<AppDataProvider>(context).appData.mscEvents;
     return SafeArea(
@@ -93,8 +193,8 @@ class _EventsPageState extends State<EventsPage>
             controller: _tabController,
             children: [
               buildEvents(mscEvents + mcaEvents),
-              const Icon(Icons.directions_transit),
-              const Icon(Icons.directions_transit)
+              buildMyEvents(myEvents),
+              buildTeams(teams)
             ],
           )),
         ],
