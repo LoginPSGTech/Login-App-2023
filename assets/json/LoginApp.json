@@ -778,5 +778,210 @@
         "3. Your registration is now confirmed!"
       ]
     }
-  ]
+  ],
+  "day1Schedule": {
+    "date" : "23/09/2023",
+    "schedule": [
+      {
+        "startTime": "09:30 AM",
+        "events": [
+          {
+            "eventName": "Inauguration",
+            "venue": "F-Block Assembly Hall",
+            "endTime": "10:30 AM"
+          }
+        ]
+      },
+      {
+        "startTime": "10:30 AM",
+        "events": [
+          {
+            "eventName": "Tea Break",
+            "venue": "F-Block Canteen",
+            "endTime": "11:00 AM"
+          }
+        ]
+      },
+      {
+        "startTime": "11:00 AM",
+        "events": [
+          {
+            "eventName": "Math Pirates",
+            "venue": "M503",
+            "endTime": "01:30 PM"
+          },
+          {
+            "eventName": "Datathon",
+            "venue": "DSL",
+            "endTime": "04:00 PM"
+          },
+          {
+            "eventName": "Eureka",
+            "venue": "D-Block Ground Floor",
+            "endTime": "02:00 PM"
+          },
+          {
+            "eventName": "Techiadz",
+            "venue": "CC Lab",
+            "endTime": "02:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "01:00 PM",
+        "events": [
+          {
+            "eventName": "Lunch",
+            "venue": "F-Block Canteen",
+            "endTime": "03:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "01:30 PM",
+        "events": [
+          {
+            "eventName": "Triple Trouble",
+            "venue": "J201",
+            "endTime": "04:30 PM"
+          },
+          {
+            "eventName": "Thinklytics",
+            "venue": "CC Lab",
+            "endTime": "05:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "05:00 PM",
+        "events": [
+          {
+            "eventName": "Entertainment",
+            "venue": "Quadrangle",
+            "endTime": "07:30 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "07:00 PM",
+        "events": [
+          {
+            "eventName": "Dinner",
+            "venue": "F-Block Canteen",
+            "endTime": "08:30 PM"
+          }
+        ]
+      }
+    ]
+  },
+  "day2Schedule": {
+    "date" : "24/09/2023",
+    "schedule": [
+      {
+        "startTime": "09:00 AM",
+        "events": [
+          {
+            "eventName": "Hack-IN",
+            "venue": "DSL",
+            "endTime": "01:30 PM"
+          },
+          {
+            "eventName": "Inquizitives",
+            "venue": "D-Block Ground Floor",
+            "endTime": "12:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "10:00 AM",
+        "events": [
+          {
+            "eventName": "Algocode",
+            "venue": "CSL-2",
+            "endTime": "01:00 PM"
+          },
+          {
+            "eventName": "Cybernerd",
+            "venue": "CC Lab",
+            "endTime": "12:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "10:30 AM",
+        "events": [
+          {
+            "eventName": "Tea Break",
+            "venue": "F-Block Canteen",
+            "endTime": "11:00 AM"
+          },
+          {
+            "eventName": "Last Stand",
+            "venue": "M503",
+            "endTime": "01:30 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "11:30 PM",
+        "events": [
+          {
+            "eventName": "Flip Flop",
+            "venue": "K504",
+            "endTime": "01:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "01:00 PM",
+        "events": [
+          {
+            "eventName": "Lunch",
+            "venue": "F-Block Canteen",
+            "endTime": "03:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "01:30 PM",
+        "events": [
+          {
+            "eventName": "Star of Login",
+            "venue": "F-Block Assembly Hall",
+            "endTime": "04:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "03:00 PM",
+        "events": [
+          {
+            "eventName": "Tea Break",
+            "venue": "F-Block Canteen",
+            "endTime": "04:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "04:00 PM",
+        "events": [
+          {
+            "eventName": "Valedictory",
+            "venue": "F-Block Assembly Hall",
+            "endTime": "06:00 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "05:30 PM",
+        "events": [
+          {
+            "eventName": "Tea Break",
+            "venue": "F-Block Canteen",
+            "endTime": "06:00 PM"
+          }
+        ]
+      }
+    ]
+  }
 }

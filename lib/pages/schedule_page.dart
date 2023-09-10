@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login/models/day_schedule_model.dart';
+import 'package:login/providers/app_data_provider.dart';
 import 'package:login/widgets/title_bar_widget.dart';
+import 'package:provider/provider.dart';
 
 class SchedulePage extends StatefulWidget {
   @override
@@ -7,186 +10,165 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _SchedulePageState extends State<SchedulePage> {
-  final List<String> eventname23 = <String>[
-    'Techiadz',
-    'Thinklytics',
-    'Inquizitives',
-    'Triple Trouble',
-    'Hero of Login',
-    'AlgoCode',
-    "Hack-in"
-  ];
-
-  final List<String> eventvenue23 = <String>[
-    'F-Block',
-    'M-Block',
-    'A-Block',
-    'K-Block',
-    'H-Block',
-    'J-Block',
-    'K-Block'
-  ];
-
-  final List<String> timehrs23 = <String>["09", "09", "10", "10", "11", "11", "12"];
-
-  final List<String> timemin23 = <String>["00", "30", "00", "30", "00", "30", "00"];
-
-  final List<int> colorCodes23 = <int>[0xFF4A148C];
-
-  final List<String> ampm23 = <String>[
-    'AM',
-    'AM',
-    'AM',
-    'AM',
-    'AM',
-    'AM',
-    'PM'
-  ];
-
-  final List<String> eventname24 = <String>[
-    'Hero of Login',
-    'Inquizitives',
-    'AlgoCode',
-    'Triple Trouble',
-    'Thinklytics',
-    'Techiadz',
-    "Hack-in"
-
-  ];
-
-  final List<String> eventvenue24 = <String>[
-    'J-Block',
-    'K-Block',
-    'F-Block',
-    'A-Block',
-    'H-Block',
-    'M-Block',
-    'K-Block'
-  ];
-
-  final List<String> timehrs24 = <String>["09", "09", "10", "10", "11", "11", "12"];
-
-  final List<String> timemin24 = <String>["00", "30", "00", "30", "00", "30", "00"];
-
-  //final List<String> colorCodes24 = <String>[0xFF4A148C];
-  final List<String> ampm24 = <String>[
-    'AM',
-    'AM',
-    'AM',
-    'AM',
-    'AM',
-    'AM',
-    'PM'
-  ];
-
-  late var finallist;
-
   int buttonvalue = 0;
+  late List<Schedule> schedule;
+  late Color state23;
+  late Color state24;
 
-  late var state23;
-
-  late var state24;
+  List<Widget> buildScheduleEvents(List<EventSchedule> eventsSchedule) {
+    List<Widget> widgets = [];
+    for (var index = 0; index < eventsSchedule.length; index++) {
+      widgets.add(
+        Container(
+          margin: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      eventsSchedule[index].eventName,
+                      style: const TextStyle(
+                        color: Color(0xFFFEB139),
+                        fontSize: 24,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 8),
+                    child: Row(
+                      children: [
+                        const Icon(
+                            size: 16, Icons.place, color: Colors.white70),
+                        Container(
+                          margin: const EdgeInsets.only(left: 4),
+                          child: Text(
+                            eventsSchedule[index].venue,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 8),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          size: 14,
+                          Icons.watch_later_rounded,
+                          color: Colors.white70,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 4),
+                          child: Text(
+                            'Ends by ${eventsSchedule[index].endTime}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              index != eventsSchedule.length - 1
+                  ? const Divider(
+                      color: Colors.white,
+                      thickness: 0.3,
+                    )
+                  : Container(),
+            ],
+          ),
+        ),
+      );
+    }
+    return widgets;
+  }
 
   List<Widget> buildSchedule() {
     List<Widget> widgets = [];
-    for (var index = 0; index < finallist.length; index++) {
+    for (var index = 0; index < schedule.length; index++) {
+      // Split the time string into hours and minutes
+      List<String> timeParts = schedule[index].startTime.split(' ');
+      String time = timeParts[0];
+      String amPm = timeParts[1];
+      List<String> timeComponents = time.split(':');
+      String hours = timeComponents[0];
+      String minutes = timeComponents[1];
+
       widgets.add(Container(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         margin: const EdgeInsets.fromLTRB(24, 16, 24, 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: const Color(0xFF123E6B),
         ),
-        height: 100,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          finallist[2][index],
-                          style: const TextStyle(
-                            color: Color(0xFFF55353),
-                            fontSize: 56,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      hours,
+                      style: const TextStyle(
+                        color: Color(0xFFF55353),
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                  Text(
+                    minutes,
+                    style: const TextStyle(
+                      color: Color(0xFFF55353),
+                      fontSize: 16,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            finallist[3][index],
-                            style: const TextStyle(
-                              color: Color(0xFFF55353),
-                              fontSize: 20,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          child: Text(
-                            finallist[4][index],
-                            style: const TextStyle(
-                              color: Color(0xFFF55353),
-                              fontSize: 20,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ]),
-                ],
-              ),
+                  Text(
+                    amPm,
+                    style: const TextStyle(
+                      color: Color(0xFFF55353),
+                      fontSize: 16,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ]),
+              ],
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 16),
+            Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        finallist[0][index],
-                        style: const TextStyle(
-                          color: Color(0xFFFEB139),
-                          fontSize: 24,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        size: 16,
-                        Icons.place,
-                        color: Color(0xFFFEB139),
-                      ),
-                      Text(
-                        finallist[1][index],
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+                children: buildScheduleEvents(schedule[index].events),
               ),
             )
           ],
@@ -198,92 +180,83 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
+    final day1Schedule =
+        Provider.of<AppDataProvider>(context).appData.day1Schedule;
+    final day2Schedule =
+        Provider.of<AppDataProvider>(context).appData.day2Schedule;
     switch (buttonvalue) {
       case 0:
-        finallist = [
-          eventname23,
-          eventvenue23,
-          timehrs23,
-          timemin23,
-          ampm23,
-        ];
+        schedule = day1Schedule.schedule;
         state23 = const Color(0xFF123E6B);
         state24 = const Color(0xFF121F2C);
         break;
       case 1:
-        finallist = [
-          eventname24,
-          eventvenue24,
-          timehrs24,
-          timemin24,
-          ampm24,
-        ];
+        schedule = day2Schedule.schedule;
         state23 = const Color(0xFF121F2C);
         state24 = const Color(0xFF123E6B);
         break;
     }
 
     return SafeArea(
-      child: Column(
-        children: [
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            const TitleBarWidget(title: "Schedule"),
-            Container(
-              margin: const EdgeInsets.only(right: 24),
-              child: Row(children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      if (buttonvalue != 0) {
-                        buttonvalue = 0;
-                      }
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: state23,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10)))),
-                  child: const Text(
-                    "23rd",
-                    style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      if (buttonvalue != 1) {
-                        buttonvalue = 1;
-                      }
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: state24,
+        child: Column(
+      children: [
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          const TitleBarWidget(title: "Schedule"),
+          Container(
+            margin: const EdgeInsets.only(right: 24),
+            child: Row(children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (buttonvalue != 0) {
+                      buttonvalue = 0;
+                    }
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: state23,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10))),
-                  ),
-                  child: const Text(
-                    "24th",
-                    style: TextStyle(color: Color(0xFF858585), fontSize: 12),
+                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10)))),
+                child: const Text(
+                  "23rd",
+                  style: TextStyle(
+                    color: Color(0xFFFFFFFF),
+                    fontSize: 12,
                   ),
                 ),
-              ]),
-            )
-          ]),
-          Expanded(
-            child:
-                SingleChildScrollView(child: Column(
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (buttonvalue != 1) {
+                      buttonvalue = 1;
+                    }
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: state24,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10))),
+                ),
+                child: const Text(
+                  "24th",
+                  style: TextStyle(color: Color(0xFF858585), fontSize: 12),
+                ),
+              ),
+            ]),
+          )
+        ]),
+        Expanded(
+          child: SingleChildScrollView(
+              child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: buildSchedule())),
-          )
-        ],
-      )
-    );
+        )
+      ],
+    ));
   }
 }

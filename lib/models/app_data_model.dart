@@ -1,3 +1,4 @@
+import 'package:login/models/day_schedule_model.dart';
 import 'package:login/models/event_instructions.dart';
 import 'package:login/models/home_model.dart';
 import 'package:login/models/event_model.dart';
@@ -10,15 +11,19 @@ class AppData {
   final List<Event> mscEvents;
   final List<Event> mcaEvents;
   final List<EventInstructions> eventInstructions;
+  final DaySchedule day1Schedule;
+  final DaySchedule day2Schedule;
 
-  AppData(
-      {required this.home,
-      required this.mscEvents,
-      required this.mcaEvents,
-      required this.eventInstructions});
+  AppData({
+    required this.home,
+    required this.mscEvents,
+    required this.mcaEvents,
+    required this.eventInstructions,
+    required this.day1Schedule,
+    required this.day2Schedule,
+  });
 
   factory AppData.fromJson(Map<String, dynamic> json) {
-
     final home = Home.fromJson(json['home']);
 
     final mscEvents = (json['mscEvents'] as List<dynamic>)
@@ -28,15 +33,21 @@ class AppData {
         .map((eventJson) => Event.fromJson(eventJson))
         .toList();
 
-    final List<EventInstructions> eventInstructions = (json['eventInstructions'] as List)
-      .map((e) => EventInstructions.fromJson(e as Map<String, dynamic>))
-      .toList();
+    final List<EventInstructions> eventInstructions =
+        (json['eventInstructions'] as List)
+            .map((e) => EventInstructions.fromJson(e as Map<String, dynamic>))
+            .toList();
+
+    final DaySchedule day1Schedule = DaySchedule.fromJson(json['day1Schedule']);
+    final DaySchedule day2Schedule = DaySchedule.fromJson(json['day2Schedule']);
 
     return AppData(
         home: home,
         mscEvents: mscEvents,
         mcaEvents: mcaEvents,
-        eventInstructions: eventInstructions);
+        eventInstructions: eventInstructions,
+        day1Schedule: day1Schedule,
+        day2Schedule: day2Schedule);
   }
 
   static Future<AppData> loadData() async {
