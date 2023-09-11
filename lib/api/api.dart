@@ -4,13 +4,13 @@ import 'package:http/http.dart' as http;
 import 'package:login/models/auth.dart';
 import 'package:login/utils/preferences.dart';
 
-class APIException implements Exception {
+class ApiException implements Exception {
   String message;
 
-  APIException({this.message = "API error"});
+  ApiException({this.message = "API error"});
 }
 
-class UnauthorizedException implements APIException {
+class UnauthorizedException implements ApiException {
   @override
   String message = "Unauthorized";
 }
@@ -33,7 +33,7 @@ class ApiWrapper {
     } else if (response.statusCode == 401) {
       throw UnauthorizedException();
     } else {
-      throw APIException();
+      throw ApiException();
     }
   }
 
@@ -45,6 +45,11 @@ class ApiWrapper {
   static Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body, {bool authenticate = false}) async {
     http.Response response =
         await http.post(Uri.parse(url), headers: await getHeaders(authenticate), body: jsonEncode(body));
+    return parseResponse(response);
+  }
+
+  static Future<Map<String, dynamic>> delete(String url, {bool authenticate = false}) async {
+    http.Response response = await http.delete(Uri.parse(url), headers: await getHeaders(authenticate));
     return parseResponse(response);
   }
 }

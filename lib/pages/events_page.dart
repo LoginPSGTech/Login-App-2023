@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/models/user.dart';
 import 'package:login/widgets/event_card_widget.dart';
 import 'package:login/widgets/event_team_card_widget.dart';
 import 'package:login/widgets/my_event_card_widget.dart';
@@ -7,6 +8,8 @@ import 'package:login/pages/event_details_page.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
 import 'package:login/models/event_model.dart';
+
+import 'form_constants.dart';
 
 class Team {
   final String teamId;
@@ -23,11 +26,11 @@ class Team {
 }
 
 class MyEvent {
-  final String eventName;
+  final String eventId;
   final String eventLogoUrl;
   final bool hasTeamAlready;
 
-  MyEvent({required this.eventName, required this.eventLogoUrl, required this.hasTeamAlready});
+  MyEvent({required this.eventId, required this.eventLogoUrl, required this.hasTeamAlready});
 }
 
 class EventsPage extends StatefulWidget {
@@ -59,14 +62,17 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
     );
   }
 
-  Widget buildMyEvents(List<MyEvent> myEvents) {
+  Widget buildMyEvents(List<MyEvent> myEvents, String emailId) {
     return ListView.builder(
       itemCount: myEvents.length,
       itemBuilder: (context, index) {
         return MyEventCardWidget(
-            eventName: myEvents[index].eventName,
-            eventLogoUrl: myEvents[index].eventLogoUrl,
-            hasTeamAlready: myEvents[index].hasTeamAlready);
+          eventId: myEvents[index].eventId,
+          eventName: events[myEvents[index].eventId]!,
+          eventLogoUrl: myEvents[index].eventLogoUrl,
+          hasTeamAlready: myEvents[index].hasTeamAlready,
+          emailId: emailId,
+        );
       },
     );
   }
@@ -91,51 +97,34 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
     );
   }
 
+  List<MyEvent> getMyEvents(UserModel user) {
+    Set<String> eventsWithTeams = user.teams.map((UserTeamModel team) => team.event).toSet();
+    return user.events
+        .map((UserEventModel event) => MyEvent(
+            eventId: event.event,
+            eventLogoUrl: "assets/images/events/${event.event}.png",
+            hasTeamAlready: eventsWithTeams.contains(event.event)))
+        .toList();
+  }
+
+  List<Team> getTeams(UserModel user) {
+    return user.teams
+        .map((UserTeamModel team) => Team(
+            teamId: team.team_id,
+            teamName: team.team_name,
+            eventName: events[team.event]!,
+            eventLogoUrl: "assets/images/events/${team.event}.png"))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<MyEvent> myEvents = [
-      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: false),
-      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: true),
-      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: false),
-      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: true),
-      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: false),
-    ];
-
-    List<Team> teams = [
-      Team(
-        eventName: 'Algocode',
-        teamId: "905466",
-        teamName: "Test App Team",
-        eventLogoUrl: "assets/images/hackin_logo.png",
-      ),
-      Team(
-        eventName: 'Algocode',
-        teamId: "905466",
-        teamName: "Test App Team",
-        eventLogoUrl: "assets/images/hackin_logo.png",
-      ),
-      Team(
-        eventName: 'Algocode',
-        teamId: "905466",
-        teamName: "Test App Team",
-        eventLogoUrl: "assets/images/hackin_logo.png",
-      ),
-      Team(
-        eventName: 'Algocode',
-        teamId: "905466",
-        teamName: "Test App Team",
-        eventLogoUrl: "assets/images/hackin_logo.png",
-      ),
-      Team(
-        eventName: 'Algocode',
-        teamId: "905466",
-        teamName: "Test App Team",
-        eventLogoUrl: "assets/images/hackin_logo.png",
-      ),
-    ];
-
     final mcaEvents = Provider.of<AppDataProvider>(context).appData.mcaEvents;
     final mscEvents = Provider.of<AppDataProvider>(context).appData.mscEvents;
+    UserModel user = Provider.of<AppDataProvider>(context).user;
+    List<MyEvent> myEvents = getMyEvents(user);
+    List<Team> teams = getTeams(user);
+
     return SafeArea(
       child: Column(
         children: [
@@ -175,7 +164,7 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
               // Wrap the ListView.builder with Expanded
               child: TabBarView(
             controller: _tabController,
-            children: [buildEvents(mscEvents + mcaEvents), buildMyEvents(myEvents), buildTeams(teams)],
+            children: [buildEvents(mscEvents + mcaEvents), buildMyEvents(myEvents, user.email), buildTeams(teams)],
           )),
         ],
       ),

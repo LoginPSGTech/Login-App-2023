@@ -351,3 +351,22 @@ const Map<String, String> genders = {"Male": "M", "Female": "F"};
 const Map<String, bool> accommodation = {"Yes": true, "No": false};
 
 const Map<String, String> foodPreference = {"Veg": "VEG", "Non-Veg": "NON_VEG"};
+
+const Map<String, String> events = {
+  "E1": "Algocode",
+  "E2": "Artistry",
+  "E3": "Code Sprint",
+  "E4": "Cybernerd",
+  "E5": "Datathon",
+  "E6": "Eureka",
+  "E7": "Flip Flop",
+  "E8": "Hack-IN",
+  "E9": "Inquizitives",
+  "E10": "Last Stand",
+  "E11": "Math Pirates",
+  "E12": "Nethunt",
+  "E13": "Star of Login",
+  "E14": "Techiadz",
+  "E15": "Thinklytics",
+  "E16": "Triple trouble",
+};

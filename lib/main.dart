@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   static Future<bool> checkLogin() async {
     try {
       await UserApi.getUser();
-    } on APIException {
+    } on ApiException {
       return false;
     }
     return true;

@@ -22,11 +22,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     void handleLogin() {
-      AuthApi.login(LoginModel(email: _emailController.text, password: _passwordController.text)).then((value) => {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const MainPage()),
-            )
-          });
+      LoginModel loginInfo = LoginModel(email: _emailController.text, password: _passwordController.text);
+      AuthApi.login(loginInfo).then((value) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const MainPage()),
+        );
+      });
     }
 
     return GradientBackgroundWidget(

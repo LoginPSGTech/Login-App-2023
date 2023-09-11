@@ -7,7 +7,7 @@ import 'endpoints.dart';
 
 class UserApi {
   static Future<UserModel> getUser() async {
-    Function authGetUser = await AuthApi.authGet(ApiWrapper.get);
+    Function authGetUser = await AuthApi.payloadLessAuth(ApiWrapper.get);
     Map<String, dynamic> response = await authGetUser(ApiEndpoints.user, authenticate: true);
     return UserModel.fromJson(response);
   }
@@ -18,7 +18,7 @@ class UserApi {
   }
 
   static Future<void> registerEvent(UserEventModel userEvent) async {
-    Function authPostUser = await AuthApi.authPost(ApiWrapper.post);
-    await authPostUser(ApiEndpoints.registerEvent, userEvent.toJson(), authenticate: true);
+    Function authRegisterEvent = await AuthApi.payloadAuth(ApiWrapper.post);
+    await authRegisterEvent(ApiEndpoints.registerEvent, userEvent.toJson(), authenticate: true);
   }
 }

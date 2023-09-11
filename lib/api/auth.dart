@@ -11,30 +11,30 @@ class LoginException implements Exception {
 }
 
 class AuthApi {
-  static Future<Function> authGet(Function apiGet) async {
+  static Future<Function> payloadLessAuth(Function api) async {
     return (String url, {bool authenticate = false}) async {
       try {
-        return await apiGet(url, authenticate: authenticate);
+        return await api(url, authenticate: authenticate);
       } on UnauthorizedException {
         await refreshAccess();
-        return await apiGet(url, authenticate: authenticate);
+        return await api(url, authenticate: authenticate);
       }
     };
   }
 
-  static Future<Function> authPost(Function apiPost) async {
+  static Future<Function> payloadAuth(Function api) async {
     return (String url, Map<String, dynamic> body, {bool authenticate = false}) async {
       try {
-        return await apiPost(url, body, authenticate: authenticate);
+        return await api(url, body, authenticate: authenticate);
       } on UnauthorizedException {
         await refreshAccess();
-        return await apiPost(url, body, authenticate: authenticate);
+        return await api(url, body, authenticate: authenticate);
       }
     };
   }
 
-  static Future<void> login(LoginModel loginModel) async {
-    Map<String, dynamic> response = await ApiWrapper.post(ApiEndpoints.token, loginModel.toJson());
+  static Future<void> login(LoginModel loginInfo) async {
+    Map<String, dynamic> response = await ApiWrapper.post(ApiEndpoints.token, loginInfo.toJson());
     LoginResponseModel loginResponse = LoginResponseModel.fromJson(response);
     UserPreferences.setTokens(loginResponse);
   }

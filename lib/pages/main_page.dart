@@ -1,10 +1,13 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:login/api/user.dart';
 import 'package:login/pages/home_page.dart';
 import 'package:login/pages/profile_page.dart';
 import 'package:login/pages/schedule_page.dart';
 import 'package:login/pages/events_page.dart';
+import 'package:login/providers/app_data_provider.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -43,6 +46,9 @@ class _MainPageState extends State<MainPage> {
       ]);
   @override
   Widget build(BuildContext context) {
+    UserApi.getUser().then((value) {
+      Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+    });
     switch (selected) {
       case 0:
         page = HomePage();

@@ -30,15 +30,19 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   void registerUser(UserModel user) {
     UserEventModel userEvent = UserEventModel(event: widget.event.eventId, user: user.email);
     UserApi.registerEvent(userEvent).then((value) {
-      Navigator.of(context).pop();
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => EventDetailsPage(event: widget.event)),
-      );
+      UserApi.getUser().then((value) {
+        Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        Navigator.of(context).pop();
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => EventDetailsPage(event: widget.event)),
+        );
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    UserModel user = Provider.of<AppDataProvider>(context).user;
     final eventInstructions = Provider.of<AppDataProvider>(context).appData.eventInstructions;
 
     Widget sectionHeading(String title) {
@@ -181,7 +185,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       return widgets;
     }
 
-    Future<dynamic> buildEventInstructionsDialog(UserModel user) {
+    Future<dynamic> buildEventInstructionsDialog() {
       return showDialog(
         context: context,
         builder: (context) {
@@ -388,61 +392,49 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               ),
               Container(
                   margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-                  child: FutureBuilder<UserModel>(
-                      future: UserApi.getUser(),
-                      builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
-                        if (snapshot.hasData) {
-                          if (isRegistered(snapshot.data!) == false) {
-                            return ElevatedButton(
-                              onPressed: () {
-                                buildEventInstructionsDialog(snapshot.data!);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                backgroundColor: const Color(0xFFF55353), // Text color
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                                ),
+                  child: isRegistered(user)
+                      ? ElevatedButton(
+                          onPressed: () => {},
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: const Color(0xFFF55353), // Text color
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Rounded corners
+                            ),
+                          ),
+                          child: const SizedBox(
+                            width: double.infinity, // Occupies entire width
+                            child: Text(
+                              'Registered',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16, // Text font size
                               ),
-                              child: const SizedBox(
-                                width: double.infinity, // Occupies entire width
-                                child: Text(
-                                  'Register',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 16, // Text font size
-                                  ),
-                                ),
+                            ),
+                          ),
+                        )
+                      : ElevatedButton(
+                          onPressed: () {
+                            buildEventInstructionsDialog();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: const Color(0xFFF55353), // Text color
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10), // Rounded corners
+                            ),
+                          ),
+                          child: const SizedBox(
+                            width: double.infinity, // Occupies entire width
+                            child: Text(
+                              'Register',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16, // Text font size
                               ),
-                            );
-                          } else {
-                            return ElevatedButton(
-                              onPressed: () => {},
-                              style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                backgroundColor: const Color(0xFFF55353), // Text color
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                                ),
-                              ),
-                              child: const SizedBox(
-                                width: double.infinity, // Occupies entire width
-                                child: Text(
-                                  'Registered',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 16, // Text font size
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                        } else {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      })),
+                            ),
+                          ),
+                        )),
             ],
           ),
         ),

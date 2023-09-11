@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:login/api/team_event.dart';
+import 'package:login/api/user.dart';
+import 'package:login/models/team.dart';
+import 'package:login/providers/app_data_provider.dart';
 import 'package:login/widgets/text_field_widget.dart';
+import 'package:provider/provider.dart';
 
 class MyEventCardWidget extends StatefulWidget {
+  final String eventId;
   final String eventName;
   final String eventLogoUrl;
   final bool hasTeamAlready;
-  const MyEventCardWidget(
-      {super.key, required this.eventName, required this.eventLogoUrl, required this.hasTeamAlready});
+  final String emailId;
+  const MyEventCardWidget({
+    super.key,
+    required this.eventId,
+    required this.eventName,
+    required this.eventLogoUrl,
+    required this.hasTeamAlready,
+    required this.emailId,
+  });
 
   @override
   State<MyEventCardWidget> createState() => _MyEventCardWidgetState();
@@ -24,6 +37,38 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
   String labelText = "";
   String? Function(String?)? validator;
   IconData? icon;
+
+  void handleDeregisterEvent() {
+    TeamEventApi.deregisterEvent(widget.eventId).then((value) {
+      UserApi.getUser().then((value) {
+        Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+      });
+    });
+  }
+
+  void handleCreateTeam(String teamName) {
+    CreateTeamModel createTeam = CreateTeamModel(team_name: teamName, event: widget.eventId);
+    TeamEventApi.createTeam(createTeam).then((value) {
+      UserApi.getUser().then((value) {
+        Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        isExpanded = false;
+      });
+    });
+  }
+
+  void handleJoinTeam(String teamId) {
+    JoinTeamModel joinTeam = JoinTeamModel(event: widget.eventId, user: widget.emailId, team_id: teamId);
+    TeamEventApi.joinTeam(joinTeam).then((value) {
+      UserApi.getUser().then((value) {
+        Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        isExpanded = false;
+      });
+    });
+  }
+
+  void handleSubmit() {
+    isJoinTeam ? handleJoinTeam(joinTeamController.text) : handleCreateTeam(createTeamController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +115,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: handleDeregisterEvent,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -81,7 +126,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                         ),
                         Container(
                           margin: const EdgeInsets.only(left: 4),
-                          child: const Text('Delete Event',
+                          child: const Text('Deregister Event',
                               style: TextStyle(
                                 color: Colors.white,
                               )),
@@ -210,9 +255,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  onPressed: () {
-                    //if create team or not join team get text from controller send api req
-                  },
+                  onPressed: handleSubmit,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
