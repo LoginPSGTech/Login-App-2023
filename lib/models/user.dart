@@ -3,12 +3,12 @@ part 'user.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class UserEventModel {
-  int id;
+  int? id;
   String event;
   String user;
 
   UserEventModel({
-    required this.id,
+    this.id,
     required this.event,
     required this.user,
   });

@@ -2,6 +2,7 @@ import 'package:login/models/event_convenor_model.dart';
 import 'package:login/models/round_model.dart';
 
 class Event {
+  final String eventId;
   final String eventName;
   final List<EventConvenor> eventConvenors;
   final String eventLogo;
@@ -14,6 +15,7 @@ class Event {
   final String expectedNoOfParticipants;
 
   Event({
+    required this.eventId,
     required this.eventName,
     required this.eventConvenors,
     required this.eventLogo,
@@ -37,6 +39,7 @@ class Event {
     final rulesList = (json['eventRules'] as List).cast<String>();
 
     return Event(
+      eventId: json['eventId'],
       eventName: json['eventName'],
       eventConvenors: eventConvenorList,
       eventLogo: json['eventLogo'],

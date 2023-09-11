@@ -26,17 +26,11 @@ class AppData {
   factory AppData.fromJson(Map<String, dynamic> json) {
     final home = Home.fromJson(json['home']);
 
-    final mscEvents = (json['mscEvents'] as List<dynamic>)
-        .map((eventJson) => Event.fromJson(eventJson))
-        .toList();
-    final mcaEvents = (json['mcaEvents'] as List<dynamic>)
-        .map((eventJson) => Event.fromJson(eventJson))
-        .toList();
+    final mscEvents = (json['mscEvents'] as List<dynamic>).map((eventJson) => Event.fromJson(eventJson)).toList();
+    final mcaEvents = (json['mcaEvents'] as List<dynamic>).map((eventJson) => Event.fromJson(eventJson)).toList();
 
     final List<EventInstructions> eventInstructions =
-        (json['eventInstructions'] as List)
-            .map((e) => EventInstructions.fromJson(e as Map<String, dynamic>))
-            .toList();
+        (json['eventInstructions'] as List).map((e) => EventInstructions.fromJson(e as Map<String, dynamic>)).toList();
 
     final DaySchedule day1Schedule = DaySchedule.fromJson(json['day1Schedule']);
     final DaySchedule day2Schedule = DaySchedule.fromJson(json['day2Schedule']);
@@ -53,8 +47,7 @@ class AppData {
   static Future<AppData> loadData() async {
     try {
       // Load JSON data from an asset file
-      final String jsonData =
-          await rootBundle.loadString('assets/json/LoginApp.json');
+      final String jsonData = await rootBundle.loadString('assets/json/LoginApp.json');
 
       // Parse JSON into a Map
       final Map<String, dynamic> jsonMap = json.decode(jsonData);

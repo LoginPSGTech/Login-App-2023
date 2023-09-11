@@ -8,12 +8,12 @@ class AppDataProvider with ChangeNotifier {
 
   AppDataProvider() {
     _appData = AppData(
-      home:Home(tagline:'',description: '',addeddescription: '',about: '',addedabout: '',events: []),
-      mscEvents: [],
-      mcaEvents: [],
-      eventInstructions: [],
-      day1Schedule: DaySchedule(date: '', schedule: []),
-      day2Schedule: DaySchedule(date: '', schedule: []));
+        home: Home(tagline: '', description: '', addeddescription: '', about: '', addedabout: '', events: []),
+        mscEvents: [],
+        mcaEvents: [],
+        eventInstructions: [],
+        day1Schedule: DaySchedule(date: '', schedule: []),
+        day2Schedule: DaySchedule(date: '', schedule: []));
     // Initialize the _appData instance by loading data
     _loadData();
   }

@@ -1,90 +1,59 @@
 import 'package:flutter/material.dart';
 
 class EventTeamCardWidget extends StatelessWidget {
-
   final String teamId;
   final String teamName;
   final String eventName;
   final String eventLogoUrl;
-  
-  const EventTeamCardWidget({super.key, required this.teamId, required this.teamName, required this.eventName, required this.eventLogoUrl});
+
+  const EventTeamCardWidget(
+      {super.key, required this.teamId, required this.teamName, required this.eventName, required this.eventLogoUrl});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-          margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-          decoration: BoxDecoration(
-              color: const Color(0xFF143F6B),
-              borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      decoration: BoxDecoration(color: const Color(0xFF143F6B), borderRadius: BorderRadius.circular(10)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              Row(
-                children: [
-                  SizedBox(
-                    height: 75,
-                    width: 75,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(eventLogoUrl),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Text(
-                      eventName,
-                      style: const TextStyle(
-                        color: Color(0xFFFEB139),
-                        fontSize: 32,
-                        fontWeight: FontWeight.w600
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TeamTitleContentWidget(
-                title: "Team ID",
-                content: teamId,
-              ),
-              TeamTitleContentWidget(
-                title: "Team Name",
-                content: teamName,
-              ),
-              const SizedBox(
-                height: 8,
-              ),
               SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF55353),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.delete_rounded, color: Colors.white,size: 16,),
-                          Container(
-                            margin: const EdgeInsets.only(left: 4),
-                            child: const Text('Delete Event',
-                            style: TextStyle(
-                              color: Colors.white,
-                            )),
-                          ),
-                        ],
-                  ),
+                height: 75,
+                width: 75,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(eventLogoUrl),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Text(
+                  eventName,
+                  style: const TextStyle(color: Color(0xFFFEB139), fontSize: 32, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
           ),
-        );
+          const SizedBox(
+            height: 20,
+          ),
+          TeamTitleContentWidget(
+            title: "Team ID",
+            content: teamId,
+          ),
+          TeamTitleContentWidget(
+            title: "Team Name",
+            content: teamName,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -92,9 +61,7 @@ class TeamTitleContentWidget extends StatelessWidget {
   final String title;
   final String content;
 
-  const TeamTitleContentWidget(
-      {Key? key, required this.title, required this.content})
-      : super(key: key);
+  const TeamTitleContentWidget({Key? key, required this.title, required this.content}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

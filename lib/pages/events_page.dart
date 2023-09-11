@@ -27,10 +27,7 @@ class MyEvent {
   final String eventLogoUrl;
   final bool hasTeamAlready;
 
-  MyEvent(
-      {required this.eventName,
-      required this.eventLogoUrl,
-      required this.hasTeamAlready});
+  MyEvent({required this.eventName, required this.eventLogoUrl, required this.hasTeamAlready});
 }
 
 class EventsPage extends StatefulWidget {
@@ -66,7 +63,10 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
     return ListView.builder(
       itemCount: myEvents.length,
       itemBuilder: (context, index) {
-        return MyEventCardWidget(eventName: myEvents[index].eventName, eventLogoUrl: myEvents[index].eventLogoUrl, hasTeamAlready: myEvents[index].hasTeamAlready);
+        return MyEventCardWidget(
+            eventName: myEvents[index].eventName,
+            eventLogoUrl: myEvents[index].eventLogoUrl,
+            hasTeamAlready: myEvents[index].hasTeamAlready);
       },
     );
   }
@@ -94,26 +94,11 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     List<MyEvent> myEvents = [
-      MyEvent(
-          eventName: 'Algocode',
-          eventLogoUrl: "assets/images/hackin_logo.png",
-          hasTeamAlready: false),
-      MyEvent(
-          eventName: 'Algocode',
-          eventLogoUrl: "assets/images/hackin_logo.png",
-          hasTeamAlready: true),
-      MyEvent(
-          eventName: 'Algocode',
-          eventLogoUrl: "assets/images/hackin_logo.png",
-          hasTeamAlready: false),
-      MyEvent(
-          eventName: 'Algocode',
-          eventLogoUrl: "assets/images/hackin_logo.png",
-          hasTeamAlready: true),
-      MyEvent(
-          eventName: 'Algocode',
-          eventLogoUrl: "assets/images/hackin_logo.png",
-          hasTeamAlready: false),
+      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: false),
+      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: true),
+      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: false),
+      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: true),
+      MyEvent(eventName: 'Algocode', eventLogoUrl: "assets/images/hackin_logo.png", hasTeamAlready: false),
     ];
 
     List<Team> teams = [
@@ -190,11 +175,7 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
               // Wrap the ListView.builder with Expanded
               child: TabBarView(
             controller: _tabController,
-            children: [
-              buildEvents(mscEvents + mcaEvents),
-              buildMyEvents(myEvents),
-              buildTeams(teams)
-            ],
+            children: [buildEvents(mscEvents + mcaEvents), buildMyEvents(myEvents), buildTeams(teams)],
           )),
         ],
       ),

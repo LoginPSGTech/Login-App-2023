@@ -34,7 +34,7 @@ class AuthApi {
   }
 
   static Future<void> login(LoginModel loginModel) async {
-    Map<String, dynamic> response = await APIWrapper.post(APIEndpoints.token, loginModel.toJson());
+    Map<String, dynamic> response = await ApiWrapper.post(ApiEndpoints.token, loginModel.toJson());
     LoginResponseModel loginResponse = LoginResponseModel.fromJson(response);
     UserPreferences.setTokens(loginResponse);
   }
@@ -45,11 +45,11 @@ class AuthApi {
 
   static Future<void> refreshAccess() async {
     String refreshToken = await UserPreferences.getToken(TokenType.refresh);
-    Map<String, dynamic> response = await APIWrapper.post(APIEndpoints.tokenRefresh, {"refresh": refreshToken});
+    Map<String, dynamic> response = await ApiWrapper.post(ApiEndpoints.tokenRefresh, {"refresh": refreshToken});
     UserPreferences.setToken(TokenType.access, response["access"]);
   }
 
   static Future<void> verifyEmail(String email) async {
-    await APIWrapper.post(APIEndpoints.otp, {"email": email});
+    await ApiWrapper.post(ApiEndpoints.otp, {"email": email});
   }
 }

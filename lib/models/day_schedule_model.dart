@@ -29,8 +29,7 @@ class Schedule {
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
     var eventList = json['events'] as List;
-    List<EventSchedule> events =
-        eventList.map((eventJson) => EventSchedule.fromJson(eventJson)).toList();
+    List<EventSchedule> events = eventList.map((eventJson) => EventSchedule.fromJson(eventJson)).toList();
 
     return Schedule(
       startTime: json['startTime'],
@@ -50,8 +49,7 @@ class DaySchedule {
 
   factory DaySchedule.fromJson(Map<String, dynamic> json) {
     var scheduleList = json['schedule'] as List;
-    List<Schedule> schedule =
-        scheduleList.map((scheduleJson) => Schedule.fromJson(scheduleJson)).toList();
+    List<Schedule> schedule = scheduleList.map((scheduleJson) => Schedule.fromJson(scheduleJson)).toList();
 
     return DaySchedule(
       date: json['date'],

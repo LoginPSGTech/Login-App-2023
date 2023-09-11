@@ -15,7 +15,7 @@ class UnauthorizedException implements APIException {
   String message = "Unauthorized";
 }
 
-class APIWrapper {
+class ApiWrapper {
   static Future<Map<String, String>> getHeaders(bool authenticate) async {
     Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: "application/json",

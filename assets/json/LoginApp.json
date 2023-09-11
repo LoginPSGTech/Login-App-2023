@@ -7,6 +7,7 @@
     "addedAbout":" Post graduate students of any stream from colleges around the globe are welcome to code, compete and conquer this quest for the creative and collaborative. The two-day symposium held on the 23rd and 24th of September, serves up a smorgasbord of sumptuous events that refine, recognize and reward students for their zeal and zest",
     "events": [
       {
+        "eventId": "E5",
         "eventName": "Datathon",
         "eventConvenors": [
           {
@@ -43,6 +44,7 @@
         "expectedNoOfParticipants": "20 Teams"
       },
       {
+        "eventId": "E9",
         "eventName": "Inquizitives",
         "eventConvenors": [
           {
@@ -77,6 +79,7 @@
         "expectedNoOfParticipants": "50 Teams"
       },
       {
+        "eventId": "E11",
         "eventName": "Math Pirates",
         "eventConvenors": [{
           "eventConvenorName": "Aarthi K",
@@ -109,6 +112,7 @@
         "expectedNoOfParticipants": "30 Teams"
       },
       {
+        "eventId": "E10",
         "eventName": "Last Stand",
         "eventConvenors": [
           {
@@ -142,6 +146,7 @@
         "expectedNoOfParticipants": "40 Teams"
       },
       {
+        "eventId": "E16",
         "eventName": "Triple trouble",
         "eventConvenors": [
           {
@@ -185,6 +190,7 @@
   },
   "mscEvents": [
     {
+      "eventId": "E5",
       "eventName": "Datathon",
       "eventConvenors": [
         {
@@ -223,6 +229,7 @@
       "expectedNoOfParticipants": "20 Teams"
     },
     {
+      "eventId": "E9",
       "eventName": "Inquizitives",
       "eventConvenors": [
         {
@@ -257,6 +264,7 @@
       "expectedNoOfParticipants": "50 Teams"
     },
     {
+      "eventId": "E11",
       "eventName": "Math Pirates",
       "eventConvenors": [{
         "eventConvenorName": "Aarthi K",
@@ -289,6 +297,7 @@
       "expectedNoOfParticipants": "30 Teams"
     },
     {
+      "eventId": "E10",
       "eventName": "Last Stand",
       "eventConvenors": [
         {
@@ -322,6 +331,7 @@
       "expectedNoOfParticipants": "40 Teams"
     },
     {
+      "eventId": "E16",
       "eventName": "Triple trouble",
       "eventConvenors": [
         {
@@ -362,6 +372,7 @@
       "expectedNoOfParticipants": "40 - 45 Teams"
     },
     {
+      "eventId": "E8",
       "eventName": "Hack-IN",
       "eventConvenors": [
         {
@@ -391,6 +402,7 @@
       "expectedNoOfParticipants": "50 Teams"
     },
     {
+      "eventId": "E1",
       "eventName": "Algocode",
       "eventConvenors": [
         {
@@ -429,6 +441,7 @@
       "expectedNoOfParticipants": "50 Teams"
     },
     {
+      "eventId": "E6",
       "eventName": "Eureka",
       "eventConvenors": [
         {
@@ -461,6 +474,7 @@
   ],
   "mcaEvents": [
     {
+      "eventId": "E3",
       "eventName": "Code Sprint",
       "eventConvenors": [
         {
@@ -495,6 +509,7 @@
       "expectedNoOfParticipants": "50 Teams"
     },
     {
+      "eventId": "E4",
       "eventName": "Cybernerd",
       "eventConvenors": [
         {
@@ -526,6 +541,7 @@
       "expectedNoOfParticipants": "25 Teams"
     },
     {
+      "eventId": "E12",
       "eventName": "Nethunt",
       "eventConvenors": [
         {
@@ -561,6 +577,7 @@
       "expectedNoOfParticipants": "50 Teams"
     },
     {
+      "eventId": "E13",
       "eventName": "Star of Login",
       "eventConvenors": [
         {
@@ -602,6 +619,7 @@
       "expectedNoOfParticipants": "40 Teams"
     },
     {
+      "eventId": "E14",
       "eventName": "Techiadz",
       "eventConvenors": [
         {
@@ -640,6 +658,7 @@
       "expectedNoOfParticipants": "60 Teams"
     },
     {
+      "eventId": "E7",
       "eventName": "Flip Flop",
       "eventConvenors": [
         {
@@ -672,6 +691,7 @@
       "expectedNoOfParticipants": "25 Teams"
     },
     {
+      "eventId": "E2",
       "eventName": "Artistry",
       "eventConvenors": [
         {
@@ -700,6 +720,7 @@
       "expectedNoOfParticipants": "30 Teams"
     },
     {
+      "eventId": "E15",
       "eventName": "Thinklytics",
       "eventConvenors": [
         {

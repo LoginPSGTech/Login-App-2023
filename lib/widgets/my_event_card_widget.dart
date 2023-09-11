@@ -6,17 +6,13 @@ class MyEventCardWidget extends StatefulWidget {
   final String eventLogoUrl;
   final bool hasTeamAlready;
   const MyEventCardWidget(
-      {super.key,
-      required this.eventName,
-      required this.eventLogoUrl,
-      required this.hasTeamAlready});
+      {super.key, required this.eventName, required this.eventLogoUrl, required this.hasTeamAlready});
 
   @override
   State<MyEventCardWidget> createState() => _MyEventCardWidgetState();
 }
 
 class _MyEventCardWidgetState extends State<MyEventCardWidget> {
-
   bool isExpanded = false;
   bool isCreateTeam = false;
   bool isJoinTeam = false;
@@ -65,35 +61,30 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
             ],
           ),
           widget.hasTeamAlready
-              ? Container(
-                  margin: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                  decoration: BoxDecoration(
-                    color: const Color(0xff152739), // Change the color to your desired background color
-                    borderRadius: BorderRadius.circular(
-                        10.0), // Adjust the border radius as needed
-                  ),
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.all(8.0), // Adjust the padding as needed
+              ? SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFF55353),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.check_circle,
-                          color: Colors.green,
-                          size: 16.0, // Adjust the icon size as needed
+                        const Icon(
+                          Icons.delete_rounded,
+                          color: Colors.white,
+                          size: 16,
                         ),
-                        SizedBox(
-                            width:
-                                8.0), // Add spacing between the icon and text
-                        Flexible(
-                          child: Text(
-                            'Team Joined',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0, // Adjust the font size as needed
-                            ),
-                          ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 4),
+                          child: const Text('Delete Event',
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
                         ),
                       ],
                     ),
@@ -132,8 +123,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.add_circle_rounded,
-                                  color: Colors.white, size: 16),
+                              const Icon(Icons.add_circle_rounded, color: Colors.white, size: 16),
                               Container(
                                 margin: const EdgeInsets.only(left: 4),
                                 child: const Text(
@@ -183,8 +173,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.flag_circle_rounded,
-                                  color: Colors.black, size: 16),
+                              const Icon(Icons.flag_circle_rounded, color: Colors.black, size: 16),
                               Container(
                                 margin: const EdgeInsets.only(left: 4),
                                 child: const Text(
@@ -227,8 +216,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.check_circle_rounded,
-                          color: Colors.black, size: 16),
+                      const Icon(Icons.check_circle_rounded, color: Colors.black, size: 16),
                       Container(
                         margin: const EdgeInsets.only(left: 4),
                         child: const Text(

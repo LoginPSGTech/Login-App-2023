@@ -46,8 +46,7 @@ class _SchedulePageState extends State<SchedulePage> {
                     margin: const EdgeInsets.only(top: 8),
                     child: Row(
                       children: [
-                        const Icon(
-                            size: 16, Icons.place, color: Colors.white70),
+                        const Icon(size: 16, Icons.place, color: Colors.white70),
                         Container(
                           margin: const EdgeInsets.only(left: 4),
                           child: Text(
@@ -141,9 +140,7 @@ class _SchedulePageState extends State<SchedulePage> {
                     ),
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text(
                     minutes,
                     style: const TextStyle(
@@ -180,10 +177,8 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    final day1Schedule =
-        Provider.of<AppDataProvider>(context).appData.day1Schedule;
-    final day2Schedule =
-        Provider.of<AppDataProvider>(context).appData.day2Schedule;
+    final day1Schedule = Provider.of<AppDataProvider>(context).appData.day1Schedule;
+    final day2Schedule = Provider.of<AppDataProvider>(context).appData.day2Schedule;
     switch (buttonvalue) {
       case 0:
         schedule = day1Schedule.schedule;
@@ -216,9 +211,8 @@ class _SchedulePageState extends State<SchedulePage> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: state23,
                     shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)))),
+                        borderRadius:
+                            BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)))),
                 child: const Text(
                   "23rd",
                   style: TextStyle(
@@ -238,9 +232,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: state24,
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(10),
-                          bottomRight: Radius.circular(10))),
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(10), bottomRight: Radius.circular(10))),
                 ),
                 child: const Text(
                   "24th",
@@ -252,9 +244,7 @@ class _SchedulePageState extends State<SchedulePage> {
         ]),
         Expanded(
           child: SingleChildScrollView(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: buildSchedule())),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: buildSchedule())),
         )
       ],
     ));

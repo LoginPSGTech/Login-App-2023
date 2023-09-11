@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login/api/user.dart';
+import 'package:login/models/user.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
 import 'package:login/widgets/title_bar_widget.dart';
 import 'package:login/widgets/back_icon_widget.dart';
@@ -16,6 +18,25 @@ class EventDetailsPage extends StatefulWidget {
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
+  bool isRegistered(UserModel user) {
+    for (UserEventModel userEvent in user.events) {
+      if (widget.event.eventId == userEvent.event) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  void registerUser(UserModel user) {
+    UserEventModel userEvent = UserEventModel(event: widget.event.eventId, user: user.email);
+    UserApi.registerEvent(userEvent).then((value) {
+      Navigator.of(context).pop();
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => EventDetailsPage(event: widget.event)),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final eventInstructions = Provider.of<AppDataProvider>(context).appData.eventInstructions;
@@ -160,7 +181,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       return widgets;
     }
 
-    Future<dynamic> buildEventInstructionsDialog() {
+    Future<dynamic> buildEventInstructionsDialog(UserModel user) {
       return showDialog(
         context: context,
         builder: (context) {
@@ -216,7 +237,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             ),
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              registerUser(user);
+                            },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: Colors.white,
                               backgroundColor: const Color(0xFFF55353), // Text color
@@ -365,28 +388,61 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               ),
               Container(
                   margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      buildEventInstructionsDialog();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: const Color(0xFFF55353), // Text color
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10), // Rounded corners
-                      ),
-                    ),
-                    child: const SizedBox(
-                      width: double.infinity, // Occupies entire width
-                      child: Text(
-                        'Register',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16, // Text font size
-                        ),
-                      ),
-                    ),
-                  ))
+                  child: FutureBuilder<UserModel>(
+                      future: UserApi.getUser(),
+                      builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
+                        if (snapshot.hasData) {
+                          if (isRegistered(snapshot.data!) == false) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                buildEventInstructionsDialog(snapshot.data!);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor: const Color(0xFFF55353), // Text color
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                                ),
+                              ),
+                              child: const SizedBox(
+                                width: double.infinity, // Occupies entire width
+                                child: Text(
+                                  'Register',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16, // Text font size
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            return ElevatedButton(
+                              onPressed: () => {},
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor: const Color(0xFFF55353), // Text color
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                                ),
+                              ),
+                              child: const SizedBox(
+                                width: double.infinity, // Occupies entire width
+                                child: Text(
+                                  'Registered',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16, // Text font size
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                        } else {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      })),
             ],
           ),
         ),

@@ -7,7 +7,7 @@ part of 'user.dart';
 // **************************************************************************
 
 UserEventModel _$UserEventModelFromJson(Map<String, dynamic> json) => UserEventModel(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       event: json['event'] as String,
       user: json['user'] as String,
     );
