@@ -1,11 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:login/api/auth.dart';
+import 'package:login/api/user.dart';
 import 'package:login/models/auth.dart';
 import 'package:login/pages/register_page.dart';
+import 'package:login/providers/app_data_provider.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
 import 'package:login/pages/main_page.dart';
 import 'package:login/widgets/text_field_widget.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,9 +27,12 @@ class _LoginPageState extends State<LoginPage> {
     void handleLogin() {
       LoginModel loginInfo = LoginModel(email: _emailController.text, password: _passwordController.text);
       AuthApi.login(loginInfo).then((value) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const MainPage()),
-        );
+        UserApi.getUser().then((value) {
+          Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const MainPage()),
+          );
+        });
       });
     }
 
