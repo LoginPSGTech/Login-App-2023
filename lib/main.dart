@@ -6,6 +6,8 @@ import 'package:login/pages/main_page.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
 
+import 'models/user.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,24 +15,24 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static Future<bool> checkLogin() async {
+  static Future<UserModel?> checkLogin() async {
     try {
-      await UserApi.getUser();
+      return await UserApi.getUser();
     } on ApiException {
-      return false;
+      return null;
     }
-    return true;
   }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (context) => AppDataProvider(),
-        child: FutureBuilder<bool>(
+        child: FutureBuilder<UserModel?>(
             future: checkLogin(),
-            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasData && snapshot.data as bool == true) {
+                if (snapshot.hasData && snapshot.data != null) {
+                  Provider.of<AppDataProvider>(context, listen: false).saveUser(snapshot.data!);
                   return MaterialApp(
                     title: 'Login App',
                     initialRoute: '/home',
