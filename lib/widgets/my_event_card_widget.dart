@@ -106,35 +106,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
             ],
           ),
           widget.hasTeamAlready
-              ? SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF55353),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    onPressed: handleDeregisterEvent,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.delete_rounded,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 4),
-                          child: const Text('Deregister Event',
-                              style: TextStyle(
-                                color: Colors.white,
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
+              ? const SizedBox(width: 0, height: 0)
               : Container(
                   margin: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: Row(
@@ -237,6 +209,35 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                     ],
                   ),
                 ),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFF55353),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              onPressed: handleDeregisterEvent,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.delete_rounded,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 4),
+                    child: const Text('Deregister Event',
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Visibility(
             visible: isExpanded,
             child: Column(
