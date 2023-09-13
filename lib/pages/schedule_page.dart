@@ -5,6 +5,8 @@ import 'package:login/widgets/title_bar_widget.dart';
 import 'package:provider/provider.dart';
 
 class SchedulePage extends StatefulWidget {
+  const SchedulePage({super.key});
+
   @override
   State<SchedulePage> createState() => _SchedulePageState();
 }

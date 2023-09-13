@@ -98,7 +98,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                   widget.eventName,
                   style: const TextStyle(
                     color: Color(0xFFFEB139),
-                    fontSize: 32,
+                    fontSize: 24,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

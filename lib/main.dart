@@ -5,8 +5,25 @@ import 'package:login/pages/login_page.dart';
 import 'package:login/pages/main_page.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'models/user.dart';
+
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.dark
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = const Color(0xFFF55353)
+    ..backgroundColor = const Color(0xFF143F6B)
+    ..indicatorColor = const Color(0xFFF55353)
+    ..textColor = Colors.white
+    ..maskColor = Colors.black12
+    ..userInteractions = true
+    ..dismissOnTap = false;
+}
 
 void main() {
   runApp(const MyApp());
@@ -42,6 +59,7 @@ class MyApp extends StatelessWidget {
                       fontFamily: 'Poppins',
                     ),
                     debugShowCheckedModeBanner: false,
+                    builder: EasyLoading.init(),
                   );
                 } else {
                   return MaterialApp(
@@ -53,6 +71,7 @@ class MyApp extends StatelessWidget {
                       fontFamily: 'Poppins',
                     ),
                     debugShowCheckedModeBanner: false,
+                    builder: EasyLoading.init(),
                   );
                 }
               } else {
