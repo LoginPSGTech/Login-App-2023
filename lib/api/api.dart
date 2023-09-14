@@ -10,7 +10,7 @@ class ApiException implements Exception {
   ApiException({this.message = "API error"});
 }
 
-class UnauthorizedException implements ApiException {
+class AuthException implements ApiException {
   @override
   String message = "Unauthorized";
 }
@@ -31,7 +31,7 @@ class ApiWrapper {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body);
     } else if (response.statusCode == 401) {
-      throw UnauthorizedException();
+      throw AuthException();
     } else {
       throw ApiException();
     }

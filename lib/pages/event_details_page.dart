@@ -30,31 +30,26 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   }
 
   void registerUser(UserModel user) {
-    UserEventModel userEvent =
-        UserEventModel(event: widget.event.eventId, user: user.email);
-    UserApi.registerEvent(userEvent).then((value) {
-      UserApi.getUser().then((value) {
+    UserEventModel userEvent = UserEventModel(event: widget.event.eventId, user: user.email);
+    UserApi.registerEvent(userEvent, context).then((value) {
+      UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         Navigator.of(context).pop();
-        SnackbarWidget.showMessage(context, 'Success',
-            'Event registration Successful', ContentType.success);
+        SnackbarWidget.showMessage(context, 'Success', 'Event registration Successful', ContentType.success);
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-              builder: (context) => EventDetailsPage(event: widget.event)),
+          MaterialPageRoute(builder: (context) => EventDetailsPage(event: widget.event)),
         );
       });
     }).catchError((err) {
       Navigator.of(context).pop();
-      SnackbarWidget.showMessage(
-          context, 'Failed', 'Event registration Failed', ContentType.failure);
+      SnackbarWidget.showMessage(context, 'Failed', 'Event registration Failed', ContentType.failure);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     UserModel user = Provider.of<AppDataProvider>(context).user;
-    final eventInstructions =
-        Provider.of<AppDataProvider>(context).appData.eventInstructions;
+    final eventInstructions = Provider.of<AppDataProvider>(context).appData.eventInstructions;
 
     Widget sectionHeading(String title) {
       return Container(
@@ -87,14 +82,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         widgets.add(ListTile(
           dense: true,
           contentPadding: const EdgeInsets.symmetric(
-              horizontal: 5,
-              vertical:
-                  0), // Adjust the vertical padding as needed // Bullet point icon
-          title: Text(step,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  color: Colors.white70)),
+              horizontal: 5, vertical: 0), // Adjust the vertical padding as needed // Bullet point icon
+          title: Text(step, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: Colors.white70)),
         ));
       }
       return widgets;
@@ -107,14 +96,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           ListTile(
             dense: true,
             contentPadding: const EdgeInsets.symmetric(
-                horizontal: 5,
-                vertical:
-                    0), // Adjust the vertical padding as needed // Bullet point icon
+                horizontal: 5, vertical: 0), // Adjust the vertical padding as needed // Bullet point icon
             title: Text(instruction.stepName,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    color: Color(0xFFF55353))),
+                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: Color(0xFFF55353))),
             subtitle: Column(
               children: buildInstructionStep(instruction.steps),
             ),
@@ -129,16 +113,13 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       for (var rule in widget.event.eventRules) {
         widgets.add(ListTile(
           dense: true,
-          contentPadding: const EdgeInsets.symmetric(
-              horizontal: 5,
-              vertical: 0), // Adjust the vertical padding as needed
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 5, vertical: 0), // Adjust the vertical padding as needed
           leading: const Text(
             '\u2022',
             style: TextStyle(fontSize: 30, color: Colors.white),
           ), // Bullet point icon
-          title: Text(rule,
-              style: const TextStyle(
-                  fontSize: 16, color: Colors.white)), // Text content
+          title: Text(rule, style: const TextStyle(fontSize: 16, color: Colors.white)), // Text content
         ));
       }
       return widgets;
@@ -216,8 +197,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         builder: (context) {
           return Dialog(
             backgroundColor: const Color(0xFF143F6B),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             elevation: 15,
             child: Container(
               height: MediaQuery.of(context).size.height * 0.75,
@@ -228,10 +208,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     margin: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                     child: const Text('Event Registration Instructions',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600)),
+                        style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600)),
                   ),
                   Expanded(
                     child: Scrollbar(
@@ -254,11 +231,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: Colors.white,
-                              backgroundColor:
-                                  const Color(0xFFFEB139), // Text color
+                              backgroundColor: const Color(0xFFFEB139), // Text color
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    10), // Rounded corners
+                                borderRadius: BorderRadius.circular(10), // Rounded corners
                               ),
                             ),
                             child: const SizedBox(
@@ -277,11 +252,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             },
                             style: ElevatedButton.styleFrom(
                               foregroundColor: Colors.white,
-                              backgroundColor:
-                                  const Color(0xFFF55353), // Text color
+                              backgroundColor: const Color(0xFFF55353), // Text color
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    10), // Rounded corners
+                                borderRadius: BorderRadius.circular(10), // Rounded corners
                               ),
                             ),
                             child: const SizedBox(
@@ -427,13 +400,11 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
                   child: isRegistered(user)
                       ? OutlinedButton(
-                          onPressed:
-                              null, // Set onPressed to null to disable the button
+                          onPressed: null, // Set onPressed to null to disable the button
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.white, // Text color
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
+                              borderRadius: BorderRadius.circular(10), // Rounded corners
                             ),
                             side: const BorderSide(
                               color: Color(0xFFF55353), // Border color
@@ -457,11 +428,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
-                            backgroundColor:
-                                const Color(0xFFF55353), // Text color
+                            backgroundColor: const Color(0xFFF55353), // Text color
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
+                              borderRadius: BorderRadius.circular(10), // Rounded corners
                             ),
                           ),
                           child: const SizedBox(

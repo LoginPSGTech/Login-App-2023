@@ -177,7 +177,8 @@ class ProfileTitleContentWidget extends StatelessWidget {
   final String content;
   final bool isDivider;
 
-  const ProfileTitleContentWidget({Key? key, required this.title, required this.content, this.isDivider = true}) : super(key: key);
+  const ProfileTitleContentWidget({Key? key, required this.title, required this.content, this.isDivider = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
