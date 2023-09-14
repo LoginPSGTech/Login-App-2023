@@ -1,8 +1,11 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/auth.dart';
 import 'package:login/models/user.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/providers/app_data_provider.dart';
+import 'package:login/widgets/snackbar_widget.dart';
 import 'package:login/widgets/title_bar_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -36,10 +39,15 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   void handleLogout() {
+    EasyLoading.show(status: "Logging Out...");
     AuthApi.logout().then((value) {
+      EasyLoading.dismiss();
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginPage()),
       );
+    }).catchError((err){
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(context, "Error", "Unable to Logout Please Try again later", ContentType.failure);
     });
   }
 

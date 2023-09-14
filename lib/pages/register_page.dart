@@ -1,11 +1,14 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/auth.dart';
 import 'package:login/api/user.dart';
 import 'package:login/models/user.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/pages/main_page.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
+import 'package:login/widgets/snackbar_widget.dart';
 import 'package:login/widgets/text_field_widget.dart';
 
 import 'form_constants.dart';
@@ -45,6 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
   int _currentPage = 0;
 
   void _initializeRegistration() {
+    EasyLoading.show(status: "Registering User...");
     UserCreateModel userCreate = UserCreateModel(
         email: studentEmailController.text,
         password: passwordController.text,
@@ -61,16 +65,24 @@ class _RegisterPageState extends State<RegisterPage> {
         stream: streams[streamController.text]!,
         otp: otpController.text);
     UserApi.createUser(userCreate).then((value) => {
+        EasyLoading.dismiss(),
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) => const MainPage(), // Replace with your LoginPage class
             ),
           )
+        }).catchError((err){
+          EasyLoading.dismiss();
+          SnackbarWidget.showMessage(context, "Error", "Error occurred while registering user. Please try again.", ContentType.failure);
         });
   }
 
   void _verifyEmailAddress() {
-    AuthApi.verifyEmail(studentEmailController.text);
+    AuthApi.verifyEmail(studentEmailController.text).then((value){
+      SnackbarWidget.showMessage(context, "Success", "OTP Sent to your Mail", ContentType.success);
+    }).catchError((err){
+      SnackbarWidget.showMessage(context, "Error", "Error verifying Email Address", ContentType.failure);
+    });
   }
 
   void _validatePage() {
@@ -174,7 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
             return 'Student Name should only contain letters and spaces';
           }
 
-          if (value.length < 2) {
+          if (value.length < 3) {
             return 'Student Name should atleast be 3 characters long';
           }
           return null;

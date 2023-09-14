@@ -1,8 +1,11 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/team_event.dart';
 import 'package:login/api/user.dart';
 import 'package:login/models/team.dart';
 import 'package:login/providers/app_data_provider.dart';
+import 'package:login/widgets/snackbar_widget.dart';
 import 'package:login/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -39,35 +42,63 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
   IconData? icon;
 
   void handleDeregisterEvent() {
+    EasyLoading.show(status: "Deregistering...");
     TeamEventApi.deregisterEvent(widget.eventId).then((value) {
       UserApi.getUser().then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        EasyLoading.dismiss();
+        SnackbarWidget.showMessage(context, "Success",
+            "Deregistering Event Successful", ContentType.success);
       });
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(
+          context, "Error", "Deregistering Event Failed", ContentType.failure);
     });
   }
 
   void handleCreateTeam(String teamName) {
-    CreateTeamModel createTeam = CreateTeamModel(team_name: teamName, event: widget.eventId);
+    EasyLoading.show(status: "Creating Team...");
+    CreateTeamModel createTeam =
+        CreateTeamModel(team_name: teamName, event: widget.eventId);
     TeamEventApi.createTeam(createTeam).then((value) {
       UserApi.getUser().then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         isExpanded = false;
+        EasyLoading.dismiss();
+        SnackbarWidget.showMessage(context, "Success",
+            "Team Creation Successful", ContentType.success);
       });
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(
+          context, "Error", "Team Creation Failed", ContentType.failure);
     });
   }
 
   void handleJoinTeam(String teamId) {
-    JoinTeamModel joinTeam = JoinTeamModel(event: widget.eventId, user: widget.emailId, team_id: teamId);
+    EasyLoading.show(status: "Creating Team...");
+    JoinTeamModel joinTeam = JoinTeamModel(
+        event: widget.eventId, user: widget.emailId, team_id: teamId);
     TeamEventApi.joinTeam(joinTeam).then((value) {
       UserApi.getUser().then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         isExpanded = false;
+        EasyLoading.dismiss();
+        SnackbarWidget.showMessage(context, "Success",
+            "Successfully Joined Team", ContentType.success);
       });
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(
+          context, "Error", "Unable to Join the Team", ContentType.failure);
     });
   }
 
   void handleSubmit() {
-    isJoinTeam ? handleJoinTeam(joinTeamController.text) : handleCreateTeam(createTeamController.text);
+    isJoinTeam
+        ? handleJoinTeam(joinTeamController.text)
+        : handleCreateTeam(createTeamController.text);
   }
 
   @override
@@ -140,7 +171,8 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.add_circle_rounded, color: Colors.white, size: 16),
+                              const Icon(Icons.add_circle_rounded,
+                                  color: Colors.white, size: 16),
                               Container(
                                 margin: const EdgeInsets.only(left: 4),
                                 child: const Text(
@@ -190,7 +222,8 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.flag_circle_rounded, color: Colors.black, size: 16),
+                              const Icon(Icons.flag_circle_rounded,
+                                  color: Colors.black, size: 16),
                               Container(
                                 margin: const EdgeInsets.only(left: 4),
                                 child: const Text(
@@ -260,7 +293,8 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.check_circle_rounded, color: Colors.black, size: 16),
+                      const Icon(Icons.check_circle_rounded,
+                          color: Colors.black, size: 16),
                       Container(
                         margin: const EdgeInsets.only(left: 4),
                         child: const Text(

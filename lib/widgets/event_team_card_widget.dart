@@ -32,7 +32,7 @@ class EventTeamCardWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 8),
                 child: Text(
                   eventName,
-                  style: const TextStyle(color: Color(0xFFFEB139), fontSize: 32, fontWeight: FontWeight.w600),
+                  style: const TextStyle(color: Color(0xFFFEB139), fontSize: 24, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
