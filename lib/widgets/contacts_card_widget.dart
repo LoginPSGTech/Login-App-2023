@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart' as launcher;
 
 class ContactCardWidget extends StatelessWidget {
   final String contactName;
   final String contactPhone;
   final String contactEmail;
 
-  const ContactCardWidget(
-      {super.key, required this.contactName, required this.contactPhone, required this.contactEmail});
+  const ContactCardWidget({super.key, required this.contactName, required this.contactPhone, required this.contactEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -50,40 +50,61 @@ class ContactCardWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.phone,
-                          size: 20,
-                          color: Color.fromRGBO(18, 31, 44, 61),
-                        ),
-                        const SizedBox(width: 8),
-                        Flexible(
-                          child: Text(
-                            contactPhone,
-                            style: const TextStyle(fontSize: 14, color: Colors.white),
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.phone,
+                            size: 20,
+                            color: Color.fromRGBO(18, 31, 44, 61),
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              contactPhone,
+                              style: const TextStyle(fontSize: 14, color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                      onTap: () async {
+                        Uri uri = Uri.parse('tel:+91$contactPhone');
+                        if (!await launcher.launchUrl(uri)) {
+                          debugPrint("Could not launch the contact uri"); // because the simulator doesn't has the phone app
+                        } else {
+                          print("error");
+                        }
+                      },
                     ),
                     const SizedBox(
                       height: 8,
                     ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.email,
-                          size: 20,
-                          color: Color.fromRGBO(18, 31, 44, 61),
-                        ),
-                        const SizedBox(width: 8),
-                        Flexible(
-                          child: Text(
-                            contactEmail,
-                            style: const TextStyle(fontSize: 14, color: Colors.white),
+                    GestureDetector(
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.email,
+                            size: 20,
+                            color: Color.fromRGBO(18, 31, 44, 61),
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              contactEmail,
+                              style: const TextStyle(fontSize: 14, color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                      onTap: () async {
+                        Uri uri = Uri.parse(
+                          'mailto:${contactEmail}?subject=Login Event Helpline&body=Hi, ',
+                        );
+                        if (!await launcher.launchUrl(uri)) {
+                          debugPrint("Could not launch the email uri"); // because the simulator doesn't has the email app
+                        }
+                      },
                     ),
                   ],
                 ),

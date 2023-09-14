@@ -15,6 +15,7 @@ import 'form_constants.dart';
 
 class RegisterPage extends StatefulWidget {
   final bool isAlumni;
+
   const RegisterPage({super.key, required this.isAlumni});
 
   @override
@@ -46,6 +47,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController accommodationRequiredController = TextEditingController();
 
   int _currentPage = 0;
+  bool hidePassword = true;
+  bool hideConfirmPassword = true;
 
   void _initializeRegistration() {
     EasyLoading.show(status: "Registering User...");
@@ -64,24 +67,29 @@ class _RegisterPageState extends State<RegisterPage> {
         degree: degrees[degreeController.text]!,
         stream: streams[streamController.text]!,
         otp: otpController.text);
-    UserApi.createUser(userCreate).then((value) => {
-        EasyLoading.dismiss(),
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => const MainPage(), // Replace with your LoginPage class
-            ),
-          )
-        }).catchError((err){
-          EasyLoading.dismiss();
-          SnackbarWidget.showMessage(context, "Error", "Error occurred while registering user. Please try again.", ContentType.failure);
-        });
+    UserApi.createUser(userCreate)
+        .then((value) => {
+              EasyLoading.dismiss(),
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const MainPage(), // Replace with your LoginPage class
+                ),
+              )
+            })
+        .catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(context, "Error", "Error occurred while registering user. Please try again.", ContentType.failure);
+    });
   }
 
   void _verifyEmailAddress() {
-    AuthApi.verifyEmail(studentEmailController.text).then((value){
+    EasyLoading.show(status: 'Sending OTP...');
+    AuthApi.verifyEmail(studentEmailController.text).then((value) {
       SnackbarWidget.showMessage(context, "Success", "OTP Sent to your Mail", ContentType.success);
-    }).catchError((err){
+      EasyLoading.dismiss();
+    }).catchError((err) {
       SnackbarWidget.showMessage(context, "Error", "Error verifying Email Address", ContentType.failure);
+      EasyLoading.dismiss();
     });
   }
 
@@ -174,10 +182,14 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     List<TextFieldWidget> studentDetailsForm = [
       TextFieldWidget(
-        controller: studentNameController, // Provide the TextEditingController
-        labelText: 'Student Name', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.person, // Provide the prefix icon
+        controller: studentNameController,
+        // Provide the TextEditingController
+        labelText: 'Student Name',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.person,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Student Name is Required';
@@ -193,10 +205,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-          controller: studentContactController, // Provide the TextEditingController
-          labelText: 'Contact Number', // Provide the label text
-          isPassword: false, // Indicate whether it's a password field
-          prefixIcon: Icons.phone, // Provide the prefix icon
+          controller: studentContactController,
+          // Provide the TextEditingController
+          labelText: 'Contact Number',
+          // Provide the label text
+          isPassword: false,
+          // Indicate whether it's a password field
+          prefixIcon: Icons.phone,
+          // Provide the prefix icon
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Contact Number is Required';
@@ -208,10 +224,14 @@ class _RegisterPageState extends State<RegisterPage> {
           },
           keyboardType: TextInputType.number),
       TextFieldWidget(
-        controller: genderController, // Provide the TextEditingController
-        labelText: 'Gender', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.male_rounded, // Provide the prefix icon
+        controller: genderController,
+        // Provide the TextEditingController
+        labelText: 'Gender',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.male_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select Gender') {
             return 'Gender is Required';
@@ -235,10 +255,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select Gender',
       ),
       TextFieldWidget(
-        controller: studentRollNoController, // Provide the TextEditingController
-        labelText: 'Roll Number', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.tag, // Provide the prefix icon
+        controller: studentRollNoController,
+        // Provide the TextEditingController
+        labelText: 'Roll Number',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.tag,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Student Roll Number is Required';
@@ -247,10 +271,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-        controller: collegeNameController, // Provide the TextEditingController
-        labelText: 'College Name', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.account_balance, // Provide the prefix icon
+        controller: collegeNameController,
+        // Provide the TextEditingController
+        labelText: 'College Name',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.account_balance,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select a College') {
             return 'College Name is Required';
@@ -278,10 +306,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select a College',
       ),
       TextFieldWidget(
-        controller: collegeCodeController, // Provide the TextEditingController
-        labelText: 'College Code', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.tag, // Provide the prefix icon
+        controller: collegeCodeController,
+        // Provide the TextEditingController
+        labelText: 'College Code',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.tag,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'College Code is Required';
@@ -293,10 +325,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-        controller: degreeController, // Provide the TextEditingController
-        labelText: 'Degree', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.school, // Provide the prefix icon
+        controller: degreeController,
+        // Provide the TextEditingController
+        labelText: 'Degree',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.school,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select a Degree') {
             return 'Degree is Required';
@@ -320,10 +356,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select a Degree',
       ),
       TextFieldWidget(
-        controller: streamController, // Provide the TextEditingController
-        labelText: 'Stream', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.fork_right_rounded, // Provide the prefix icon
+        controller: streamController,
+        // Provide the TextEditingController
+        labelText: 'Stream',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.fork_right_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select a Stream') {
             return 'Stream is Required';
@@ -347,10 +387,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select a Stream',
       ),
       TextFieldWidget(
-        controller: yearOfStudyController, // Provide the TextEditingController
-        labelText: 'Year of Study', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.calendar_month, // Provide the prefix icon
+        controller: yearOfStudyController,
+        // Provide the TextEditingController
+        labelText: 'Year of Study',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.calendar_month,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select Year of Study') {
             return 'Year of Study is Required';
@@ -376,10 +420,14 @@ class _RegisterPageState extends State<RegisterPage> {
     ];
     List<TextFieldWidget> alumniDetailsForm = [
       TextFieldWidget(
-        controller: studentNameController, // Provide the TextEditingController
-        labelText: 'Alumnus Name', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.person, // Provide the prefix icon
+        controller: studentNameController,
+        // Provide the TextEditingController
+        labelText: 'Alumnus Name',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.person,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Alumnus Name is Required';
@@ -395,10 +443,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-          controller: studentContactController, // Provide the TextEditingController
-          labelText: 'Contact Number', // Provide the label text
-          isPassword: false, // Indicate whether it's a password field
-          prefixIcon: Icons.phone, // Provide the prefix icon
+          controller: studentContactController,
+          // Provide the TextEditingController
+          labelText: 'Contact Number',
+          // Provide the label text
+          isPassword: false,
+          // Indicate whether it's a password field
+          prefixIcon: Icons.phone,
+          // Provide the prefix icon
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Contact Number is Required';
@@ -410,10 +462,14 @@ class _RegisterPageState extends State<RegisterPage> {
           },
           keyboardType: TextInputType.number),
       TextFieldWidget(
-        controller: genderController, // Provide the TextEditingController
-        labelText: 'Gender', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.male_rounded, // Provide the prefix icon
+        controller: genderController,
+        // Provide the TextEditingController
+        labelText: 'Gender',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.male_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select Gender') {
             return 'Gender is Required';
@@ -437,10 +493,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select Gender',
       ),
       TextFieldWidget(
-        controller: studentRollNoController, // Provide the TextEditingController
-        labelText: 'Roll Number', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.tag, // Provide the prefix icon
+        controller: studentRollNoController,
+        // Provide the TextEditingController
+        labelText: 'Roll Number',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.tag,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Alumnus Roll Number is Required';
@@ -449,10 +509,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-        controller: collegeCodeController, // Provide the TextEditingController
-        labelText: 'Alumnus Code', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.tag, // Provide the prefix icon
+        controller: collegeCodeController,
+        // Provide the TextEditingController
+        labelText: 'Alumnus Code',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.tag,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Alumnus Code is Required';
@@ -461,10 +525,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-        controller: streamController, // Provide the TextEditingController
-        labelText: 'Stream', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.fork_right_rounded, // Provide the prefix icon
+        controller: streamController,
+        // Provide the TextEditingController
+        labelText: 'Stream',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.fork_right_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select a Stream') {
             return 'Stream is Required';
@@ -490,10 +558,14 @@ class _RegisterPageState extends State<RegisterPage> {
     ];
     List<TextFieldWidget> verifyEmailForm = [
       TextFieldWidget(
-        controller: studentEmailController, // Provide the TextEditingController
-        labelText: 'Email Address', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.mail, // Provide the prefix icon
+        controller: studentEmailController,
+        // Provide the TextEditingController
+        labelText: 'Email Address',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.mail,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Email Address is Required';
@@ -516,9 +588,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           child: ElevatedButton(
             onPressed: _verifyEmailAddress,
-            style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFEB139),
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0) // Make the button transparent/ Remove padding
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFFEB139), padding: const EdgeInsets.fromLTRB(16, 0, 16, 0) // Make the button transparent/ Remove padding
                 ),
             child: const Text('Verify',
                 style: TextStyle(
@@ -528,10 +598,14 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
       TextFieldWidget(
-        controller: otpController, // Provide the TextEditingController
-        labelText: 'OTP', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.lock, // Provide the prefix icon
+        controller: otpController,
+        // Provide the TextEditingController
+        labelText: 'OTP',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.lock,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'OTP is Required';
@@ -548,7 +622,7 @@ class _RegisterPageState extends State<RegisterPage> {
       TextFieldWidget(
         controller: passwordController,
         labelText: "Password",
-        isPassword: true,
+        isPassword: hidePassword,
         prefixIcon: Icons.key,
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -579,15 +653,19 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           return null;
         },
-        suffixIcon: Icons.visibility, // Pass the suffix icon
+        suffixIcon: Icons.visibility,
+        // Pass the suffix icon
         onSuffixIconPressed: () {
+          setState(() {
+            hidePassword = !hidePassword;
+          });
           // Handle the suffix icon press (e.g., toggle password visibility)
         },
       ),
       TextFieldWidget(
         controller: confirmPasswordController,
         labelText: "Confirm Password",
-        isPassword: true,
+        isPassword: hideConfirmPassword,
         prefixIcon: Icons.key,
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -599,18 +677,26 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           return null;
         },
-        suffixIcon: Icons.visibility, // Pass the suffix icon
+        suffixIcon: Icons.visibility,
+        // Pass the suffix icon
         onSuffixIconPressed: () {
+          setState(() {
+            hideConfirmPassword = !hideConfirmPassword;
+          });
           // Handle the suffix icon press (e.g., toggle password visibility)
         },
       )
     ];
     List<TextFieldWidget> additionalPreferencesForm = [
       TextFieldWidget(
-        controller: foodPreferenceController, // Provide the TextEditingController
-        labelText: 'Food Preference', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.food_bank_rounded, // Provide the prefix icon
+        controller: foodPreferenceController,
+        // Provide the TextEditingController
+        labelText: 'Food Preference',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.food_bank_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select Food Preference') {
             return 'Food Preference is Required';
@@ -637,10 +723,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select Food Preference',
       ),
       TextFieldWidget(
-        controller: accommodationRequiredController, // Provide the TextEditingController
-        labelText: 'Is Accommodation Required?', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.home, // Provide the prefix icon
+        controller: accommodationRequiredController,
+        // Provide the TextEditingController
+        labelText: 'Is Accommodation Required?',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.home,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select an Option') {
             return 'Field is Required';
@@ -676,192 +766,186 @@ class _RegisterPageState extends State<RegisterPage> {
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      color: Color(0xFF143F6B),
+            child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                  color: Color(0xFF143F6B),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 8,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 8,
+                    Center(
+                      child: Text(
+                        widget.isAlumni ? "Alumni Registration" : "Student Registration",
+                        style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
                         ),
-                        Center(
-                          child: Text(
-                            widget.isAlumni ? "Alumni Registration" : "Student Registration",
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.5,
-                            child: PageView(
-                              controller: _pageController,
-                              physics: const NeverScrollableScrollPhysics(),
-                              children: [
-                                Form(
-                                  key: studentDetailsformKey,
-                                  child: widget.isAlumni
-                                      ? buildRegistrationStep('Alumni Details', alumniDetailsForm)
-                                      : buildRegistrationStep('Student Details', studentDetailsForm),
-                                ),
-                                Form(
-                                  key: verifyEmailformKey,
-                                  child: buildRegistrationStep('Verify Email Address', verifyEmailForm),
-                                ),
-                                Form(
-                                  key: setPasswordformKey,
-                                  child: buildRegistrationStep('Set a Password', setPasswordForm),
-                                ),
-                                Form(
-                                  key: additionalPreferencesformKey,
-                                  child: buildRegistrationStep(
-                                      'Student Additional Preferences', additionalPreferencesForm),
-                                ),
-                              ],
-                            )),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        child: PageView(
+                          controller: _pageController,
+                          physics: const NeverScrollableScrollPhysics(),
                           children: [
-                            if (_currentPage > 0)
-                              ElevatedButton(
-                                onPressed: _previousPage,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xffFEB139),
-                                ),
-                                child: const Text(
-                                  "Back",
-                                  style: TextStyle(color: Color(0xff152739), fontFamily: 'Poppins'),
-                                ),
-                              ),
-                            if (_currentPage == 0) const SizedBox(),
-                            ElevatedButton(
-                              onPressed: _validatePage,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xffF55353),
-                              ),
-                              child: Text(
-                                _currentPage < 3 ? 'Next' : 'Finish',
-                                style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
-                              ),
+                            Form(
+                              key: studentDetailsformKey,
+                              child: widget.isAlumni ? buildRegistrationStep('Alumni Details', alumniDetailsForm) : buildRegistrationStep('Student Details', studentDetailsForm),
+                            ),
+                            Form(
+                              key: verifyEmailformKey,
+                              child: buildRegistrationStep('Verify Email Address', verifyEmailForm),
+                            ),
+                            Form(
+                              key: setPasswordformKey,
+                              child: buildRegistrationStep('Set a Password', setPasswordForm),
+                            ),
+                            Form(
+                              key: additionalPreferencesformKey,
+                              child: buildRegistrationStep('Student Additional Preferences', additionalPreferencesForm),
                             ),
                           ],
-                        ),
-                        const SizedBox(
-                          height: 24.0,
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              const TextSpan(
-                                text: "Already have an account? ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              TextSpan(
-                                text: "Login",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Color(0xFFF55353),
-                                  decoration: TextDecoration.none,
-                                ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) => const LoginPage(),
-                                      ),
-                                    );
-                                  },
-                              ),
-                            ],
+                        )),
+                    const SizedBox(
+                      height: 16.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (_currentPage > 0)
+                          ElevatedButton(
+                            onPressed: _previousPage,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xffFEB139),
+                            ),
+                            child: const Text(
+                              "Back",
+                              style: TextStyle(color: Color(0xff152739), fontFamily: 'Poppins'),
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 24.0,
-                        ),
-                        widget.isAlumni
-                            ? RichText(
-                                text: TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: "Are you a Student? ",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: "Register",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Color(0xFFFEB139),
-                                        decoration: TextDecoration.none,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                              builder: (context) => const RegisterPage(isAlumni: false),
-                                            ),
-                                          );
-                                        },
-                                    ),
-                                  ],
-                                ),
-                              )
-                            : RichText(
-                                text: TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: "Are you an Alumni? ",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: "Register",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Color(0xFFFEB139),
-                                        decoration: TextDecoration.none,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                              builder: (context) => const RegisterPage(isAlumni: true),
-                                            ),
-                                          );
-                                        },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                        const SizedBox(
-                          height: 24.0,
+                        if (_currentPage == 0) const SizedBox(),
+                        ElevatedButton(
+                          onPressed: _validatePage,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xffF55353),
+                          ),
+                          child: Text(
+                            _currentPage < 3 ? 'Next' : 'Finish',
+                            style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                ]),
+                    const SizedBox(
+                      height: 24.0,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: "Already have an account? ",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Login",
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFF55353),
+                              decoration: TextDecoration.none,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const LoginPage(),
+                                  ),
+                                );
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24.0,
+                    ),
+                    widget.isAlumni
+                        ? RichText(
+                            text: TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: "Are you a Student? ",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "Register",
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Color(0xFFFEB139),
+                                    decoration: TextDecoration.none,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                          builder: (context) => const RegisterPage(isAlumni: false),
+                                        ),
+                                      );
+                                    },
+                                ),
+                              ],
+                            ),
+                          )
+                        : RichText(
+                            text: TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: "Are you an Alumni? ",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "Register",
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Color(0xFFFEB139),
+                                    decoration: TextDecoration.none,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                          builder: (context) => const RegisterPage(isAlumni: true),
+                                        ),
+                                      );
+                                    },
+                                ),
+                              ],
+                            ),
+                          ),
+                    const SizedBox(
+                      height: 24.0,
+                    ),
+                  ],
+                ),
+              ),
+            ]),
           ),
         ),
       ),

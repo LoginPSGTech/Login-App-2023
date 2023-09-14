@@ -25,13 +25,13 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isFormError = false;
+  bool hidePassword = true;
 
   @override
   Widget build(BuildContext context) {
     void handleLogin() {
       EasyLoading.show(status: 'Logging In');
-      LoginModel loginInfo = LoginModel(
-          email: _emailController.text, password: _passwordController.text);
+      LoginModel loginInfo = LoginModel(email: _emailController.text, password: _passwordController.text);
       AuthApi.login(loginInfo).then((value) {
         UserApi.getUser().then((value) {
           Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
@@ -102,8 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                                               padding: EdgeInsets.only(left: 4),
                                               child: Text(
                                                 'Invalid User Credentials',
-                                                style: TextStyle(
-                                                    color: Colors.red),
+                                                style: TextStyle(color: Colors.red),
                                               ))
                                         ]),
                                       )
@@ -122,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                                 TextFieldWidget(
                                   controller: _passwordController,
                                   labelText: "Password",
-                                  isPassword: true,
+                                  isPassword: hidePassword,
                                   prefixIcon: Icons.key,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -131,9 +130,12 @@ class _LoginPageState extends State<LoginPage> {
 
                                     return null;
                                   },
-                                  suffixIcon:
-                                      Icons.visibility, // Pass the suffix icon
+                                  suffixIcon: Icons.visibility,
+                                  // Pass the suffix icon
                                   onSuffixIconPressed: () {
+                                    setState(() {
+                                      hidePassword = !hidePassword;
+                                    });
                                     // Handle the suffix icon press (e.g., toggle password visibility)
                                   },
                                 ),
@@ -158,9 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                                 )),
                           ),
                         ),
-                        const SizedBox(
-                            height:
-                                16), // Add spacing between login UI and links
+                        const SizedBox(height: 16), // Add spacing between login UI and links
                         RichText(
                           text: TextSpan(
                             children: [
@@ -181,9 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ..onTap = () {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
-                                        builder: (context) => const RegisterPage(
-                                            isAlumni:
-                                                false), // Replace with your LoginPage class
+                                        builder: (context) => const RegisterPage(isAlumni: false), // Replace with your LoginPage class
                                       ),
                                     );
                                   },
@@ -209,8 +207,7 @@ class _LoginPageState extends State<LoginPage> {
                                   color: Color(0xFFFEB139),
                                   decoration: TextDecoration.none,
                                 ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {},
+                                recognizer: TapGestureRecognizer()..onTap = () {},
                               ),
                             ],
                           ),
