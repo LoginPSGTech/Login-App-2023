@@ -67,18 +67,17 @@ class _RegisterPageState extends State<RegisterPage> {
         degree: degrees[degreeController.text]!,
         stream: streams[streamController.text]!,
         otp: otpController.text);
-    UserApi.createUser(userCreate)
-        .then((value) => {
-              EasyLoading.dismiss(),
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => const MainPage(), // Replace with your LoginPage class
-                ),
-              )
-            })
-        .catchError((err) {
+    UserApi.createUser(userCreate).then((value) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(context, "Error", "Error occurred while registering user. Please try again.", ContentType.failure);
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const MainPage(), // Replace with your LoginPage class
+        ),
+      );
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(
+          context, "Error", "Error occurred while registering user. Please try again.", ContentType.failure);
     });
   }
 
@@ -588,7 +587,9 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           child: ElevatedButton(
             onPressed: _verifyEmailAddress,
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFFEB139), padding: const EdgeInsets.fromLTRB(16, 0, 16, 0) // Make the button transparent/ Remove padding
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFFEB139),
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0) // Make the button transparent/ Remove padding
                 ),
             child: const Text('Verify',
                 style: TextStyle(
@@ -766,186 +767,192 @@ class _RegisterPageState extends State<RegisterPage> {
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  color: Color(0xFF143F6B),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      height: 8,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      color: Color(0xFF143F6B),
                     ),
-                    Center(
-                      child: Text(
-                        widget.isAlumni ? "Alumni Registration" : "Student Registration",
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        child: PageView(
-                          controller: _pageController,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            Form(
-                              key: studentDetailsformKey,
-                              child: widget.isAlumni ? buildRegistrationStep('Alumni Details', alumniDetailsForm) : buildRegistrationStep('Student Details', studentDetailsForm),
-                            ),
-                            Form(
-                              key: verifyEmailformKey,
-                              child: buildRegistrationStep('Verify Email Address', verifyEmailForm),
-                            ),
-                            Form(
-                              key: setPasswordformKey,
-                              child: buildRegistrationStep('Set a Password', setPasswordForm),
-                            ),
-                            Form(
-                              key: additionalPreferencesformKey,
-                              child: buildRegistrationStep('Student Additional Preferences', additionalPreferencesForm),
-                            ),
-                          ],
-                        )),
-                    const SizedBox(
-                      height: 16.0,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (_currentPage > 0)
-                          ElevatedButton(
-                            onPressed: _previousPage,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xffFEB139),
-                            ),
-                            child: const Text(
-                              "Back",
-                              style: TextStyle(color: Color(0xff152739), fontFamily: 'Poppins'),
-                            ),
-                          ),
-                        if (_currentPage == 0) const SizedBox(),
-                        ElevatedButton(
-                          onPressed: _validatePage,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xffF55353),
-                          ),
-                          child: Text(
-                            _currentPage < 3 ? 'Next' : 'Finish',
-                            style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
-                          ),
+                        const SizedBox(
+                          height: 8,
                         ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24.0,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          const TextSpan(
-                            text: "Already have an account? ",
-                            style: TextStyle(
+                        Center(
+                          child: Text(
+                            widget.isAlumni ? "Alumni Registration" : "Student Registration",
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
                               color: Colors.white,
                             ),
                           ),
-                          TextSpan(
-                            text: "Login",
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFFF55353),
-                              decoration: TextDecoration.none,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) => const LoginPage(),
-                                  ),
-                                );
-                              },
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 24.0,
-                    ),
-                    widget.isAlumni
-                        ? RichText(
-                            text: TextSpan(
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.5,
+                            child: PageView(
+                              controller: _pageController,
+                              physics: const NeverScrollableScrollPhysics(),
                               children: [
-                                const TextSpan(
-                                  text: "Are you a Student? ",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+                                Form(
+                                  key: studentDetailsformKey,
+                                  child: widget.isAlumni
+                                      ? buildRegistrationStep('Alumni Details', alumniDetailsForm)
+                                      : buildRegistrationStep('Student Details', studentDetailsForm),
                                 ),
-                                TextSpan(
-                                  text: "Register",
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Color(0xFFFEB139),
-                                    decoration: TextDecoration.none,
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (context) => const RegisterPage(isAlumni: false),
-                                        ),
-                                      );
-                                    },
+                                Form(
+                                  key: verifyEmailformKey,
+                                  child: buildRegistrationStep('Verify Email Address', verifyEmailForm),
+                                ),
+                                Form(
+                                  key: setPasswordformKey,
+                                  child: buildRegistrationStep('Set a Password', setPasswordForm),
+                                ),
+                                Form(
+                                  key: additionalPreferencesformKey,
+                                  child: buildRegistrationStep(
+                                      'Student Additional Preferences', additionalPreferencesForm),
                                 ),
                               ],
-                            ),
-                          )
-                        : RichText(
-                            text: TextSpan(
-                              children: [
-                                const TextSpan(
-                                  text: "Are you an Alumni? ",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+                            )),
+                        const SizedBox(
+                          height: 16.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            if (_currentPage > 0)
+                              ElevatedButton(
+                                onPressed: _previousPage,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xffFEB139),
                                 ),
-                                TextSpan(
-                                  text: "Register",
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Color(0xFFFEB139),
-                                    decoration: TextDecoration.none,
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (context) => const RegisterPage(isAlumni: true),
-                                        ),
-                                      );
-                                    },
+                                child: const Text(
+                                  "Back",
+                                  style: TextStyle(color: Color(0xff152739), fontFamily: 'Poppins'),
                                 ),
-                              ],
+                              ),
+                            if (_currentPage == 0) const SizedBox(),
+                            ElevatedButton(
+                              onPressed: _validatePage,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xffF55353),
+                              ),
+                              child: Text(
+                                _currentPage < 3 ? 'Next' : 'Finish',
+                                style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
+                              ),
                             ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 24.0,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              const TextSpan(
+                                text: "Already have an account? ",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "Login",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFFF55353),
+                                  decoration: TextDecoration.none,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) => const LoginPage(),
+                                      ),
+                                    );
+                                  },
+                              ),
+                            ],
                           ),
-                    const SizedBox(
-                      height: 24.0,
+                        ),
+                        const SizedBox(
+                          height: 24.0,
+                        ),
+                        widget.isAlumni
+                            ? RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                      text: "Are you a Student? ",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "Register",
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Color(0xFFFEB139),
+                                        decoration: TextDecoration.none,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                              builder: (context) => const RegisterPage(isAlumni: false),
+                                            ),
+                                          );
+                                        },
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                      text: "Are you an Alumni? ",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "Register",
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Color(0xFFFEB139),
+                                        decoration: TextDecoration.none,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                              builder: (context) => const RegisterPage(isAlumni: true),
+                                            ),
+                                          );
+                                        },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                        const SizedBox(
+                          height: 24.0,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ]),
+                  ),
+                ]),
           ),
         ),
       ),

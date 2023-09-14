@@ -1,34 +1,52 @@
+import 'package:flutter/material.dart';
 import 'package:login/api/endpoints.dart';
 import 'package:login/models/auth.dart';
+import 'package:login/pages/login_page.dart';
 import 'package:login/utils/preferences.dart';
 
 import 'api.dart';
 
-class LoginException implements Exception {
+class TokenExpiredException implements Exception {
   String message;
 
-  LoginException({this.message = "Failed to Login"});
+  TokenExpiredException({this.message = "Refresh token expired"});
 }
 
 class AuthApi {
-  static Future<Function> payloadLessAuth(Function api) async {
+  static Future<Function> payloadLessAuth(Function api, BuildContext context) async {
     return (String url, {bool authenticate = false}) async {
       try {
         return await api(url, authenticate: authenticate);
-      } on UnauthorizedException {
-        await refreshAccess();
-        return await api(url, authenticate: authenticate);
+      } on AuthException {
+        if (authenticate) {
+          await refreshAccess().catchError((err) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const LoginPage()),
+            );
+          });
+          return await api(url, authenticate: authenticate);
+        } else {
+          throw AuthException();
+        }
       }
     };
   }
 
-  static Future<Function> payloadAuth(Function api) async {
+  static Future<Function> payloadAuth(Function api, BuildContext context) async {
     return (String url, Map<String, dynamic> body, {bool authenticate = false}) async {
       try {
         return await api(url, body, authenticate: authenticate);
-      } on UnauthorizedException {
-        await refreshAccess();
-        return await api(url, body, authenticate: authenticate);
+      } on AuthException {
+        if (authenticate) {
+          await refreshAccess().catchError((err) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const LoginPage()),
+            );
+          });
+          return await api(url, body, authenticate: authenticate);
+        } else {
+          throw AuthException();
+        }
       }
     };
   }
@@ -45,8 +63,12 @@ class AuthApi {
 
   static Future<void> refreshAccess() async {
     String refreshToken = await UserPreferences.getToken(TokenType.refresh);
-    Map<String, dynamic> response = await ApiWrapper.post(ApiEndpoints.tokenRefresh, {"refresh": refreshToken});
-    UserPreferences.setToken(TokenType.access, response["access"]);
+    try {
+      Map<String, dynamic> response = await ApiWrapper.post(ApiEndpoints.tokenRefresh, {"refresh": refreshToken});
+      UserPreferences.setToken(TokenType.access, response["access"]);
+    } on AuthException {
+      throw TokenExpiredException();
+    }
   }
 
   static Future<void> verifyEmail(String email) async {

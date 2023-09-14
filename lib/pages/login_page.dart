@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -9,7 +8,6 @@ import 'package:login/pages/register_page.dart';
 import 'package:login/providers/app_data_provider.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
 import 'package:login/pages/main_page.dart';
-import 'package:login/widgets/snackbar_widget.dart';
 import 'package:login/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       EasyLoading.show(status: 'Logging In');
       LoginModel loginInfo = LoginModel(email: _emailController.text, password: _passwordController.text);
       AuthApi.login(loginInfo).then((value) {
-        UserApi.getUser().then((value) {
+        UserApi.getUser(context).then((value) {
           Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
           EasyLoading.dismiss();
           Navigator.of(context).pushReplacement(
@@ -181,7 +179,8 @@ class _LoginPageState extends State<LoginPage> {
                                   ..onTap = () {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
-                                        builder: (context) => const RegisterPage(isAlumni: false), // Replace with your LoginPage class
+                                        builder: (context) =>
+                                            const RegisterPage(isAlumni: false), // Replace with your LoginPage class
                                       ),
                                     );
                                   },

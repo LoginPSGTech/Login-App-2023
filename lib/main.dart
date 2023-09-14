@@ -32,16 +32,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static Future<UserModel?> checkLogin() async {
-    try {
-      return await UserApi.getUser();
-    } on ApiException {
-      return null;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    Future<UserModel?> checkLogin() async {
+      try {
+        return await UserApi.getUser(context);
+      } on ApiException {
+        return null;
+      }
+    }
+
     return ChangeNotifierProvider(
         create: (context) => AppDataProvider(),
         child: FutureBuilder<UserModel?>(
