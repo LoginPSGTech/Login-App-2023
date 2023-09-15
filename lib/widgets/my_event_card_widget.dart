@@ -72,7 +72,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
   }
 
   void handleJoinTeam(String teamId) {
-    EasyLoading.show(status: "Creating Team...");
+    EasyLoading.show(status: "Joining Team...");
     JoinTeamModel joinTeam = JoinTeamModel(event: widget.eventId, user: widget.emailId, team_id: teamId);
     TeamEventApi.joinTeam(joinTeam, context).then((value) {
       UserApi.getUser(context).then((value) {
