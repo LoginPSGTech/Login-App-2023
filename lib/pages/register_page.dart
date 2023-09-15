@@ -7,9 +7,11 @@ import 'package:login/api/user.dart';
 import 'package:login/models/user.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/pages/main_page.dart';
+import 'package:login/providers/app_data_provider.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
 import 'package:login/widgets/snackbar_widget.dart';
 import 'package:login/widgets/text_field_widget.dart';
+import 'package:provider/provider.dart';
 
 import 'form_constants.dart';
 
@@ -68,16 +70,17 @@ class _RegisterPageState extends State<RegisterPage> {
         stream: streams[streamController.text]!,
         otp: otpController.text);
     UserApi.createUser(userCreate).then((value) {
-      EasyLoading.dismiss();
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const MainPage(), // Replace with your LoginPage class
-        ),
-      );
+      UserApi.getUser(context).then((value) {
+        Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        EasyLoading.dismiss();
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const MainPage())
+        );
+      });
     }).catchError((err) {
       EasyLoading.dismiss();
       SnackbarWidget.showMessage(
-          context, "Error", "Error occurred while registering user. Please try again.", ContentType.failure);
+          context, "Error", err.message, ContentType.failure);
     });
   }
 

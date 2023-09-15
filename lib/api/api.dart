@@ -33,7 +33,18 @@ class ApiWrapper {
     } else if (response.statusCode == 401) {
       throw AuthException();
     } else {
-      throw ApiException();
+      String error = "Unexpected error occurred";
+      Map<String, dynamic> errorResponse = jsonDecode(response.body);
+      List<dynamic> value = errorResponse.values.toList();
+      if (value.isNotEmpty) {
+        if (value[0] is List && value[0].isNotEmpty && value[0][0] is String) {
+          error = value[0][0];
+        }
+        else if (value[0] is String) {
+          error = value[0];
+        }
+      }
+      throw ApiException(message: error);
     }
   }
 
