@@ -7,6 +7,7 @@ class Home {
   final String about;
   final String addedabout;
   final List<Event> events;
+  final List<Items> programs;
 
   Home({
     required this.tagline,
@@ -15,11 +16,12 @@ class Home {
     required this.about,
     required this.addedabout,
     required this.events,
+    required this.programs
   });
 
   factory Home.fromJson(Map<String, dynamic> json) {
     final eventsList = (json['events'] as List<dynamic>).map((eventJson) => Event.fromJson(eventJson)).toList();
-
+    final programsList = (json['programs'] as List<dynamic>).map((programJson) => Items.fromJson(programJson)).toList();
     return Home(
       tagline: json['tagline'],
       description: json['description'],
@@ -27,6 +29,25 @@ class Home {
       about: json['about'],
       addedabout: json["addedAbout"],
       events: eventsList,
+      programs: programsList
     );
   }
 }
+
+class Items {
+  final String itemName;
+  final String itemImage;
+
+  Items({
+    required this.itemName,
+    required this.itemImage
+  });
+
+  factory Items.fromJson(Map<String, dynamic> json) {
+    return Items(
+      itemName: json['name'],
+      itemImage: json['image'],
+    );
+  }
+}
+

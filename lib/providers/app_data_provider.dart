@@ -10,7 +10,7 @@ class AppDataProvider with ChangeNotifier {
 
   AppDataProvider() {
     _appData = AppData(
-        home: Home(tagline: '', description: '', addeddescription: '', about: '', addedabout: '', events: []),
+        home: Home(tagline: '', description: '', addeddescription: '', about: '', addedabout: '', events: [], programs: []),
         mscEvents: [],
         mcaEvents: [],
         eventInstructions: [],

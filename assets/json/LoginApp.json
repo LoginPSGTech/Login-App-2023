@@ -186,6 +186,54 @@
         "facultyAdvisor": "Mrs. Kasturi Bai M",
         "expectedNoOfParticipants": "40 - 45 Teams"
       }
+    ],
+    "programs": [
+      {
+        "name": "",
+        "image":"assets/images/programs/program1.jpg"
+      },
+      {
+        "name": "",
+        "image":"assets/images/programs/program2.jpg"
+      },
+      {
+        "name": "",
+        "image":"assets/images/programs/program3.jpg"
+      },
+      {
+        "name": "",
+        "image":"assets/images/programs/program4.jpg"
+      },
+      {
+        "name": "",
+        "image":"assets/images/programs/program5.jpg"
+      },
+      {
+        "name": "",
+        "image":"assets/images/programs/program6.jpg"
+      }
+    ],
+    "stalls":[
+      {
+        "name": "",
+        "image": ""
+      },
+      {
+        "name": "",
+        "image": ""
+      },
+      {
+        "name": "",
+        "image": ""
+      },
+      {
+        "name": "",
+        "image": ""
+      },
+      {
+        "name": "",
+        "image": ""
+      }
     ]
   },
   "mscEvents": [
