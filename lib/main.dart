@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/api/api.dart';
 import 'package:login/api/user.dart';
+import 'package:login/models/app_data_model.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/pages/main_page.dart';
 import 'package:provider/provider.dart';
@@ -44,36 +45,47 @@ class MyApp extends StatelessWidget {
 
     return ChangeNotifierProvider(
         create: (context) => AppDataProvider(),
-        child: FutureBuilder<UserModel?>(
-            future: checkLogin(),
-            builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasData && snapshot.data != null) {
-                  Provider.of<AppDataProvider>(context, listen: false).saveUser(snapshot.data!);
-                  return MaterialApp(
-                    title: 'Login App',
-                    initialRoute: '/home',
-                    routes: {'/login': (context) => const LoginPage(), '/home': (context) => const MainPage()},
-                    theme: ThemeData(
-                      useMaterial3: true,
-                      fontFamily: 'Poppins',
-                    ),
-                    debugShowCheckedModeBanner: false,
-                    builder: EasyLoading.init(),
-                  );
-                } else {
-                  return MaterialApp(
-                    title: 'Login App',
-                    initialRoute: '/login',
-                    routes: {'/login': (context) => const LoginPage(), '/home': (context) => const MainPage()},
-                    theme: ThemeData(
-                      useMaterial3: true,
-                      fontFamily: 'Poppins',
-                    ),
-                    debugShowCheckedModeBanner: false,
-                    builder: EasyLoading.init(),
-                  );
-                }
+        child: FutureBuilder<AppData?>(
+            future: AppData.loadData(),
+            builder: (BuildContext context, AsyncSnapshot<AppData?> snapshot) {
+              if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                Provider.of<AppDataProvider>(context, listen: false).saveAppData(snapshot.data!);
+                return FutureBuilder<UserModel?>(
+                    future: checkLogin(),
+                    builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasData && snapshot.data != null) {
+                          Provider.of<AppDataProvider>(context, listen: false).saveUser(snapshot.data!);
+                          return MaterialApp(
+                            title: 'Login App',
+                            initialRoute: '/home',
+                            routes: {'/login': (context) => const LoginPage(), '/home': (context) => const MainPage()},
+                            theme: ThemeData(
+                              useMaterial3: true,
+                              fontFamily: 'Poppins',
+                            ),
+                            debugShowCheckedModeBanner: false,
+                            builder: EasyLoading.init(),
+                          );
+                        } else {
+                          return MaterialApp(
+                            title: 'Login App',
+                            initialRoute: '/login',
+                            routes: {'/login': (context) => const LoginPage(), '/home': (context) => const MainPage()},
+                            theme: ThemeData(
+                              useMaterial3: true,
+                              fontFamily: 'Poppins',
+                            ),
+                            debugShowCheckedModeBanner: false,
+                            builder: EasyLoading.init(),
+                          );
+                        }
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    });
               } else {
                 return const Center(
                   child: CircularProgressIndicator(),
