@@ -73,14 +73,11 @@ class _RegisterPageState extends State<RegisterPage> {
       UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         EasyLoading.dismiss();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const MainPage())
-        );
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainPage()));
       });
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(
-          context, "Error", err.message, ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 

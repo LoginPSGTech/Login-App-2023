@@ -39,8 +39,7 @@ class ApiWrapper {
       if (value.isNotEmpty) {
         if (value[0] is List && value[0].isNotEmpty && value[0][0] is String) {
           error = value[0][0];
-        }
-        else if (value[0] is String) {
+        } else if (value[0] is String) {
           error = value[0];
         }
       }

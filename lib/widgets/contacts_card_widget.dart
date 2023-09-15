@@ -7,7 +7,8 @@ class ContactCardWidget extends StatelessWidget {
   final String contactPhone;
   final String contactEmail;
 
-  const ContactCardWidget({super.key, required this.contactName, required this.contactPhone, required this.contactEmail});
+  const ContactCardWidget(
+      {super.key, required this.contactName, required this.contactPhone, required this.contactEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +77,8 @@ class ContactCardWidget extends StatelessWidget {
                       onTap: () async {
                         Uri uri = Uri.parse('tel:+91$contactPhone');
                         if (!await launcher.launchUrl(uri)) {
-                          debugPrint("Could not launch the contact uri"); // because the simulator doesn't has the phone app
+                          debugPrint(
+                              "Could not launch the contact uri"); // because the simulator doesn't has the phone app
                         } else {
                           print("error");
                         }
@@ -112,7 +114,8 @@ class ContactCardWidget extends StatelessWidget {
                           'mailto:${contactEmail}?subject=Login Event Helpline&body=Hi, ',
                         );
                         if (!await launcher.launchUrl(uri)) {
-                          debugPrint("Could not launch the email uri"); // because the simulator doesn't has the email app
+                          debugPrint(
+                              "Could not launch the email uri"); // because the simulator doesn't has the email app
                         }
                       },
                     ),

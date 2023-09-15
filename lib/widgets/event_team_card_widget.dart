@@ -9,7 +9,8 @@ class EventTeamCardWidget extends StatelessWidget {
   final String eventName;
   final String eventLogoUrl;
 
-  const EventTeamCardWidget({super.key, required this.teamId, required this.teamName, required this.eventName, required this.eventLogoUrl});
+  const EventTeamCardWidget(
+      {super.key, required this.teamId, required this.teamName, required this.eventName, required this.eventLogoUrl});
 
   @override
   Widget build(BuildContext context) {
