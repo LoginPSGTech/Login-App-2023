@@ -87,7 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
       SnackbarWidget.showMessage(context, "Success", "OTP Sent to your Mail", ContentType.success);
       EasyLoading.dismiss();
     }).catchError((err) {
-      SnackbarWidget.showMessage(context, "Error", "Error verifying Email Address", ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
       EasyLoading.dismiss();
     });
   }

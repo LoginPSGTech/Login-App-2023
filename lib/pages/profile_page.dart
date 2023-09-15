@@ -47,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
       );
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(context, "Error", "Unable to Logout Please Try again later", ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 

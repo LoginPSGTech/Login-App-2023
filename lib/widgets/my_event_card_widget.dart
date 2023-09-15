@@ -51,7 +51,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
       });
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(context, "Error", "Deregistering Event Failed", ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
@@ -67,7 +67,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
       });
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(context, "Error", "Team Creation Failed", ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
@@ -83,7 +83,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
       });
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(context, "Error", "Unable to Join the Team", ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 

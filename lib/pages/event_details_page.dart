@@ -1,5 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/user.dart';
 import 'package:login/models/user.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
@@ -30,10 +31,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   }
 
   void registerUser(UserModel user) {
+    EasyLoading.show(status: "Registering...");
     UserEventModel userEvent = UserEventModel(event: widget.event.eventId, user: user.email);
     UserApi.registerEvent(userEvent, context).then((value) {
       UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        EasyLoading.dismiss();
         Navigator.of(context).pop();
         SnackbarWidget.showMessage(context, 'Success', 'Event registration Successful', ContentType.success);
         Navigator.of(context).pushReplacement(
@@ -41,8 +44,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         );
       });
     }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(context, 'Failed', err.message, ContentType.failure);
       Navigator.of(context).pop();
-      SnackbarWidget.showMessage(context, 'Failed', 'Event registration Failed', ContentType.failure);
     });
   }
 
