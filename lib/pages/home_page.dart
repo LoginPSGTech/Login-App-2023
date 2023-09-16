@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -51,11 +50,16 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         children: [
           //title image
-          Padding(
-            padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+          Container(
+            margin: const EdgeInsets.fromLTRB(24, 16, 24, 0),
             child: SizedBox(
-              width: 432,
-              child: Image.asset('assets/images/login.png'),
+              width: 216, // New width
+              height: 108, // New height
+              child: Image.asset(
+                'assets/images/login.png',
+                width: 216,
+                height: 108,
+              ),
             ),
           ),
           //title digital horizon
@@ -269,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("Login 2023 Highlights",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xffFEB139),
                           fontWeight: FontWeight.w600,
                           fontFamily: 'Poppins',
                           fontSize: 24)),
@@ -414,7 +418,7 @@ class _HomePageState extends State<HomePage> {
               const Flexible(
                   flex: 1,
                   child: RotatedBox(
-                      quarterTurns: 1,
+                      quarterTurns: 3,
                       child: Text(
                         "SPONSORS",
                         style: TextStyle(
@@ -459,7 +463,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("PSG Tech Campus Map",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xffFEB139),
                           fontWeight: FontWeight.w600,
                           fontFamily: 'Poppins',
                           fontSize: 24)),

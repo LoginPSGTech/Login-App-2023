@@ -64,10 +64,17 @@ class _EventsPageState extends State<EventsPage>
             children: [
               Icon(
                 Icons.info_rounded, // Use the InfoOutline icon
-                color: Color(0xFFFEB139), // You can adjust the color to match your design
+                color: Color(
+                    0xFFFEB139), // You can adjust the color to match your design
                 size: 16, // You can adjust the size as needed
               ),
-              Padding(padding: EdgeInsets.only(left: 4),child: Text("Not a Member of Any Team",textAlign: TextAlign.center, style: TextStyle(color: Colors.white70, fontSize: 16),))
+              Padding(
+                  padding: EdgeInsets.only(left: 4),
+                  child: Text(
+                    "Not a Member of Any Team",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  ))
             ],
           )
         ],
@@ -96,10 +103,17 @@ class _EventsPageState extends State<EventsPage>
             children: [
               Icon(
                 Icons.info_rounded, // Use the InfoOutline icon
-                color: Color(0xFFFEB139), // You can adjust the color to match your design
+                color: Color(
+                    0xFFFEB139), // You can adjust the color to match your design
                 size: 16, // You can adjust the size as needed
               ),
-              Padding(padding: EdgeInsets.only(left: 4),child: Text("No Registered Events",textAlign: TextAlign.center, style: TextStyle(color: Colors.white70, fontSize: 16),))
+              Padding(
+                  padding: EdgeInsets.only(left: 4),
+                  child: Text(
+                    "No Registered Events",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  ))
             ],
           )
         ],
@@ -133,7 +147,9 @@ class _EventsPageState extends State<EventsPage>
               eventLogoUrl: events[index].eventLogo,
               eventName: events[index].eventName,
               eventTagline: events[index].eventTagline,
-              eventTeamSize: events[index].teamSize),
+              eventTeamSize: events[index].teamSize,
+              isTechnical: events[index].isTechnical,
+              isOffline: events[index].isOffline),
         );
       },
     );

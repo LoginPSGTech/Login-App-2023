@@ -82,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                margin: const EdgeInsets.fromLTRB(0, 16, 0, 4),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(color: const Color(0xFF143F6B), borderRadius: BorderRadius.circular(10)),
                 child: Column(

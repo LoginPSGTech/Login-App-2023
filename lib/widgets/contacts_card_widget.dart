@@ -58,14 +58,14 @@ class ContactCardWidget extends StatelessWidget {
                           const Icon(
                             Icons.phone,
                             size: 20,
-                            color: Color.fromRGBO(18, 31, 44, 61),
+                            color: Colors.white,
                           ),
                           const SizedBox(width: 8),
                           Flexible(
                             child: Text(
                               contactPhone,
                               style: const TextStyle(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Colors.white,
                                 decoration: TextDecoration.underline,
                                 decorationColor: Colors.white,
@@ -93,14 +93,14 @@ class ContactCardWidget extends StatelessWidget {
                           const Icon(
                             Icons.email,
                             size: 20,
-                            color: Color.fromRGBO(18, 31, 44, 61),
+                            color: Colors.white,
                           ),
                           const SizedBox(width: 8),
                           Flexible(
                             child: Text(
                               contactEmail,
                               style: const TextStyle(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Colors.white,
                                 decoration: TextDecoration.underline,
                                 decorationColor: Colors.white,

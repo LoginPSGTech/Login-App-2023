@@ -7,12 +7,16 @@ class EventCardWidget extends StatelessWidget {
       required this.eventLogoUrl,
       required this.eventName,
       required this.eventTagline,
-      required this.eventTeamSize});
+      required this.eventTeamSize,
+      required this.isTechnical,
+      required this.isOffline});
 
   final String eventLogoUrl;
   final String eventName;
   final String eventTagline;
   final String eventTeamSize;
+  final bool isTechnical;
+  final bool isOffline;
 
   @override
   Widget build(BuildContext context) {
@@ -93,12 +97,92 @@ class EventCardWidget extends StatelessWidget {
                               fontFamily: 'Poppins',
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
-                              color: Colors.white, // Text color
+                              color: Colors.white70, // Text color
                             ),
                           ),
                         ),
                       ],
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 16),
+                          child: isOffline
+                              ? Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: const Color(
+                                        0xFF00BB5D), // Accent green color
+                                    borderRadius: BorderRadius.circular(
+                                        15), // Rounded corners
+                                  ),
+                                  child: const Text(
+                                    "Online",
+                                    style: TextStyle(
+                                          fontSize: 12,
+                        
+                                      color: Color(0xFF152739), // Text color
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: const Color(
+                                        0xFFFEB139), // Yellow background
+                                    borderRadius: BorderRadius.circular(
+                                        15), // Rounded corners
+                                  ),
+                                  child: const Text(
+                                    "Offline",
+                                    style: TextStyle(
+                                          fontSize: 12,
+                        
+                                      color: Color(0xFF152739), // Text color
+                                    ),
+                                  ),
+                                ),
+                        ),
+                        Container(
+                            margin: const EdgeInsets.only(top: 16, left: 8),
+                            child: isTechnical
+                                ? Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: const Color(
+                                          0xFFF55353), // Red background
+                                      borderRadius: BorderRadius.circular(
+                                          15), // Rounded corners
+                                    ),
+                                    child: const Text(
+                                      
+                                      "Technical",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xFF152739), // Text color
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: const Color(
+                                          0xFFFEB139), // Yellow background
+                                      borderRadius: BorderRadius.circular(
+                                          15), // Rounded corners
+                                    ),
+                                    child: const Text(
+                                      "Non Technical",
+                                      style: TextStyle(
+                                        fontSize: 12,
+
+                                        color: Color(0xFF152739), // Text color
+                                      ),
+                                    ),
+                                  ))
+                      ],
+                    )
                   ],
                 ),
               ),

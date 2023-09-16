@@ -4,6 +4,8 @@ import 'package:login/models/round_model.dart';
 class Event {
   final String eventId;
   final String eventName;
+  final bool isTechnical;
+  final bool isOffline;
   final List<EventConvenor> eventConvenors;
   final String eventLogo;
   final String eventTagline;
@@ -17,6 +19,8 @@ class Event {
   Event({
     required this.eventId,
     required this.eventName,
+    required this.isTechnical,
+    required this.isOffline,
     required this.eventConvenors,
     required this.eventLogo,
     required this.eventTagline,
@@ -41,6 +45,8 @@ class Event {
     return Event(
       eventId: json['eventId'],
       eventName: json['eventName'],
+      isTechnical: json['isTechnical'],
+      isOffline: json['isOffline'],
       eventConvenors: eventConvenorList,
       eventLogo: json['eventLogo'],
       eventTagline: json['eventTagline'],
