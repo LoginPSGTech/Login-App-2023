@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^2.2.1
   awesome_snackbar_content: ^0.1.3
   flutter_easyloading: ^3.0.5
+  url_launcher: ^6.1.14
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
     - assets/images/
     - assets/images/events/
     - assets/images/programs/
+    - assets/images/sponsors/
     - assets/json/LoginApp.json
   # To add assets to your application, add an assets section, like this:
   # assets:

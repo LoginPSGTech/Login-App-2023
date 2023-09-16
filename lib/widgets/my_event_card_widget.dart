@@ -43,8 +43,8 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
 
   void handleDeregisterEvent() {
     EasyLoading.show(status: "Deregistering...");
-    TeamEventApi.deregisterEvent(widget.eventId).then((value) {
-      UserApi.getUser().then((value) {
+    TeamEventApi.deregisterEvent(widget.eventId, context).then((value) {
+      UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         EasyLoading.dismiss();
         SnackbarWidget.showMessage(context, "Success",
@@ -53,7 +53,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
     }).catchError((err) {
       EasyLoading.dismiss();
       SnackbarWidget.showMessage(
-          context, "Error", "Deregistering Event Failed", ContentType.failure);
+          context, "Error", err.message, ContentType.failure);
     });
   }
 
@@ -61,8 +61,8 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
     EasyLoading.show(status: "Creating Team...");
     CreateTeamModel createTeam =
         CreateTeamModel(team_name: teamName, event: widget.eventId);
-    TeamEventApi.createTeam(createTeam).then((value) {
-      UserApi.getUser().then((value) {
+    TeamEventApi.createTeam(createTeam, context).then((value) {
+      UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         isExpanded = false;
         EasyLoading.dismiss();
@@ -72,16 +72,16 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
     }).catchError((err) {
       EasyLoading.dismiss();
       SnackbarWidget.showMessage(
-          context, "Error", "Team Creation Failed", ContentType.failure);
+          context, "Error", err.message, ContentType.failure);
     });
   }
 
   void handleJoinTeam(String teamId) {
-    EasyLoading.show(status: "Creating Team...");
+    EasyLoading.show(status: "Joining Team...");
     JoinTeamModel joinTeam = JoinTeamModel(
         event: widget.eventId, user: widget.emailId, team_id: teamId);
-    TeamEventApi.joinTeam(joinTeam).then((value) {
-      UserApi.getUser().then((value) {
+    TeamEventApi.joinTeam(joinTeam, context).then((value) {
+      UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         isExpanded = false;
         EasyLoading.dismiss();
@@ -91,7 +91,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
     }).catchError((err) {
       EasyLoading.dismiss();
       SnackbarWidget.showMessage(
-          context, "Error", "Unable to Join the Team", ContentType.failure);
+          context, "Error", err.message, ContentType.failure);
     });
   }
 
@@ -243,34 +243,40 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                   ),
                 ),
           SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFF55353),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+              width: double.infinity,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(
+                    color: Color(
+                        0xFFF55353), // Set the border color to match the background color
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
-              ),
-              onPressed: handleDeregisterEvent,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.delete_rounded,
-                    color: Colors.white,
-                    size: 16,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 4),
-                    child: const Text('Deregister Event',
+                onPressed: handleDeregisterEvent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.delete_rounded,
+                      color: Color(
+                          0xFFF55353), // Set the icon color to match the border color
+                      size: 16,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 4),
+                      child: const Text(
+                        'Deregister Event',
                         style: TextStyle(
-                          color: Colors.white,
-                        )),
-                  ),
-                ],
-              ),
-            ),
-          ),
+                          color: Color(
+                              0xFFF55353), // Set the text color to match the border color
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
           Visibility(
             visible: isExpanded,
             child: Column(

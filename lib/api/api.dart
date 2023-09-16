@@ -10,7 +10,7 @@ class ApiException implements Exception {
   ApiException({this.message = "API error"});
 }
 
-class UnauthorizedException implements ApiException {
+class AuthException implements ApiException {
   @override
   String message = "Unauthorized";
 }
@@ -31,9 +31,19 @@ class ApiWrapper {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body);
     } else if (response.statusCode == 401) {
-      throw UnauthorizedException();
+      throw AuthException();
     } else {
-      throw ApiException();
+      String error = "Unexpected error occurred";
+      Map<String, dynamic> errorResponse = jsonDecode(response.body);
+      List<dynamic> value = errorResponse.values.toList();
+      if (value.isNotEmpty) {
+        if (value[0] is List && value[0].isNotEmpty && value[0][0] is String) {
+          error = value[0][0];
+        } else if (value[0] is String) {
+          error = value[0];
+        }
+      }
+      throw ApiException(message: error);
     }
   }
 

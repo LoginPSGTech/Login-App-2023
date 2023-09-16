@@ -189,50 +189,46 @@
     ],
     "programs": [
       {
-        "name": "",
-        "image":"assets/images/programs/program1.jpg"
+        "name": "Inauguration",
+        "image":"assets/images/programs/inauguration.png"
       },
       {
-        "name": "",
-        "image":"assets/images/programs/program2.jpg"
+        "name": "Company Session",
+        "image":"assets/images/programs/company_session.png"
       },
       {
-        "name": "",
-        "image":"assets/images/programs/program3.jpg"
+        "name": "Entertainment",
+        "image":"assets/images/programs/dance.png"
       },
       {
-        "name": "",
-        "image":"assets/images/programs/program4.jpg"
+        "name": "Entertainment",
+        "image":"assets/images/programs/singing.png"
       },
       {
-        "name": "",
-        "image":"assets/images/programs/program5.jpg"
-      },
-      {
-        "name": "",
-        "image":"assets/images/programs/program6.jpg"
+        "name": "Valedictory",
+        "image":"assets/images/programs/valedictory.png"
       }
     ],
-    "stalls":[
+    "sponsors":[
       {
         "name": "",
-        "image": ""
+        "image": "assets/images/sponsors/1.png"
       },
       {
         "name": "",
-        "image": ""
+        "image": "assets/images/sponsors/2.png"
       },
       {
         "name": "",
-        "image": ""
+        "image": "assets/images/sponsors/3.png"
       },
       {
         "name": "",
-        "image": ""
+        "image": "assets/images/sponsors/4.png"
       },
       {
         "name": "",
-        "image": ""
+        "image": "assets/images/sponsors/5.png"
       }
     ]
   },

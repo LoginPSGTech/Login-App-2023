@@ -1,4 +1,7 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:login/widgets/snackbar_widget.dart';
 
 class EventTeamCardWidget extends StatelessWidget {
   final String teamId;
@@ -43,6 +46,7 @@ class EventTeamCardWidget extends StatelessWidget {
           TeamTitleContentWidget(
             title: "Team ID",
             content: teamId,
+            showCopyClipboard: true,
           ),
           TeamTitleContentWidget(
             title: "Team Name",
@@ -60,8 +64,14 @@ class EventTeamCardWidget extends StatelessWidget {
 class TeamTitleContentWidget extends StatelessWidget {
   final String title;
   final String content;
+  final bool showCopyClipboard;
 
-  const TeamTitleContentWidget({Key? key, required this.title, required this.content}) : super(key: key);
+  const TeamTitleContentWidget({
+    Key? key,
+    required this.title,
+    required this.content,
+    this.showCopyClipboard = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +103,22 @@ class TeamTitleContentWidget extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-            )
+            ),
+            const Spacer(),
+            showCopyClipboard
+                ? GestureDetector(
+                    onTap: () {
+                      Clipboard.setData(ClipboardData(text: content)).then((_) {
+                        SnackbarWidget.showMessage(context, "Success", "Copied to Clipboard", ContentType.success);
+                      });
+                    },
+                    child: const Icon(
+                      Icons.copy,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                  )
+                : const SizedBox.shrink(),
           ],
         ),
         const SizedBox(

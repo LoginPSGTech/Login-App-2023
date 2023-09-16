@@ -8,6 +8,7 @@ class Home {
   final String addedabout;
   final List<Event> events;
   final List<Items> programs;
+  final List<Items> sponsors;
 
   Home({
     required this.tagline,
@@ -16,12 +17,15 @@ class Home {
     required this.about,
     required this.addedabout,
     required this.events,
-    required this.programs
+    required this.programs,
+    required this.sponsors
   });
 
   factory Home.fromJson(Map<String, dynamic> json) {
     final eventsList = (json['events'] as List<dynamic>).map((eventJson) => Event.fromJson(eventJson)).toList();
     final programsList = (json['programs'] as List<dynamic>).map((programJson) => Items.fromJson(programJson)).toList();
+    final sponsorsList = (json['sponsors'] as List<dynamic>).map((programJson) => Items.fromJson(programJson)).toList();
+
     return Home(
       tagline: json['tagline'],
       description: json['description'],
@@ -29,7 +33,8 @@ class Home {
       about: json['about'],
       addedabout: json["addedAbout"],
       events: eventsList,
-      programs: programsList
+      programs: programsList,
+      sponsors: sponsorsList
     );
   }
 }
