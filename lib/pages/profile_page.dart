@@ -241,8 +241,9 @@ class ProfileTitleContentWidget extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Colors.white70,
                   fontWeight: FontWeight.w600,
+                  fontSize: 12
                 ),
               ),
             ),
@@ -250,12 +251,13 @@ class ProfileTitleContentWidget extends StatelessWidget {
               width: 5,
             ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Text(
                 content,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
+                  fontSize: 12
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
