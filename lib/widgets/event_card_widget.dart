@@ -108,7 +108,7 @@ class EventCardWidget extends StatelessWidget {
                       children: [
                         Container(
                           margin: const EdgeInsets.only(top: 16),
-                          child: isOffline
+                          child: !isOffline
                               ? Container(
                                   padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(

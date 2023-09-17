@@ -892,12 +892,12 @@
           },
           {
             "eventName": "Eureka",
-            "venue": "D-Block Ground Floor",
+            "venue": "Y201/ Y202",
             "endTime": "02:00 PM"
           },
           {
             "eventName": "Techiadz",
-            "venue": "CC Lab",
+            "venue": "CC/ IS/ K504/ K505",
             "endTime": "02:00 PM"
           }
         ]
@@ -917,7 +917,7 @@
         "events": [
           {
             "eventName": "Triple Trouble",
-            "venue": "J201",
+            "venue": "J205/ J206/ J207",
             "endTime": "04:30 PM"
           },
           {
@@ -942,7 +942,7 @@
         "events": [
           {
             "eventName": "Dinner",
-            "venue": "F-Block Canteen",
+            "venue": "Quadrangle",
             "endTime": "08:30 PM"
           }
         ]
@@ -1022,7 +1022,7 @@
         "events": [
           {
             "eventName": "Star of Login",
-            "venue": "F-Block Assembly Hall",
+            "venue": "F201/ F-Block Assembly Hall",
             "endTime": "04:00 PM"
           }
         ]

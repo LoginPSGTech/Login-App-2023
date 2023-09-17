@@ -49,15 +49,17 @@ class _SchedulePageState extends State<SchedulePage> {
                     child: Row(
                       children: [
                         const Icon(size: 16, Icons.place, color: Colors.white70),
-                        Container(
-                          margin: const EdgeInsets.only(left: 4),
-                          child: Text(
-                            eventsSchedule[index].venue,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 4),
+                            child: Text(
+                              eventsSchedule[index].venue,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),

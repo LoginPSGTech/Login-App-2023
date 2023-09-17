@@ -267,21 +267,27 @@ class _HomePageState extends State<HomePage> {
           ),
 
           Container(
-            margin: const EdgeInsets.fromLTRB(24, 16, 16, 24),
+            margin: const EdgeInsets.fromLTRB(24, 16, 16, 0),
             child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("Login 2023 Highlights",
+                  Text("LOGIN 2023 ",
                       style: TextStyle(
                           color: Color(0xffFEB139),
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Poppins',
+                          fontSize: 24)),
+                  Text("HIGHLIGHTS",
+                      style: TextStyle(
+                          color: Color(0xffF55353),
                           fontWeight: FontWeight.w600,
                           fontFamily: 'Poppins',
                           fontSize: 24)),
                 ]),
           ),
           //events
-          Padding(
-            padding: const EdgeInsets.all(8),
+          Container(
+            margin: const EdgeInsets.fromLTRB(8, 0, 8, 24),
             child: Flex(direction: Axis.horizontal, children: <Widget>[
               const Flexible(
                   flex: 1,
@@ -290,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         "EVENTS",
                         style: TextStyle(
-                          color: Colors.redAccent,
+                          color: Color(0xffF55353),
                         ),
                       ))),
               Flexible(
@@ -343,8 +349,8 @@ class _HomePageState extends State<HomePage> {
             ]),
           ),
           //programs
-          Padding(
-            padding: const EdgeInsets.all(8),
+          Container(
+            margin: const EdgeInsets.fromLTRB(8, 0, 8, 24),
             child: Flex(direction: Axis.horizontal, children: <Widget>[
               Flexible(
                 flex: 11,
@@ -406,14 +412,14 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         "PROGRAMS",
                         style: TextStyle(
-                          color: Colors.redAccent,
+                          color: const Color(0xffF55353),
                         ),
                       ))),
             ]),
           ),
           //Sponsors
-          Padding(
-            padding: const EdgeInsets.all(8),
+          Container(
+            margin: const EdgeInsets.fromLTRB(8, 0, 8, 24),
             child: Flex(direction: Axis.horizontal, children: <Widget>[
               const Flexible(
                   flex: 1,
@@ -422,7 +428,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         "SPONSORS",
                         style: TextStyle(
-                          color: Colors.redAccent,
+                          color: Color(0xffF55353),
                         ),
                       ))),
               Flexible(
@@ -457,13 +463,19 @@ class _HomePageState extends State<HomePage> {
             ]),
           ),
           Container(
-            margin: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+            margin: const EdgeInsets.fromLTRB(24, 16, 24, 0),
             child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("PSG Tech Campus Map",
+                  Text("PSG TECH ",
                       style: TextStyle(
                           color: Color(0xffFEB139),
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Poppins',
+                          fontSize: 24)),
+                  Text("CAMPUS MAP",
+                      style: TextStyle(
+                          color: Color(0xffF55353),
                           fontWeight: FontWeight.w600,
                           fontFamily: 'Poppins',
                           fontSize: 24)),

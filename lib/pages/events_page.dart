@@ -180,6 +180,8 @@ class _EventsPageState extends State<EventsPage>
   Widget build(BuildContext context) {
     final mcaEvents = Provider.of<AppDataProvider>(context).appData.mcaEvents;
     final mscEvents = Provider.of<AppDataProvider>(context).appData.mscEvents;
+    final allEvents = mscEvents + mcaEvents;
+    allEvents.sort((a, b) => a.eventName.compareTo(b.eventName));
     UserModel user = Provider.of<AppDataProvider>(context).user;
     List<MyEvent> myEvents = getMyEvents(user);
     List<Team> teams = getTeams(user);
@@ -224,7 +226,7 @@ class _EventsPageState extends State<EventsPage>
               child: TabBarView(
             controller: _tabController,
             children: [
-              buildEvents(mscEvents + mcaEvents),
+              buildEvents(allEvents),
               buildMyEvents(myEvents, user.email),
               buildTeams(teams)
             ],
