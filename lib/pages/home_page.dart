@@ -141,6 +141,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       descriptiontext,
                       key: ValueKey<String>(descriptiontext),
+                      textAlign: TextAlign.justify,
                       style: const TextStyle(
                         color: Colors.white,
                         fontFamily: 'Poppins',
@@ -223,6 +224,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                     abouttext,
                     key: ValueKey<String>(abouttext),
+                    textAlign: TextAlign.justify,
                     style: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'Poppins',

@@ -155,7 +155,7 @@
       },
       {
         "eventId": "E16",
-        "eventName": "Triple trouble",
+        "eventName": "Triple Trouble",
         "isTechnical": false,
         "isOffline": true,
         "eventConvenors": [
@@ -392,7 +392,7 @@
     },
     {
       "eventId": "E16",
-      "eventName": "Triple trouble",
+      "eventName": "Triple Trouble",
       "isTechnical": false,
       "isOffline": true,
       "eventConvenors": [
@@ -672,24 +672,21 @@
       "eventTagline": "Our Vision! Your Innovation!",
       "eventDescription": "Here's to the crazy ones. The one who sees things differently, this is the time to showcase your art of convincing people and the science of attracting human intelligence and creativity. And here we go, it's time to wake up the marketing genius inside you. It's an idea of magic, depending on the creativity of the people and the convincing art of people to sell their products to the audience.",
       "eventRules": [
-        "In the First round, a team of two members can be formed, and mobiles are not allowed during the event.",
-        "From the First round, 5 teams are selected to the Final round. In the Final Round, the count of team members can be a maximum of 5.",
-        "The team for the Final round can be formed by a selected team, and the other three members can be the friends of the team selected.",
-        "The team should come up with the logo, slogan, and other details about their product within the given time of 30 mins.",
-        "The teams will be provided with an unimaginable product, which they are supposed to market within the given time of 15 mins.",
-        "Evaluation will be based on creativity, humor, skill, and marketing ethics.",
-        "The judges and the event's organizers' decision is final."
+        "For the First round, two members in a team can perform, and mobiles are not allowed during the event.",
+        "From the results of the First round, 5 teams will be shortlisted for the Final round. In the Final round, the team can have up to a maximum of 5 members.",
+        "The team can consist of 5 members for the Final round, including two from the previous round (selected team) and the other three members can be their friends.",
+        "Evaluation will be based on creativity, humor, skills, and marketing ethics. The decision made by judges and event organizers is final."
       ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
           "roundName": "Round",
-          "roundDescription": "Online: 2 members per team. Duration: 45 Minutes. Conducted in lab. 20 objective type questions. 1 communicative type questions."
+          "roundDescription": "Online, with 2 members per team with a duration of 40 Minutes.The event will be conducted in the allocated lab. There will be 20 objective-type questions and 1 communicative-type question."
         },
         {
           "roundNumber":2,
           "roundName": "Round",
-          "roundDescription": "Onstage: 5 members per team. Duration: 2 Hours 30 Minutes. Conducted  in classrooms. For Finals, the selected team need to market the product given by the event organizers that will be provided with an unimaginable product, which they are supposed to market. The team should trace logo, slogan and other details about their product within the given time. 5-7 minutes for presentation."
+          "roundDescription": "Onstage,with 2-5 members per team. Duration of 1 hour, conducted in the allocated classroom. The teams will have to market the product given by the event organizers, which will be an unimaginable product that they are supposed to market. The team should trace the logo, slogan and other details about their product within the stipulated time. A time limit of 5-7 minutes will be allotted for their presentation."
         }
       ],
       "teamSize": "Online - 2,Onstage - 5",

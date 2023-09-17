@@ -14,7 +14,10 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
+
   int selected = 0;
+  int prev = 0;
   late var events;
   late var schedule;
   late var home;
@@ -45,7 +48,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     switch (selected) {
       case 0:
-        page = HomePage();
+        page = const HomePage();
         events = const Icon(
           Icons.emoji_events,
           size: 25,
@@ -99,14 +102,14 @@ class _MainPageState extends State<MainPage> {
         profiledecoration = null;
         break;
       case 2:
-        page = SchedulePage();
+        page = const SchedulePage();
         events = const Icon(
           Icons.emoji_events,
           size: 25,
           color: Colors.white,
         );
         schedule = const Icon(
-          Icons.timer,
+          Icons.calendar_month,
           size: 25,
           color: Colors.transparent,
         );
@@ -133,7 +136,7 @@ class _MainPageState extends State<MainPage> {
           color: Colors.white,
         );
         schedule = const Icon(
-          Icons.timer,
+          Icons.calendar_month,
           size: 25,
           color: Colors.white,
         );
@@ -153,89 +156,108 @@ class _MainPageState extends State<MainPage> {
         profiledecoration = decoration;
         break;
       default:
-        page = HomePage();
+        page = const HomePage();
     }
 
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xff020507), Color(0xff152739)],
-          begin: Alignment(-1.0, -1),
-          end: Alignment(-1.0, 1),
+    return WillPopScope(
+      onWillPop: () {
+        if (selected != 0) {
+
+          // If not on the HomePage, navigate to the HomePage
+          setState(() {
+            selected = prev;
+            prev = 0;
+          });
+          bottomNavigationKey.currentState?.setPage(selected);
+          return Future.value(false); // Prevent default back button behavior
+        }
+        // If already on the HomePage, allow the default back button behavior
+        return Future.value(true);
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xff020507), Color(0xff152739)],
+            begin: Alignment(-1.0, -1),
+            end: Alignment(-1.0, 1),
+          ),
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: page,
-        bottomNavigationBar: CurvedNavigationBar(
-          iconPadding: 3,
-          color: const Color(0xff1D4167),
-          index: 0,
-          height: 70,
+        child: Scaffold(
           backgroundColor: Colors.transparent,
-          buttonBackgroundColor: Colors.transparent,
-          items: [
-            CurvedNavigationBarItem(
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: homedecoration,
-                child: home,
+          body: page,
+          bottomNavigationBar: CurvedNavigationBar(
+            key: bottomNavigationKey,
+            iconPadding: 3,
+            color: const Color(0xff1D4167),
+            index: 0,
+            height: 70,
+            backgroundColor: Colors.transparent,
+            buttonBackgroundColor: Colors.transparent,
+            animationDuration: const Duration(milliseconds: 200),
+            items: [
+              CurvedNavigationBarItem(
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: homedecoration,
+                  child: home,
+                ),
+                label: 'Home',
+                labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
               ),
-              label: 'Home',
-              labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
-            ),
-            CurvedNavigationBarItem(
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: eventsdecoration,
-                child: events,
+              CurvedNavigationBarItem(
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: eventsdecoration,
+                  child: events,
+                ),
+                label: 'Events',
+                labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
               ),
-              label: 'Events',
-              labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
-            ),
-            CurvedNavigationBarItem(
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: scheduledecoration,
-                child: schedule,
+              CurvedNavigationBarItem(
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: scheduledecoration,
+                  child: schedule,
+                ),
+                label: 'Schedule',
+                labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
               ),
-              label: 'Schedule',
-              labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
-            ),
-            CurvedNavigationBarItem(
-              // Replace this with your profile image widget
-              // child: Container(
-              //   width: 30, // Adjust the size as needed
-              //   height: 30, // Adjust the size as needed
-              //   decoration: profiledecoration,
-              //   child: ClipRRect(
-              //     borderRadius: BorderRadius.circular(
-              //         15), // Half of the width/height to create a circle
-              //     child: profiledecoration == null ? SvgPicture.string(
-              //       RandomAvatarString('saytoonz',
-              //           trBackground: true), // Replace with your SVG image path
-              //       fit: BoxFit.cover,
-              //     ): null,
-              //   ),
-              // ),
-              // label: 'Profile',
-              // labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: profiledecoration,
-                child: profile,
-              ),
-              label: 'Profile',
-              labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
-            )
-          ],
-          onTap: (index) {
-            setState(() {
-              if (selected != index) {
-                selected = index;
-              }
-            });
-          },
+              CurvedNavigationBarItem(
+                // Replace this with your profile image widget
+                // child: Container(
+                //   width: 30, // Adjust the size as needed
+                //   height: 30, // Adjust the size as needed
+                //   decoration: profiledecoration,
+                //   child: ClipRRect(
+                //     borderRadius: BorderRadius.circular(
+                //         15), // Half of the width/height to create a circle
+                //     child: profiledecoration == null ? SvgPicture.string(
+                //       RandomAvatarString('saytoonz',
+                //           trBackground: true), // Replace with your SVG image path
+                //       fit: BoxFit.cover,
+                //     ): null,
+                //   ),
+                // ),
+                // label: 'Profile',
+                // labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: profiledecoration,
+                  child: profile,
+                ),
+                label: 'Profile',
+                labelStyle: const TextStyle(color: Colors.white, fontSize: 10),
+              )
+            ],
+            onTap: (index) {
+              setState(() {
+                if (selected != index) {
+                  prev = selected;
+                  selected = index;
+                }
+              });
+            },
+          ),
         ),
       ),
     );

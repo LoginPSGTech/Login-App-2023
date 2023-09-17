@@ -9,8 +9,10 @@ class TextFieldWidget extends StatefulWidget {
   final Function()? onSuffixIconPressed;
   final Widget? suffixButton;
   final String? Function(String?)? validator;
-  final List<DropdownMenuItem<String>>? dropdownItems; // Added field for dropdown items
-  final ValueChanged<String?>? onDropdownChanged; // Added callback for dropdown changes
+  final List<DropdownMenuItem<String>>?
+      dropdownItems; // Added field for dropdown items
+  final ValueChanged<String?>?
+      onDropdownChanged; // Added callback for dropdown changes
   final String? dropdownValue; // Added initial value for dropdown
   final TextInputType? keyboardType;
 
@@ -51,7 +53,20 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return DropdownButtonFormField<String>(
       value: widget.dropdownValue,
       onChanged: widget.onDropdownChanged,
-      items: widget.dropdownItems!,
+      items: widget.dropdownItems!
+        .map((value) => DropdownMenuItem<String>(
+                value: value.value,
+                child: Text(value.value!),
+            ))
+            .toList(),
+      selectedItemBuilder: (context) => widget.dropdownItems!
+        .map((value) => Text(
+          value.value!,
+          maxLines: 1,
+          overflow: TextOverflow.fade,
+          softWrap: false,
+         ))
+        .toList(),
       isExpanded: true,
       dropdownColor: const Color(0xff152739), //<-- SEE HERE
       style: const TextStyle(
@@ -77,6 +92,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         ),
       ),
       validator: widget.validator,
+      isDense: true,
     );
   }
 

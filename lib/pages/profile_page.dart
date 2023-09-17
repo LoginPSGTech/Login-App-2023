@@ -47,13 +47,32 @@ class _ProfilePageState extends State<ProfilePage> {
       );
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
+      SnackbarWidget.showMessage(
+          context, "Error", err.message, ContentType.failure);
     });
+  }
+
+  String getYearSuffix(int year) {
+    if (year >= 11 && year <= 13) {
+      return 'th';
+    }
+    switch (year % 10) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     UserModel user = Provider.of<AppDataProvider>(context).user;
+    String yearOfStudy = user.yearOfStudy;
+    int year = int.tryParse(yearOfStudy) ?? 0;
     return SafeArea(
         child: SingleChildScrollView(
       child: Column(
@@ -62,20 +81,30 @@ class _ProfilePageState extends State<ProfilePage> {
           const TitleBarWidget(title: "My Account"),
           Container(
             margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
-                width: double.infinity ,
+                width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(color: const Color(0xFF143F6B), borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(
+                    color: const Color(0xFF143F6B),
+                    borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
-                    const Icon(Icons.account_circle_rounded, color: Colors.white,size: 56,),
+                    const Icon(
+                      Icons.account_circle_rounded,
+                      color: Colors.white,
+                      size: 56,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
                         user.name,
-                        style: const TextStyle(color: Color(0xFFFEB139), fontSize: 24, fontWeight: FontWeight.w600),
+                        style: const TextStyle(
+                            color: Color(0xFFFEB139),
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],
@@ -84,7 +113,9 @@ class _ProfilePageState extends State<ProfilePage> {
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 16, 0, 4),
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(color: const Color(0xFF143F6B), borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(
+                    color: const Color(0xFF143F6B),
+                    borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -102,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     ProfileTitleContentWidget(
                       title: "Gender",
-                      content: user.gender == 'M'? 'Male' : 'Female',
+                      content: user.gender == 'M' ? 'Male' : 'Female',
                     ),
                     ProfileTitleContentWidget(
                       title: "College",
@@ -118,7 +149,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     ProfileTitleContentWidget(
                       title: "Year of Study",
-                      content: '${user.yearOfStudy} th year',
+                      content:
+                          '${user.yearOfStudy} ${getYearSuffix(year)} year',
                       isDivider: false,
                     ),
                   ],
@@ -191,7 +223,11 @@ class ProfileTitleContentWidget extends StatelessWidget {
   final String content;
   final bool isDivider;
 
-  const ProfileTitleContentWidget({Key? key, required this.title, required this.content, this.isDivider = true})
+  const ProfileTitleContentWidget(
+      {Key? key,
+      required this.title,
+      required this.content,
+      this.isDivider = true})
       : super(key: key);
 
   @override
