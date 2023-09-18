@@ -162,7 +162,6 @@ class _MainPageState extends State<MainPage> {
     return WillPopScope(
       onWillPop: () {
         if (selected != 0) {
-
           // If not on the HomePage, navigate to the HomePage
           setState(() {
             selected = prev;

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -53,13 +51,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   void _verifyEmailAddress() {
     EasyLoading.show(status: 'Sending OTP...');
     AuthApi.verifyEmail(_emailController.text).then((value) {
-      SnackbarWidget.showMessage(
-          context, "Success", "OTP Sent to your Mail", ContentType.success);
-          _nextPage();
+      SnackbarWidget.showMessage(context, "Success", "OTP Sent to your Mail", ContentType.success);
+      _nextPage();
       EasyLoading.dismiss();
     }).catchError((err) {
-      SnackbarWidget.showMessage(
-          context, "Error", err.message, ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
       EasyLoading.dismiss();
     });
   }
@@ -141,8 +137,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                         width: double.infinity,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFFF55353),
+                                            backgroundColor: const Color(0xFFF55353),
                                           ),
                                           onPressed: () {
                                             // Validate and perform login
@@ -175,8 +170,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                           if (value == null || value.isEmpty) {
                                             return 'OTP is Required';
                                           }
-                                          if (value.length != 6 ||
-                                              int.tryParse(value) == null) {
+                                          if (value.length != 6 || int.tryParse(value) == null) {
                                             return 'Enter a Valid OTP';
                                           }
                                           return null;
@@ -187,8 +181,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                         width: double.infinity,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFFF55353),
+                                            backgroundColor: const Color(0xFFF55353),
                                           ),
                                           onPressed: () {
                                             // Validate and perform login
@@ -223,26 +216,22 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                           }
 
                                           // Check if the password contains at least one special character
-                                          if (!value.contains(RegExp(
-                                              r'[!@#$%^&*(),.?":{}|<>]'))) {
+                                          if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
                                             return 'Password must contain a special character';
                                           }
 
                                           // Check if the password contains at least one number
-                                          if (!value
-                                              .contains(RegExp(r'[0-9]'))) {
+                                          if (!value.contains(RegExp(r'[0-9]'))) {
                                             return 'Password must contain a number';
                                           }
 
                                           // Check if the password contains at least one uppercase letter
-                                          if (!value
-                                              .contains(RegExp(r'[A-Z]'))) {
+                                          if (!value.contains(RegExp(r'[A-Z]'))) {
                                             return 'Password must contain an uppercase letter';
                                           }
 
                                           // Check if the password contains at least one lowercase letter
-                                          if (!value
-                                              .contains(RegExp(r'[a-z]'))) {
+                                          if (!value.contains(RegExp(r'[a-z]'))) {
                                             return 'Password must contain a lowercase letter';
                                           }
                                           return null;
@@ -260,8 +249,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                         width: double.infinity,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFFF55353),
+                                            backgroundColor: const Color(0xFFF55353),
                                           ),
                                           onPressed: () {
                                             // Validate and perform login
@@ -302,8 +290,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                     ..onTap = () {
                                       Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              const LoginPage(), // Replace with your LoginPage class
+                                          builder: (context) => const LoginPage(), // Replace with your LoginPage class
                                         ),
                                       );
                                     },

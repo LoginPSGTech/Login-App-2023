@@ -4,7 +4,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/auth.dart';
 import 'package:login/api/user.dart';
 import 'package:login/models/auth.dart';
-import 'package:login/pages/forgot_password_page.dart';
 import 'package:login/pages/register_page.dart';
 import 'package:login/providers/app_data_provider.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
@@ -190,35 +189,35 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
 
-                      //   const SizedBox(height: 16),
-                      //   RichText(
-                      //     text: TextSpan(
-                      //       children: [
-                      //         const TextSpan(
-                      //           text: "Forgot Password? ",
-                      //           style: TextStyle(
-                      //             color: Colors.white,
-                      //           ),
-                      //         ),
-                      //         TextSpan(
-                      //           text: "Reset",
-                      //           style: const TextStyle(
-                      //             fontSize: 16,
-                      //             color: Color(0xFFFEB139),
-                      //             decoration: TextDecoration.none,
-                      //           ),
-                      //           recognizer: TapGestureRecognizer()..onTap = () {
-                      //             Navigator.of(context).pushReplacement(
-                      //                 MaterialPageRoute(
-                      //                   builder: (context) =>
-                      //                       const ForgotPasswordPage(), // Replace with your LoginPage class
-                      //                 ),
-                      //               );
-                      //           },
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
+                        //   const SizedBox(height: 16),
+                        //   RichText(
+                        //     text: TextSpan(
+                        //       children: [
+                        //         const TextSpan(
+                        //           text: "Forgot Password? ",
+                        //           style: TextStyle(
+                        //             color: Colors.white,
+                        //           ),
+                        //         ),
+                        //         TextSpan(
+                        //           text: "Reset",
+                        //           style: const TextStyle(
+                        //             fontSize: 16,
+                        //             color: Color(0xFFFEB139),
+                        //             decoration: TextDecoration.none,
+                        //           ),
+                        //           recognizer: TapGestureRecognizer()..onTap = () {
+                        //             Navigator.of(context).pushReplacement(
+                        //                 MaterialPageRoute(
+                        //                   builder: (context) =>
+                        //                       const ForgotPasswordPage(), // Replace with your LoginPage class
+                        //                 ),
+                        //               );
+                        //           },
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
                       ],
                     ),
                   ),

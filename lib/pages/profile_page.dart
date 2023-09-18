@@ -47,8 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
       );
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(
-          context, "Error", err.message, ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
@@ -81,15 +80,12 @@ class _ProfilePageState extends State<ProfilePage> {
           const TitleBarWidget(title: "My Account"),
           Container(
             margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    color: const Color(0xFF143F6B),
-                    borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(color: const Color(0xFF143F6B), borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
                     const Icon(
@@ -101,10 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
                         user.name,
-                        style: const TextStyle(
-                            color: Color(0xFFFEB139),
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600),
+                        style: const TextStyle(color: Color(0xFFFEB139), fontSize: 24, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],
@@ -113,9 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 16, 0, 4),
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    color: const Color(0xFF143F6B),
-                    borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(color: const Color(0xFF143F6B), borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -149,8 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     ProfileTitleContentWidget(
                       title: "Year of Study",
-                      content:
-                          '${user.yearOfStudy} ${getYearSuffix(year)} year',
+                      content: '${user.yearOfStudy} ${getYearSuffix(year)} year',
                       isDivider: false,
                     ),
                   ],
@@ -223,11 +213,7 @@ class ProfileTitleContentWidget extends StatelessWidget {
   final String content;
   final bool isDivider;
 
-  const ProfileTitleContentWidget(
-      {Key? key,
-      required this.title,
-      required this.content,
-      this.isDivider = true})
+  const ProfileTitleContentWidget({Key? key, required this.title, required this.content, this.isDivider = true})
       : super(key: key);
 
   @override
@@ -240,11 +226,7 @@ class ProfileTitleContentWidget extends StatelessWidget {
               flex: 2,
               child: Text(
                 title,
-                style: const TextStyle(
-                  color: Colors.white70,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12
-                ),
+                style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.w600, fontSize: 12),
               ),
             ),
             const SizedBox(
@@ -254,11 +236,7 @@ class ProfileTitleContentWidget extends StatelessWidget {
               flex: 4,
               child: Text(
                 content,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12
-                ),
+                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

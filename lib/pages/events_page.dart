@@ -30,10 +30,7 @@ class MyEvent {
   final String eventLogoUrl;
   final bool hasTeamAlready;
 
-  MyEvent(
-      {required this.eventId,
-      required this.eventLogoUrl,
-      required this.hasTeamAlready});
+  MyEvent({required this.eventId, required this.eventLogoUrl, required this.hasTeamAlready});
 }
 
 class EventsPage extends StatefulWidget {
@@ -43,8 +40,7 @@ class EventsPage extends StatefulWidget {
   State<EventsPage> createState() => _EventsPageState();
 }
 
-class _EventsPageState extends State<EventsPage>
-    with SingleTickerProviderStateMixin {
+class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -64,8 +60,7 @@ class _EventsPageState extends State<EventsPage>
             children: [
               Icon(
                 Icons.info_rounded, // Use the InfoOutline icon
-                color: Color(
-                    0xFFFEB139), // You can adjust the color to match your design
+                color: Color(0xFFFEB139), // You can adjust the color to match your design
                 size: 16, // You can adjust the size as needed
               ),
               Padding(
@@ -103,8 +98,7 @@ class _EventsPageState extends State<EventsPage>
             children: [
               Icon(
                 Icons.info_rounded, // Use the InfoOutline icon
-                color: Color(
-                    0xFFFEB139), // You can adjust the color to match your design
+                color: Color(0xFFFEB139), // You can adjust the color to match your design
                 size: 16, // You can adjust the size as needed
               ),
               Padding(
@@ -156,8 +150,7 @@ class _EventsPageState extends State<EventsPage>
   }
 
   List<MyEvent> getMyEvents(UserModel user) {
-    Set<String> eventsWithTeams =
-        user.teams.map((UserTeamModel team) => team.event).toSet();
+    Set<String> eventsWithTeams = user.teams.map((UserTeamModel team) => team.event).toSet();
     return user.events
         .map((UserEventModel event) => MyEvent(
             eventId: event.event,
@@ -225,11 +218,7 @@ class _EventsPageState extends State<EventsPage>
               // Wrap the ListView.builder with Expanded
               child: TabBarView(
             controller: _tabController,
-            children: [
-              buildEvents(allEvents),
-              buildMyEvents(myEvents, user.email),
-              buildTeams(teams)
-            ],
+            children: [buildEvents(allEvents), buildMyEvents(myEvents, user.email), buildTeams(teams)],
           )),
         ],
       ),
