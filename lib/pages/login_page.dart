@@ -25,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool isFormError = false;
   bool hidePassword = true;
+  String formError = '';
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
       }).catchError((err) {
         setState(() {
           isFormError = true;
+          formError = err.message;
         });
         _emailController.clear();
         _passwordController.clear();
@@ -92,16 +94,16 @@ class _LoginPageState extends State<LoginPage> {
                                 isFormError
                                     ? Container(
                                         color: Colors.transparent,
-                                        child: const Row(children: [
-                                          Icon(
+                                        child: Row(children: [
+                                          const Icon(
                                             Icons.error,
                                             color: Colors.red,
                                           ),
                                           Padding(
-                                              padding: EdgeInsets.only(left: 4),
+                                              padding: const EdgeInsets.only(left: 4),
                                               child: Text(
-                                                'Invalid User Credentials',
-                                                style: TextStyle(color: Colors.red),
+                                                formError,
+                                                style: const TextStyle(color: Colors.red),
                                               ))
                                         ]),
                                       )
