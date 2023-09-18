@@ -4,6 +4,7 @@ import 'package:login/api/user.dart';
 import 'package:login/models/app_data_model.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/pages/main_page.dart';
+import 'package:login/pages/splashscreen_page.dart';
 import 'package:provider/provider.dart';
 import 'package:login/providers/app_data_provider.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -48,18 +49,25 @@ class MyApp extends StatelessWidget {
         child: FutureBuilder<AppData?>(
             future: AppData.loadData(),
             builder: (BuildContext context, AsyncSnapshot<AppData?> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                Provider.of<AppDataProvider>(context, listen: false).saveAppData(snapshot.data!);
+              if (snapshot.connectionState == ConnectionState.done &&
+                  snapshot.hasData) {
+                Provider.of<AppDataProvider>(context, listen: false)
+                    .saveAppData(snapshot.data!);
                 return FutureBuilder<UserModel?>(
                     future: checkLogin(),
-                    builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
+                    builder: (BuildContext context,
+                        AsyncSnapshot<UserModel?> snapshot) {
                       if (snapshot.connectionState == ConnectionState.done) {
                         if (snapshot.hasData && snapshot.data != null) {
-                          Provider.of<AppDataProvider>(context, listen: false).saveUser(snapshot.data!);
+                          Provider.of<AppDataProvider>(context, listen: false)
+                              .saveUser(snapshot.data!);
                           return MaterialApp(
                             title: 'Login App',
                             initialRoute: '/home',
-                            routes: {'/login': (context) => const LoginPage(), '/home': (context) => const MainPage()},
+                            routes: {
+                              '/login': (context) => const LoginPage(),
+                              '/home': (context) => const MainPage()
+                            },
                             theme: ThemeData(
                               useMaterial3: true,
                               fontFamily: 'Poppins',
@@ -71,7 +79,10 @@ class MyApp extends StatelessWidget {
                           return MaterialApp(
                             title: 'Login App',
                             initialRoute: '/login',
-                            routes: {'/login': (context) => const LoginPage(), '/home': (context) => const MainPage()},
+                            routes: {
+                              '/login': (context) => const LoginPage(),
+                              '/home': (context) => const MainPage()
+                            },
                             theme: ThemeData(
                               useMaterial3: true,
                               fontFamily: 'Poppins',
@@ -81,15 +92,11 @@ class MyApp extends StatelessWidget {
                           );
                         }
                       } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return const SplashScreenPage();
                       }
                     });
               } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const SplashScreenPage();
               }
             }));
   }
