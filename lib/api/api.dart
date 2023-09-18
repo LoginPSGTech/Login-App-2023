@@ -15,6 +15,11 @@ class AuthException implements ApiException {
   String message = "Unauthorized";
 }
 
+class InternetAccessException implements ApiException {
+  @override
+  String message = "No internet access";
+}
+
 class ApiWrapper {
   static Future<Map<String, String>> getHeaders(bool authenticate) async {
     Map<String, String> headers = {
@@ -48,18 +53,30 @@ class ApiWrapper {
   }
 
   static Future<Map<String, dynamic>> get(String url, {bool authenticate = false}) async {
-    http.Response response = await http.get(Uri.parse(url), headers: await getHeaders(authenticate));
-    return parseResponse(response);
+    try {
+      http.Response response = await http.get(Uri.parse(url), headers: await getHeaders(authenticate));
+      return parseResponse(response);
+    } on SocketException {
+      throw InternetAccessException();
+    }
   }
 
   static Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body, {bool authenticate = false}) async {
-    http.Response response =
-        await http.post(Uri.parse(url), headers: await getHeaders(authenticate), body: jsonEncode(body));
-    return parseResponse(response);
+    try {
+      http.Response response =
+          await http.post(Uri.parse(url), headers: await getHeaders(authenticate), body: jsonEncode(body));
+      return parseResponse(response);
+    } on SocketException {
+      throw InternetAccessException();
+    }
   }
 
   static Future<Map<String, dynamic>> delete(String url, {bool authenticate = false}) async {
-    http.Response response = await http.delete(Uri.parse(url), headers: await getHeaders(authenticate));
-    return parseResponse(response);
+    try {
+      http.Response response = await http.delete(Uri.parse(url), headers: await getHeaders(authenticate));
+      return parseResponse(response);
+    } on SocketException {
+      throw InternetAccessException();
+    }
   }
 }

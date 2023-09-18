@@ -32,8 +32,7 @@ class _HomePageState extends State<HomePage> {
         break;
       case 1:
         descriptionButtonText = "Read Less";
-        descriptiontext =
-            appData.home.description + appData.home.addeddescription;
+        descriptiontext = appData.home.description + appData.home.addeddescription;
         break;
     }
     switch (aboutState) {
@@ -92,10 +91,7 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
             child: Text("NAVIGATING THE ",
                 style: TextStyle(
-                    color: Color(0xffF55353),
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                    fontSize: 22)),
+                    color: Color(0xffF55353), fontWeight: FontWeight.bold, fontFamily: 'Poppins', fontSize: 22)),
           ),
           //title hyper -connected world
           Padding(
@@ -131,8 +127,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 400),
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
+                    transitionBuilder: (Widget child, Animation<double> animation) {
                       return FadeTransition(
                         opacity: animation,
                         child: child,
@@ -174,10 +169,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Text(
                         descriptionButtonText,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontFamily: 'Poppins'),
+                        style: const TextStyle(color: Colors.white, fontSize: 12, fontFamily: 'Poppins'),
                       ),
                     ),
                   )
@@ -193,16 +185,10 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("ABOUT ",
                       style: TextStyle(
-                          color: Color(0xffF55353),
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22)),
+                          color: Color(0xffF55353), fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 22)),
                   Text("LOGIN ",
                       style: TextStyle(
-                          color: Color(0xffFEB139),
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22)),
+                          color: Color(0xffFEB139), fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 22)),
                 ],
               ),
             ),
@@ -214,8 +200,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 400),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
+                  transitionBuilder: (Widget child, Animation<double> animation) {
                     return FadeTransition(
                       opacity: animation,
                       child: child,
@@ -257,10 +242,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: Text(
                       aboutButtonText,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'Poppins'),
+                      style: const TextStyle(color: Colors.white, fontSize: 12, fontFamily: 'Poppins'),
                     ),
                   ),
                 )
@@ -270,22 +252,14 @@ class _HomePageState extends State<HomePage> {
 
           Container(
             margin: const EdgeInsets.fromLTRB(24, 16, 16, 0),
-            child: const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("LOGIN 2023 ",
-                      style: TextStyle(
-                          color: Color(0xffFEB139),
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'Poppins',
-                          fontSize: 24)),
-                  Text("HIGHLIGHTS",
-                      style: TextStyle(
-                          color: Color(0xffF55353),
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'Poppins',
-                          fontSize: 24)),
-                ]),
+            child: const Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Text("LOGIN 2023 ",
+                  style: TextStyle(
+                      color: Color(0xffFEB139), fontWeight: FontWeight.w600, fontFamily: 'Poppins', fontSize: 24)),
+              Text("HIGHLIGHTS",
+                  style: TextStyle(
+                      color: Color(0xffF55353), fontWeight: FontWeight.w600, fontFamily: 'Poppins', fontSize: 24)),
+            ]),
           ),
           //events
           Container(
@@ -334,10 +308,7 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.transparent,
                               child: Text(
                                 event[index].eventName,
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600),
+                                style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),
@@ -392,10 +363,7 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.transparent,
                                 child: Text(
                                   programs[index].itemName,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 8,
-                                      fontWeight: FontWeight.w600),
+                                  style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ),
@@ -466,28 +434,19 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(24, 16, 24, 0),
-            child: const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("PSG TECH ",
-                      style: TextStyle(
-                          color: Color(0xffFEB139),
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'Poppins',
-                          fontSize: 24)),
-                  Text("CAMPUS MAP",
-                      style: TextStyle(
-                          color: Color(0xffF55353),
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'Poppins',
-                          fontSize: 24)),
-                ]),
+            child: const Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Text("PSG TECH ",
+                  style: TextStyle(
+                      color: Color(0xffFEB139), fontWeight: FontWeight.w600, fontFamily: 'Poppins', fontSize: 24)),
+              Text("CAMPUS MAP",
+                  style: TextStyle(
+                      color: Color(0xffF55353), fontWeight: FontWeight.w600, fontFamily: 'Poppins', fontSize: 24)),
+            ]),
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(24, 8, 24, 24),
             child: SizedBox(
-              width: double
-                  .infinity, // Set the width to take up all available space
+              width: double.infinity, // Set the width to take up all available space
               height: 200, // Adjust the height to your desired value
               child: Image.asset('assets/images/college_map.png'),
             ),

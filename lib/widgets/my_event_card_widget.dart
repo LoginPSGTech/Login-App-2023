@@ -47,58 +47,48 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
       UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         EasyLoading.dismiss();
-        SnackbarWidget.showMessage(context, "Success",
-            "Deregistering Event Successful", ContentType.success);
+        SnackbarWidget.showMessage(context, "Success", "Deregistering Event Successful", ContentType.success);
       });
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(
-          context, "Error", err.message, ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
   void handleCreateTeam(String teamName) {
     EasyLoading.show(status: "Creating Team...");
-    CreateTeamModel createTeam =
-        CreateTeamModel(team_name: teamName, event: widget.eventId);
+    CreateTeamModel createTeam = CreateTeamModel(team_name: teamName, event: widget.eventId);
     TeamEventApi.createTeam(createTeam, context).then((value) {
       UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         isExpanded = false;
         EasyLoading.dismiss();
-        SnackbarWidget.showMessage(context, "Success",
-            "Team Creation Successful", ContentType.success);
+        SnackbarWidget.showMessage(context, "Success", "Team Creation Successful", ContentType.success);
       });
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(
-          context, "Error", err.message, ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
   void handleJoinTeam(String teamId) {
     EasyLoading.show(status: "Joining Team...");
-    JoinTeamModel joinTeam = JoinTeamModel(
-        event: widget.eventId, user: widget.emailId, team_id: teamId);
+    JoinTeamModel joinTeam = JoinTeamModel(event: widget.eventId, user: widget.emailId, team_id: teamId);
     TeamEventApi.joinTeam(joinTeam, context).then((value) {
       UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         isExpanded = false;
         EasyLoading.dismiss();
-        SnackbarWidget.showMessage(context, "Success",
-            "Successfully Joined Team", ContentType.success);
+        SnackbarWidget.showMessage(context, "Success", "Successfully Joined Team", ContentType.success);
       });
     }).catchError((err) {
       EasyLoading.dismiss();
-      SnackbarWidget.showMessage(
-          context, "Error", err.message, ContentType.failure);
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
   void handleSubmit() {
-    isJoinTeam
-        ? handleJoinTeam(joinTeamController.text)
-        : handleCreateTeam(createTeamController.text);
+    isJoinTeam ? handleJoinTeam(joinTeamController.text) : handleCreateTeam(createTeamController.text);
   }
 
   @override
@@ -171,8 +161,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.add_circle_rounded,
-                                  color: Colors.white, size: 16),
+                              const Icon(Icons.add_circle_rounded, color: Colors.white, size: 16),
                               Container(
                                 margin: const EdgeInsets.only(left: 4),
                                 child: const Text(
@@ -222,8 +211,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.flag_circle_rounded,
-                                  color: Colors.black, size: 16),
+                              const Icon(Icons.flag_circle_rounded, color: Colors.black, size: 16),
                               Container(
                                 margin: const EdgeInsets.only(left: 4),
                                 child: const Text(
@@ -247,8 +235,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(
-                    color: Color(
-                        0xFFF55353), // Set the border color to match the background color
+                    color: Color(0xFFF55353), // Set the border color to match the background color
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -260,8 +247,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                   children: [
                     const Icon(
                       Icons.delete_rounded,
-                      color: Color(
-                          0xFFF55353), // Set the icon color to match the border color
+                      color: Color(0xFFF55353), // Set the icon color to match the border color
                       size: 16,
                     ),
                     Container(
@@ -269,8 +255,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                       child: const Text(
                         'Deregister Event',
                         style: TextStyle(
-                          color: Color(
-                              0xFFF55353), // Set the text color to match the border color
+                          color: Color(0xFFF55353), // Set the text color to match the border color
                         ),
                       ),
                     ),
@@ -299,8 +284,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.check_circle_rounded,
-                          color: Colors.black, size: 16),
+                      const Icon(Icons.check_circle_rounded, color: Colors.black, size: 16),
                       Container(
                         margin: const EdgeInsets.only(left: 4),
                         child: const Text(

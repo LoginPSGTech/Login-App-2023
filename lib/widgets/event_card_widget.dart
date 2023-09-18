@@ -112,16 +112,14 @@ class EventCardWidget extends StatelessWidget {
                               ? Container(
                                   padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                    color: const Color(
-                                        0xFF00BB5D), // Accent green color
-                                    borderRadius: BorderRadius.circular(
-                                        15), // Rounded corners
+                                    color: const Color(0xFF00BB5D), // Accent green color
+                                    borderRadius: BorderRadius.circular(15), // Rounded corners
                                   ),
                                   child: const Text(
                                     "Online",
                                     style: TextStyle(
-                                          fontSize: 12,
-                        
+                                      fontSize: 12,
+
                                       color: Color(0xFF152739), // Text color
                                     ),
                                   ),
@@ -129,16 +127,14 @@ class EventCardWidget extends StatelessWidget {
                               : Container(
                                   padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                    color: const Color(
-                                        0xFFFEB139), // Yellow background
-                                    borderRadius: BorderRadius.circular(
-                                        15), // Rounded corners
+                                    color: const Color(0xFFFEB139), // Yellow background
+                                    borderRadius: BorderRadius.circular(15), // Rounded corners
                                   ),
                                   child: const Text(
                                     "Offline",
                                     style: TextStyle(
-                                          fontSize: 12,
-                        
+                                      fontSize: 12,
+
                                       color: Color(0xFF152739), // Text color
                                     ),
                                   ),
@@ -150,13 +146,10 @@ class EventCardWidget extends StatelessWidget {
                                 ? Container(
                                     padding: const EdgeInsets.all(8),
                                     decoration: BoxDecoration(
-                                      color: const Color(
-                                          0xFFF55353), // Red background
-                                      borderRadius: BorderRadius.circular(
-                                          15), // Rounded corners
+                                      color: const Color(0xFFF55353), // Red background
+                                      borderRadius: BorderRadius.circular(15), // Rounded corners
                                     ),
                                     child: const Text(
-                                      
                                       "Technical",
                                       style: TextStyle(
                                         fontSize: 12,
@@ -167,10 +160,8 @@ class EventCardWidget extends StatelessWidget {
                                 : Container(
                                     padding: const EdgeInsets.all(8),
                                     decoration: BoxDecoration(
-                                      color: const Color(
-                                          0xFFFEB139), // Yellow background
-                                      borderRadius: BorderRadius.circular(
-                                          15), // Rounded corners
+                                      color: const Color(0xFFFEB139), // Yellow background
+                                      borderRadius: BorderRadius.circular(15), // Rounded corners
                                     ),
                                     child: const Text(
                                       "Non Technical",
