@@ -25,11 +25,7 @@ class SplashScreenPage extends StatelessWidget {
           ShaderMask(
             shaderCallback: (Rect bounds) {
               return const LinearGradient(
-                colors: [
-                  Color(0xFFF6F54D),
-                  Color(0xFFFEB139),
-                  Color(0xFFF55353)
-                ],
+                colors: [Color(0xFFF6F54D), Color(0xFFFEB139), Color(0xFFF55353)],
                 stops: [0.0, 0.5, 1.0],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,

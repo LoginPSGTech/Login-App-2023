@@ -30,8 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     void handleLogin() {
       EasyLoading.show(status: 'Logging In');
-      LoginModel loginInfo = LoginModel(
-          email: _emailController.text, password: _passwordController.text);
+      LoginModel loginInfo = LoginModel(email: _emailController.text, password: _passwordController.text);
       AuthApi.login(loginInfo).then((value) {
         setState(() {
           isFormError = false;
@@ -105,12 +104,10 @@ class _LoginPageState extends State<LoginPage> {
                                             color: Colors.red,
                                           ),
                                           Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 4),
+                                              padding: const EdgeInsets.only(left: 4),
                                               child: Text(
                                                 formError,
-                                                style: const TextStyle(
-                                                    color: Colors.red),
+                                                style: const TextStyle(color: Colors.red),
                                               ))
                                         ]),
                                       )
@@ -168,9 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                                 )),
                           ),
                         ),
-                        const SizedBox(
-                            height:
-                                16), // Add spacing between login UI and links
+                        const SizedBox(height: 16), // Add spacing between login UI and links
                         RichText(
                           text: TextSpan(
                             children: [
@@ -191,9 +186,8 @@ class _LoginPageState extends State<LoginPage> {
                                   ..onTap = () {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
-                                        builder: (context) => const RegisterPage(
-                                            isAlumni:
-                                                false), // Replace with your LoginPage class
+                                        builder: (context) =>
+                                            const RegisterPage(isAlumni: false), // Replace with your LoginPage class
                                       ),
                                     );
                                   },
