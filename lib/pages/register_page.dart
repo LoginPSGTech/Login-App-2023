@@ -887,69 +887,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 24.0,
-                        ),
-                        widget.isAlumni
-                            ? RichText(
-                                text: TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: "Are you a Student? ",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: "Register",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Color(0xFFFEB139),
-                                        decoration: TextDecoration.none,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                              builder: (context) => const RegisterPage(isAlumni: false),
-                                            ),
-                                          );
-                                        },
-                                    ),
-                                  ],
-                                ),
-                              )
-                            : RichText(
-                                text: TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: "Are you an Alumni? ",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: "Register",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Color(0xFFFEB139),
-                                        decoration: TextDecoration.none,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                              builder: (context) => const RegisterPage(isAlumni: true),
-                                            ),
-                                          );
-                                        },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                        const SizedBox(
-                          height: 24.0,
-                        ),
                       ],
                     ),
                   ),

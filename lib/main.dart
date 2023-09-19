@@ -49,25 +49,18 @@ class MyApp extends StatelessWidget {
         child: FutureBuilder<AppData?>(
             future: AppData.loadData(),
             builder: (BuildContext context, AsyncSnapshot<AppData?> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done &&
-                  snapshot.hasData) {
-                Provider.of<AppDataProvider>(context, listen: false)
-                    .saveAppData(snapshot.data!);
+              if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                Provider.of<AppDataProvider>(context, listen: false).saveAppData(snapshot.data!);
                 return FutureBuilder<UserModel?>(
                     future: checkLogin(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<UserModel?> snapshot) {
+                    builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
                       if (snapshot.connectionState == ConnectionState.done) {
                         if (snapshot.hasData && snapshot.data != null) {
-                          Provider.of<AppDataProvider>(context, listen: false)
-                              .saveUser(snapshot.data!);
+                          Provider.of<AppDataProvider>(context, listen: false).saveUser(snapshot.data!);
                           return MaterialApp(
                             title: 'Login App',
                             initialRoute: '/home',
-                            routes: {
-                              '/login': (context) => const LoginPage(),
-                              '/home': (context) => const MainPage()
-                            },
+                            routes: {'/login': (context) => const LoginPage(), '/home': (context) => const MainPage()},
                             theme: ThemeData(
                               useMaterial3: true,
                               fontFamily: 'Poppins',
@@ -79,10 +72,7 @@ class MyApp extends StatelessWidget {
                           return MaterialApp(
                             title: 'Login App',
                             initialRoute: '/login',
-                            routes: {
-                              '/login': (context) => const LoginPage(),
-                              '/home': (context) => const MainPage()
-                            },
+                            routes: {'/login': (context) => const LoginPage(), '/home': (context) => const MainPage()},
                             theme: ThemeData(
                               useMaterial3: true,
                               fontFamily: 'Poppins',
