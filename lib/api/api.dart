@@ -10,9 +10,14 @@ class ApiException implements Exception {
   ApiException({this.message = "API error"});
 }
 
-class UnauthorizedException implements ApiException {
+class AuthException implements ApiException {
   @override
   String message = "Unauthorized";
+}
+
+class InternetAccessException implements ApiException {
+  @override
+  String message = "No internet access";
 }
 
 class ApiWrapper {
@@ -31,25 +36,47 @@ class ApiWrapper {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body);
     } else if (response.statusCode == 401) {
-      throw UnauthorizedException();
+      throw AuthException();
     } else {
-      throw ApiException();
+      String error = "Unexpected error occurred";
+      Map<String, dynamic> errorResponse = jsonDecode(response.body);
+      List<dynamic> value = errorResponse.values.toList();
+      if (value.isNotEmpty) {
+        if (value[0] is List && value[0].isNotEmpty && value[0][0] is String) {
+          error = value[0][0];
+        } else if (value[0] is String) {
+          error = value[0];
+        }
+      }
+      throw ApiException(message: error);
     }
   }
 
   static Future<Map<String, dynamic>> get(String url, {bool authenticate = false}) async {
-    http.Response response = await http.get(Uri.parse(url), headers: await getHeaders(authenticate));
-    return parseResponse(response);
+    try {
+      http.Response response = await http.get(Uri.parse(url), headers: await getHeaders(authenticate));
+      return parseResponse(response);
+    } on SocketException {
+      throw InternetAccessException();
+    }
   }
 
   static Future<Map<String, dynamic>> post(String url, Map<String, dynamic> body, {bool authenticate = false}) async {
-    http.Response response =
-        await http.post(Uri.parse(url), headers: await getHeaders(authenticate), body: jsonEncode(body));
-    return parseResponse(response);
+    try {
+      http.Response response =
+          await http.post(Uri.parse(url), headers: await getHeaders(authenticate), body: jsonEncode(body));
+      return parseResponse(response);
+    } on SocketException {
+      throw InternetAccessException();
+    }
   }
 
   static Future<Map<String, dynamic>> delete(String url, {bool authenticate = false}) async {
-    http.Response response = await http.delete(Uri.parse(url), headers: await getHeaders(authenticate));
-    return parseResponse(response);
+    try {
+      http.Response response = await http.delete(Uri.parse(url), headers: await getHeaders(authenticate));
+      return parseResponse(response);
+    } on SocketException {
+      throw InternetAccessException();
+    }
   }
 }

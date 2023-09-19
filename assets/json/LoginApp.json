@@ -9,12 +9,14 @@
       {
         "eventId": "E5",
         "eventName": "Datathon",
+        "isTechnical": true,
+        "isOffline": true,
         "eventConvenors": [
           {
-            "eventConvenorName": "HariharanS",
+            "eventConvenorName": "Hariharan S",
             "eventConvenorPhone": "7339543452",
             "eventConvenorRollNo": "19PD27",
-            "eventConvenorEmail": "19pd27@psgtech.ac.in"
+            "eventConvenorEmail": "login2023.help@gmail.com"
           }
         ],
         "eventLogo":"assets/images/events/E5.png",
@@ -46,12 +48,14 @@
       {
         "eventId": "E9",
         "eventName": "Inquizitives",
+        "isTechnical": false,
+        "isOffline": true,
         "eventConvenors": [
           {
             "eventConvenorName": "S Subhikshaa",
             "eventConvenorPhone": "9980196402",
             "eventConvenorRollNo": "19PD36",
-            "eventConvenorEmail": "19pd36@psgtech.ac.in"
+            "eventConvenorEmail": "login2023.help@gmail.com"
           }
         ],
         "eventLogo":"assets/images/events/E9.png",
@@ -81,6 +85,8 @@
       {
         "eventId": "E11",
         "eventName": "Math Pirates",
+        "isTechnical": true,
+        "isOffline": true,
         "eventConvenors": [{
           "eventConvenorName": "Aarthi K",
           "eventConvenorPhone": "9980196402",
@@ -114,12 +120,14 @@
       {
         "eventId": "E10",
         "eventName": "Last Stand",
+        "isTechnical": false,
+        "isOffline": true,
         "eventConvenors": [
           {
             "eventConvenorName": "Sreenivas R",
             "eventConvenorPhone": "7598340364",
             "eventConvenorRollNo": "19PW41",
-            "eventConvenorEmail": "19pw41@psgtech.ac.in"
+            "eventConvenorEmail": "login2023.help@gmail.com"
           }
         ],
         
@@ -147,13 +155,15 @@
       },
       {
         "eventId": "E16",
-        "eventName": "Triple trouble",
+        "eventName": "Triple Trouble",
+        "isTechnical": false,
+        "isOffline": true,
         "eventConvenors": [
           {
             "eventConvenorName": "Abinaya U",
             "eventConvenorPhone": "9940450903",
             "eventConvenorRollNo": "19PD02",
-            "eventConvenorEmail": "19pd02@psgtech.ac.in"
+            "eventConvenorEmail": "login2023.help@gmail.com"
           }
         ],
         "eventLogo":"assets/images/events/E16.png",
@@ -186,31 +196,75 @@
         "facultyAdvisor": "Mrs. Kasturi Bai M",
         "expectedNoOfParticipants": "40 - 45 Teams"
       }
+    ],
+    "programs": [
+      {
+        "name": "Inauguration",
+        "image":"assets/images/programs/inauguration.png"
+      },
+      {
+        "name": "Company Session",
+        "image":"assets/images/programs/company_session.png"
+      },
+      {
+        "name": "Entertainment",
+        "image":"assets/images/programs/dance.png"
+      },
+      {
+        "name": "Entertainment",
+        "image":"assets/images/programs/singing.png"
+      },
+      {
+        "name": "Valedictory",
+        "image":"assets/images/programs/valedictory.png"
+      }
+    ],
+    "sponsors":[
+      {
+        "name": "",
+        "image": "assets/images/sponsors/1.png"
+      },
+      {
+        "name": "",
+        "image": "assets/images/sponsors/2.png"
+      },
+      {
+        "name": "",
+        "image": "assets/images/sponsors/3.png"
+      },
+      {
+        "name": "",
+        "image": "assets/images/sponsors/4.png"
+      },
+      {
+        "name": "",
+        "image": "assets/images/sponsors/5.png"
+      }
     ]
   },
   "mscEvents": [
     {
       "eventId": "E5",
       "eventName": "Datathon",
+      "isTechnical": true,
+      "isOffline": true,
       "eventConvenors": [
         {
-          "eventConvenorName": "HariharanS",
+          "eventConvenorName": "Hariharan S",
           "eventConvenorPhone": "7339543452",
           "eventConvenorRollNo": "19PD27",
-          "eventConvenorEmail": "19pd27@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo":"assets/images/events/E5.png",
       "eventTagline": "Join us in the DATATHON of LOGIN 2023 to unleash the TALE that lies underneath the data!",
       "eventDescription": "Data! A weave of a million stories! Every detail tells a saga. So roll up your sleeves to come up with a perfect blend of modeling, visualization and prediction to uncover the TALE underneath! Join us in the DATATHON of LOGIN 2023.",
       "eventRules":[
-        "Each team must contain a maximum of 2 members",
-        "The top performing teams in Prelims will be selected for finals",
-        "In case of a tie-breaker, the team that solves the problem first wins",
-        "The leaderboard is used to determine the winner",
-        "The participants should not involve in any unacceptable behavior, it will lead to the disqualification of the team",
-        "Question paper, pen, rough sheets for workout will be provided.",
-        "Smartphone usage is not allowed during the event."
+        "Round 1: The idea for the problem statement should be submitted and need not contain any code.",
+        "Round 2: The final code should be submitted within 24hrs along with documentation highlighting the models used and the observations.",
+        "3. Submissions after the completion of the competition will not be considered.",
+        "Organizer's decision will be final.",
+        "Collaboration between participating teams is not allowed and can lead to disqualification."
       ],
       "roundWiseDescription": [
         {
@@ -231,12 +285,14 @@
     {
       "eventId": "E9",
       "eventName": "Inquizitives",
+      "isTechnical": false,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "S Subhikshaa",
           "eventConvenorPhone": "9980196402",
           "eventConvenorRollNo": "19PD36",
-          "eventConvenorEmail": "19pd36@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo":"assets/images/events/E9.png",
@@ -266,6 +322,8 @@
     {
       "eventId": "E11",
       "eventName": "Math Pirates",
+      "isTechnical": true,
+      "isOffline": true,
       "eventConvenors": [{
         "eventConvenorName": "Aarthi K",
         "eventConvenorPhone": "9980196402",
@@ -284,12 +342,12 @@
         {
           "roundNumber":1,
           "roundName": "Round",
-          "roundDescription": "Preliminary: A pen and paper based general math quiz round where questions are from aptitude, reasoning, quick calculations, etc. There will be 40 questions in total. Each question carries 1 mark. No negative marking. The time duration for completing the test by each team will be noted and will be used in case of tie. 6 Teams will be shortlisted for the next round."
+          "roundDescription": "A pen and paper based general math quiz round where questions are from aptitude, reasoning, quick calculations, etc. There will be 40 questions in total. Each question carries 1 mark. No negative marking. The time duration for completing the test by each team will be noted and will be used in case of tie. 6 Teams will be shortlisted for the next round."
         },
         {
           "roundNumber":2,
           "roundName": "Round",
-          "roundDescription": "Finals: Has three sub rounds respectively 1) Guess who? 2) Back2back, and 3) Fast and furious. Guess Who? The players uncover a mathematician's face hidden beneath 2x2 covered tiles. As each of the 4 questions is answered, a part of the face is revealed by flipping the relevant tile. This will be a buzzer round, so each team gets only one chance to try to guess the answer for each clue shown. If a team gets the answer right using the first clue itself, then they get 20 points. If they answer it using the second clue, they get 15 points, 10 points, and 5 points for answering it using the third and fourth clues respectively. A team will lose 5 points if they press the buzzer and respond incorrectly. Back2back The questions are revealed in a sequence wherein each question depends on the answer of the previous question. This is also a buzzer round. For every question answered correctly, the team gets 10 points.  A team will lose 5 points if they press the buzzer and respond incorrectly. 1 minute for answering each question. Fast and Furious: It is a rapid-fire round. Each team will be given 30 seconds to answer the questions. No negative marks. For each correct answer 5 marks will be awarded. No negative marks."
+          "roundDescription": "Has three sub rounds respectively 1) Guess who? 2) Back2back, and 3) Fast and furious. Guess Who? The players uncover a mathematician's face hidden beneath 2x2 covered tiles. As each of the 4 questions is answered, a part of the face is revealed by flipping the relevant tile. This will be a buzzer round, so each team gets only one chance to try to guess the answer for each clue shown. If a team gets the answer right using the first clue itself, then they get 20 points. If they answer it using the second clue, they get 15 points, 10 points, and 5 points for answering it using the third and fourth clues respectively. A team will lose 5 points if they press the buzzer and respond incorrectly. Back2back The questions are revealed in a sequence wherein each question depends on the answer of the previous question. This is also a buzzer round. For every question answered correctly, the team gets 10 points.  A team will lose 5 points if they press the buzzer and respond incorrectly. 1 minute for answering each question. Fast and Furious: It is a rapid-fire round. Each team will be given 30 seconds to answer the questions. No negative marks. For each correct answer 5 marks will be awarded. No negative marks."
         }
       ],
       "teamSize": "2",
@@ -299,12 +357,14 @@
     {
       "eventId": "E10",
       "eventName": "Last Stand",
+      "isTechnical": false,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Sreenivas R",
           "eventConvenorPhone": "7598340364",
           "eventConvenorRollNo": "19PW41",
-          "eventConvenorEmail": "19pw41@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       
@@ -323,7 +383,7 @@
         {
           "roundNumber":1,
           "roundName": "Round",
-          "roundDescription": "FIFA and WWE :  The registered participants will be organised into brackets in a single elimination knockout format. The competitors will face off in head-to-head matches , with the winners advancing to the next round while the losers are eliminated. As the competition progresses, the bracket will narrow down until only two finalists remain , competing for the coveted title of Grand Champion."
+          "roundDescription": "The registered participants will be organised into brackets in a single elimination knockout format. The competitors will face off in head-to-head matches , with the winners advancing to the next round while the losers are eliminated. As the competition progresses, the bracket will narrow down until only two finalists remain , competing for the coveted title of Grand Champion."
         }
       ],
       "teamSize": "FIFA - 1, WWE - 1",
@@ -332,13 +392,15 @@
     },
     {
       "eventId": "E16",
-      "eventName": "Triple trouble",
+      "eventName": "Triple Trouble",
+      "isTechnical": false,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Abinaya U",
           "eventConvenorPhone": "9940450903",
           "eventConvenorRollNo": "19PD02",
-          "eventConvenorEmail": "19pd02@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo":"assets/images/events/E16.png",
@@ -359,12 +421,12 @@
         {
           "roundNumber":2,
           "roundName": "Round",
-          "roundDescription": "Bottle flips   : Given a water-filled bottle and an obstacle, perform a few bottle flips by successfully tackling the hindrance."
+          "roundDescription": "Bottle flips : Given a water-filled bottle and an obstacle, perform a few bottle flips by successfully tackling the hindrance."
         },
         {
           "roundNumber":3,
           "roundName": "Round",
-          "roundDescription": "Treasure hunt  : Clues will be provided at various venues throughout the game. The players have to decode all the clues to finally reach the treasure!"
+          "roundDescription": "Treasure hunt : Clues will be provided at various venues throughout the game. The players have to decode all the clues to finally reach the treasure!"
         }
       ],
       "teamSize": "2",
@@ -374,12 +436,14 @@
     {
       "eventId": "E8",
       "eventName": "Hack-IN",
+      "isTechnical": true,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Thiruvenkata krishnan",
           "eventConvenorPhone": "9944692114",
           "eventConvenorRollNo": "19PD39",
-          "eventConvenorEmail": "19pd39@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo":"assets/images/events/E8.png",
@@ -404,12 +468,14 @@
     {
       "eventId": "E1",
       "eventName": "Algocode",
+      "isTechnical": true,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Rakshith C.R.M",
           "eventConvenorPhone": "6374076204",
           "eventConvenorRollNo": "19PT20",
-          "eventConvenorEmail": "19pt20@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo":"assets/images/events/E1.png",
@@ -443,12 +509,14 @@
     {
       "eventId": "E6",
       "eventName": "Eureka",
+      "isTechnical": true,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Fayaz Ahamed S",
           "eventConvenorPhone": "9150262893",
           "eventConvenorRollNo": "22PA08",
-          "eventConvenorEmail": "22pa08@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo":"assets/images/events/E6.png",
@@ -467,7 +535,7 @@
           "roundDescription": "Paper presentation:Onstage final event for shortlisted teams. Shortlisted teams will have to confirm within seven days their participation in the finals and submit the complete description about the paper. Participants are permitted to use slide shows for the presentation. Recorded dialogues/movie clippings are not allowed. Multiple papers can be submitted by an individual. There is no restriction on the number of teams from the same college. Duration: 10 minutes for presentation and 5 minutes for Q&A. Poster presentation:Onstage final event for shortlisted teams. Shortlisted teams will have to confirm within seven days their participation in the finals and submit the complete description about the poster. The rams will be allowed to present their posters to judges and interested individuals. Multiple posters can be submitted by an individual. There is no restriction on the number of teams from the same college."
         }
       ],
-      "teamSize": "2",
+      "teamSize": "Paper Presentation - 2 , Poster Presentation - 1",
       "facultyAdvisor": "Dr. Poonthalir G",
       "expectedNoOfParticipants": "50 Teams"
     }
@@ -476,12 +544,14 @@
     {
       "eventId": "E3",
       "eventName": "Code Sprint",
+      "isTechnical": true,
+      "isOffline": false,
       "eventConvenors": [
         {
           "eventConvenorName": "Sathiya Lingesh V",
           "eventConvenorPhone": "7598153895",
           "eventConvenorRollNo": "22MX122",
-          "eventConvenorEmail": "22mx122@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo": "assets/images/events/E3.png",
@@ -496,7 +566,7 @@
         {
           "roundNumber":1,
           "roundName": "Round",
-          "roundDescription": "Preliminary Round: An online coding round consisting of 25 multiple-choice questions based on Programming Languages and Coding Snippets ."
+          "roundDescription": "An online coding round consisting of 25 multiple-choice questions based on Programming Languages and Coding Snippets ."
         },
         {
           "roundNumber":2,
@@ -511,20 +581,22 @@
     {
       "eventId": "E4",
       "eventName": "Cybernerd",
+      "isTechnical": true,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Augxy Moon SM",
           "eventConvenorPhone": "9489442574",
           "eventConvenorRollNo": "22MX108",
-          "eventConvenorEmail": " 22mx108@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo": "assets/images/events/E4.png",
       "eventTagline": "There is always a way to trespass",
       "eventDescription": "Today, computers run the planet. And a person who can trick computers can dominate the entire planet by himself. Do you not concur? Try and solve the life-changing puzzle. There are always undesirable loopholes, but the goal here is to select the best one. Can you do it?",
       "eventRules":[
-        "Maximum three individual participants are allowed from each college.",
         "Mobile phones are not allowed.",
+        "Participants can use any internet resources or AI tools for reference.",
         "Participants violating the rules will be disqualified.",
         "Only individual participation is allowed.",
         "The decision made by event organizers will be final."
@@ -532,6 +604,11 @@
       "roundWiseDescription": [
         {
           "roundNumber":1,
+          "roundName": "Round",
+          "roundDescription": " A beginner-friendly boot2root kind of capture the flag game which consist of three levels Reconnaissance , Web Exploitation and Cryptography."
+        },
+        {
+          "roundNumber":2,
           "roundName": "Round",
           "roundDescription": "The participants will be given  a vulnerable machine with intentional weaknesses. Their task is to explore its vulnerabilities, figure out how to break in, and find the hidden flag – all within the given time. It's a test of  hacking abilities and problem-solving skills."
         }
@@ -543,12 +620,14 @@
     {
       "eventId": "E12",
       "eventName": "Nethunt",
+      "isTechnical": true,
+      "isOffline": false,
       "eventConvenors": [
         {
           "eventConvenorName": "Santhosh Kumar A",
           "eventConvenorPhone": "6381683077",
           "eventConvenorRollNo": "22MX222",
-          "eventConvenorEmail": "22mx222@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo": "assets/images/events/E12.png",
@@ -577,80 +656,37 @@
       "expectedNoOfParticipants": "50 Teams"
     },
     {
-      "eventId": "E13",
-      "eventName": "Star of Login",
-      "eventConvenors": [
-        {
-          "eventConvenorName": "Arivuselvan S",
-          "eventConvenorPhone": "6382262530",
-          "eventConvenorRollNo": "22MX106",
-          "eventConvenorEmail": "22mx106@psgtech.ac.in"
-        },
-        {
-          "eventConvenorName": "Arivuselvan S",
-          "eventConvenorPhone": "6369870124",
-          "eventConvenorRollNo": "22MX229",
-          "eventConvenorEmail": "22mx229@psgtech.ac.in"
-        }
-      ],
-      "eventLogo": "assets/images/events/E13.png",
-      "eventTagline": "Why fit in when you are born to stand out!",
-      "eventDescription": "Whether you claim victory or secure a runner-up position, this is your prime opportunity to shine in the ultimate round. Unleash your skills, push your limits, and strive to be the ultimate champion, earning the esteemed title 'Star of Login'. This is the chance to prove your worth and ensure your place in the annals of the Record Book!",
-      "eventRules":[
-        "Only the winners and runners-up of all other events in LOGIN 2022 are eligible to participate.",
-        "If a participant doesn't report for prelims on time, he/she will not be permitted to participate.",
-        "Copying answers from the internet or any other resources is prohibited.",
-        "Judges' decisions are final."
-      ],
-      "roundWiseDescription": [
-        {
-          "roundNumber":1,
-          "roundName": "Round",
-          "roundDescription": "A set of muddling mind questions will be given in which the participant has to answer smartly. The smart ones are selected for next round."
-        },
-        {
-          "roundNumber":2,
-          "roundName": "Round",
-          "roundDescription": "Participants will have to perform the tasks given by the judges on stage. Each participant will be given 15 minutes to perform on stage."
-        }
-      ],
-      "teamSize": "",
-      "facultyAdvisor": "Mr Sundar C & Dr Umarani V",
-      "expectedNoOfParticipants": "40 Teams"
-    },
-    {
       "eventId": "E14",
       "eventName": "Techiadz",
+      "isTechnical": false,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Rajkumar B",
           "eventConvenorPhone": "9842216369",
           "eventConvenorRollNo": "22MX120",
-          "eventConvenorEmail": "22MX120@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo": "assets/images/events/E14.png",
       "eventTagline": "Our Vision! Your Innovation!",
       "eventDescription": "Here's to the crazy ones. The one who sees things differently, this is the time to showcase your art of convincing people and the science of attracting human intelligence and creativity. And here we go, it's time to wake up the marketing genius inside you. It's an idea of magic, depending on the creativity of the people and the convincing art of people to sell their products to the audience.",
       "eventRules": [
-        "In the First round, a team of two members can be formed, and mobiles are not allowed during the event.",
-        "From the First round, 5 teams are selected to the Final round. In the Final Round, the count of team members can be a maximum of 5.",
-        "The team for the Final round can be formed by a selected team, and the other three members can be the friends of the team selected.",
-        "The team should come up with the logo, slogan, and other details about their product within the given time of 30 mins.",
-        "The teams will be provided with an unimaginable product, which they are supposed to market within the given time of 15 mins.",
-        "Evaluation will be based on creativity, humor, skill, and marketing ethics.",
-        "The judges and the event's organizers' decision is final."
+        "For the First round, two members in a team can perform, and mobiles are not allowed during the event.",
+        "From the results of the First round, 5 teams will be shortlisted for the Final round. In the Final round, the team can have up to a maximum of 5 members.",
+        "The team can consist of 5 members for the Final round, including two from the previous round (selected team) and the other three members can be their friends.",
+        "Evaluation will be based on creativity, humor, skills, and marketing ethics. The decision made by judges and event organizers is final."
       ],
       "roundWiseDescription": [
         {
           "roundNumber":1,
           "roundName": "Round",
-          "roundDescription": "Online: 2 members per team. Duration: 45 Minutes. Conducted in lab. 20 objective type questions. 1 communicative type questions."
+          "roundDescription": "Online, with 2 members per team with a duration of 40 Minutes.The event will be conducted in the allocated lab. There will be 20 objective-type questions and 1 communicative-type question."
         },
         {
           "roundNumber":2,
           "roundName": "Round",
-          "roundDescription": "(Finals) : Onstage: 5 members per team. Duration: 2 Hours 30 Minutes. Conducted  in classrooms. For Finals, the selected team need to market the product given by the event organizers that will be provided with an unimaginable product, which they are supposed to market. The team should trace logo, slogan and other details about their product within the given time. 5-7 minutes for presentation."
+          "roundDescription": "Onstage,with 2-5 members per team. Duration of 1 hour, conducted in the allocated classroom. The teams will have to market the product given by the event organizers, which will be an unimaginable product that they are supposed to market. The team should trace the logo, slogan and other details about their product within the stipulated time. A time limit of 5-7 minutes will be allotted for their presentation."
         }
       ],
       "teamSize": "Online - 2,Onstage - 5",
@@ -660,12 +696,14 @@
     {
       "eventId": "E7",
       "eventName": "Flip Flop",
+      "isTechnical": false,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Varuna R",
           "eventConvenorPhone": "9994974962",
           "eventConvenorRollNo": "22MX130",
-          "eventConvenorEmail": " 22mx130@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo": "assets/images/events/E7.png",
@@ -693,12 +731,14 @@
     {
       "eventId": "E2",
       "eventName": "Artistry",
+      "isTechnical": false,
+      "isOffline": false,
       "eventConvenors": [
         {
           "eventConvenorName": "Manoharan R",
           "eventConvenorPhone": "6369969599",
           "eventConvenorRollNo": "22MX114",
-          "eventConvenorEmail": "22mx114@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo": "assets/images/events/E2.png",
@@ -712,7 +752,7 @@
         {
           "roundNumber":1,
           "roundName": "Round",
-          "roundDescription": "The participants will be given a topic, They have to photoshop based on the topic given to them. Editing tools such as Photoshop, Illustrator should be used. Upload the .psd file or .ai file and image (.jpg) to the provided mail id. Shortlisted images will be uploaded on our Instagram page. The image with maximum likes in social media along with the maximum score from Judge’s evaluation will be declared as the Winner."
+          "roundDescription": "This event starts on September 14th and ends on September 21st. The participants will be given a topic, They have to photoshop based on the topic given to them. Editing tools such as Photoshop, Illustrator should be used. Upload the .psd file or .ai file and image (.jpg) to the provided mail id which is artistry.login2k23@gmail.com. Shortlisted images will be uploaded on our Instagram page \"artistry_login_2k23\". The image with maximum likes in social media along with the maximum score from Judge’s evaluation will be declared as the Winner."
         }
       ],
       "teamSize": "1",
@@ -722,18 +762,20 @@
     {
       "eventId": "E15",
       "eventName": "Thinklytics",
+      "isTechnical": true,
+      "isOffline": true,
       "eventConvenors": [
         {
           "eventConvenorName": "Ramanathan M",
           "eventConvenorPhone": "8056856956",
           "eventConvenorRollNo": "22MX217",
-          "eventConvenorEmail": "22mx217@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         },
         {
           "eventConvenorName": "Akshairaj G",
           "eventConvenorPhone": "7339272345",
           "eventConvenorRollNo": "22MX201",
-          "eventConvenorEmail": "22mx201@psgtech.ac.in"
+          "eventConvenorEmail": "login2023.help@gmail.com"
         }
       ],
       "eventLogo": "assets/images/events/E15.png",
@@ -763,40 +805,49 @@
   ],
   "eventInstructions":[
     {
-      "stepName": "Step 1: Student - Event Registration:",
+      "stepName": "Student Event Registration",
       "steps": [
-        "1. Click the \"Register\" button next to your chosen event.",
-        "2. Click \"Submit\" to proceed forward in your event registration process. Must Generate Team ID even for individual players."
+        "1. Navigate to the \"Events\" section in the bottom navigation bar.",
+        "2. Browse the list of available events in the \"All Events\" tab.",
+        "3. Tap on the event you're interested in to view its details.",
+        "4. At the bottom of the Event Description Page, you'll find a \"Register\" button. Tap on it.",
+        "5. Read the Event Registration instructions carefully.",
+        "6. To complete the registration process, tap on the \"Register\" button again.",
+        "7. If you change your mind, you can cancel your registration by tapping on \"Cancel.\""
       ]
     },
     {
-      "stepName": "Step 2: Team Registration (Compulsory for even 1 player):",
+      "stepName": "Team Registration (Compulsory, even for single players)",
       "steps": [
-        "1. After registering for the event, you'll be directed to the Team Registration section.",
-        "2. If you're the first member, select \"Create Team.\"",
-        "3. Enter a unique Team Name representing your group.",
-        "4. Even if you're the only member, you must create a team.",
-        "5. Click \"Create Team\" to generate your Team ID – remember it! Note it for the future refrence."
-        
+        "1. After registering for an event, you can find it in the \"My Events\" tab.",
+        "2. In this tab, you have several options, including \"Create Team,\" \"Join a Team,\" and \"Deregister from Event.\"",
+        "3. If you are the first member of your team, tap on \"Create Team.\"",
+        "4. Enter a unique team name that represents your group and tap \"Submit\" to create a new team.",
+        "5. You can find the newly created team in the \"Teams\" tab, along with the team ID and team name."   
       ]
     },
     {
-      "stepName": "Step 3: Joining an Existing Team (Additional Members):",
+      "stepName": "Joining an Existing Team",
       "steps": [
-        "1. If your team has been created, you'll have a Team ID from a team member.",
-        "2. After you register yourself for that event, ask your teammate for the Team ID.",
-        "3. In the event registration page.",
-        "4. Click \"Join Team\" and enter the provided Team ID.",
-        "5. 5. The system will confirm the ID and add you to the team."
-        
+        "1. Tap on \"Join Team\" in the \"My Events\" tab.",
+        "2. Ask your teammate for the team ID.",
+        "3. Enter the provided Team ID and tap \"Submit\" to join the existing team."  
       ]
     },
     {
-      "stepName": "Step 4: Confirmation and Successful Registration:",
+      "stepName": "Deregistering from an Event",
       "steps": [
-        "1. Once you join or create a team, a confirmation page will appear.",
-        "2. This page includes event details and your team's info.",
-        "3. Your registration is now confirmed!"
+        "1. In the \"Events\" tab, locate the event you want to deregister from.",
+        "2. Tap on \"Deregister\" to remove yourself from the event.",
+        "3. The event will be removed from your \"My Events\" tab, and you will no longer be a participant in that event."
+      ]
+    },
+    {
+      "stepName": "Confirmation and Successful Registration",
+      "steps": [
+        "1. Upon successful registration, you'll receive a confirmation message.",
+        "2. The registered event will be available in your \"My Events\" tab.",
+        "3. The teams you've joined or created can be found in the \"Teams\" tab, making it easy to manage your event participation."
       ]
     }
   ],
@@ -838,12 +889,12 @@
           },
           {
             "eventName": "Eureka",
-            "venue": "D-Block Ground Floor",
+            "venue": "Y201/ Y202",
             "endTime": "02:00 PM"
           },
           {
             "eventName": "Techiadz",
-            "venue": "CC Lab",
+            "venue": "CC/ IS/ K504/ K505",
             "endTime": "02:00 PM"
           }
         ]
@@ -863,7 +914,7 @@
         "events": [
           {
             "eventName": "Triple Trouble",
-            "venue": "J201",
+            "venue": "J205/ J206/ J207",
             "endTime": "04:30 PM"
           },
           {
@@ -888,7 +939,7 @@
         "events": [
           {
             "eventName": "Dinner",
-            "venue": "F-Block Canteen",
+            "venue": "Quadrangle",
             "endTime": "08:30 PM"
           }
         ]
@@ -968,7 +1019,7 @@
         "events": [
           {
             "eventName": "Star of Login",
-            "venue": "F-Block Assembly Hall",
+            "venue": "F201/ F-Block Assembly Hall",
             "endTime": "04:00 PM"
           }
         ]

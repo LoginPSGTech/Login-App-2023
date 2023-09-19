@@ -11,11 +11,15 @@ class BackIconWidget extends StatelessWidget {
         Navigator.of(context).pop();
       },
       child: Container(
-        padding: const EdgeInsets.fromLTRB(24, 16, 0, 16),
+        margin: const EdgeInsets.fromLTRB(24, 16, 0, 16),
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white, // Background color of the circle
+        ),
         child: const Icon(
-          CupertinoIcons.back,
-          size: 32,
-          color: Colors.white,
+          Icons.chevron_left_rounded,
+          size: 34,
+          color: Colors.black87,
         ),
       ),
     );

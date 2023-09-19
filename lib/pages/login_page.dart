@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/auth.dart';
 import 'package:login/api/user.dart';
 import 'package:login/models/auth.dart';
@@ -21,18 +22,37 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> verifyLoginformKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool isFormError = false;
+  bool hidePassword = true;
+  String formError = '';
 
   @override
   Widget build(BuildContext context) {
     void handleLogin() {
-      LoginModel loginInfo = LoginModel(email: _emailController.text, password: _passwordController.text);
+      EasyLoading.show(status: 'Logging In');
+      LoginModel loginInfo = LoginModel(
+          email: _emailController.text, password: _passwordController.text);
       AuthApi.login(loginInfo).then((value) {
-        UserApi.getUser().then((value) {
+        setState(() {
+          isFormError = false;
+          formError = '';
+        });
+
+        UserApi.getUser(context).then((value) {
           Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+          EasyLoading.dismiss();
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const MainPage()),
           );
         });
+      }).catchError((err) {
+        setState(() {
+          isFormError = true;
+          formError = err.message;
+        });
+        _emailController.clear();
+        _passwordController.clear();
+        EasyLoading.dismiss();
       });
     }
 
@@ -76,6 +96,25 @@ class _LoginPageState extends State<LoginPage> {
                             key: verifyLoginformKey,
                             child: Column(
                               children: [
+                                isFormError
+                                    ? Container(
+                                        color: Colors.transparent,
+                                        child: Row(children: [
+                                          const Icon(
+                                            Icons.error,
+                                            color: Colors.red,
+                                          ),
+                                          Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 4),
+                                              child: Text(
+                                                formError,
+                                                style: const TextStyle(
+                                                    color: Colors.red),
+                                              ))
+                                        ]),
+                                      )
+                                    : const SizedBox(),
                                 TextFieldWidget(
                                     controller: _emailController,
                                     labelText: "Email Address",
@@ -90,16 +129,21 @@ class _LoginPageState extends State<LoginPage> {
                                 TextFieldWidget(
                                   controller: _passwordController,
                                   labelText: "Password",
-                                  isPassword: true,
+                                  isPassword: hidePassword,
                                   prefixIcon: Icons.key,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Password is Required';
                                     }
+
                                     return null;
                                   },
-                                  suffixIcon: Icons.visibility, // Pass the suffix icon
+                                  suffixIcon: Icons.visibility,
+                                  // Pass the suffix icon
                                   onSuffixIconPressed: () {
+                                    setState(() {
+                                      hidePassword = !hidePassword;
+                                    });
                                     // Handle the suffix icon press (e.g., toggle password visibility)
                                   },
                                 ),
@@ -124,7 +168,9 @@ class _LoginPageState extends State<LoginPage> {
                                 )),
                           ),
                         ),
-                        const SizedBox(height: 16), // Add spacing between login UI and links
+                        const SizedBox(
+                            height:
+                                16), // Add spacing between login UI and links
                         RichText(
                           text: TextSpan(
                             children: [
@@ -145,8 +191,9 @@ class _LoginPageState extends State<LoginPage> {
                                   ..onTap = () {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            const RegisterPage(isAlumni: false), // Replace with your LoginPage class
+                                        builder: (context) => const RegisterPage(
+                                            isAlumni:
+                                                false), // Replace with your LoginPage class
                                       ),
                                     );
                                   },
@@ -155,28 +202,35 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
 
-                        const SizedBox(height: 16),
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              const TextSpan(
-                                text: "Forgot Password? ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              TextSpan(
-                                text: "Reset",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Color(0xFFFEB139),
-                                  decoration: TextDecoration.none,
-                                ),
-                                recognizer: TapGestureRecognizer()..onTap = () {},
-                              ),
-                            ],
-                          ),
-                        ),
+                        //   const SizedBox(height: 16),
+                        //   RichText(
+                        //     text: TextSpan(
+                        //       children: [
+                        //         const TextSpan(
+                        //           text: "Forgot Password? ",
+                        //           style: TextStyle(
+                        //             color: Colors.white,
+                        //           ),
+                        //         ),
+                        //         TextSpan(
+                        //           text: "Reset",
+                        //           style: const TextStyle(
+                        //             fontSize: 16,
+                        //             color: Color(0xFFFEB139),
+                        //             decoration: TextDecoration.none,
+                        //           ),
+                        //           recognizer: TapGestureRecognizer()..onTap = () {
+                        //             Navigator.of(context).pushReplacement(
+                        //                 MaterialPageRoute(
+                        //                   builder: (context) =>
+                        //                       const ForgotPasswordPage(), // Replace with your LoginPage class
+                        //                 ),
+                        //               );
+                        //           },
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
                       ],
                     ),
                   ),

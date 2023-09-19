@@ -1,8 +1,11 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/team_event.dart';
 import 'package:login/api/user.dart';
 import 'package:login/models/team.dart';
 import 'package:login/providers/app_data_provider.dart';
+import 'package:login/widgets/snackbar_widget.dart';
 import 'package:login/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -39,30 +42,48 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
   IconData? icon;
 
   void handleDeregisterEvent() {
-    TeamEventApi.deregisterEvent(widget.eventId).then((value) {
-      UserApi.getUser().then((value) {
+    EasyLoading.show(status: "Deregistering...");
+    TeamEventApi.deregisterEvent(widget.eventId, context).then((value) {
+      UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        EasyLoading.dismiss();
+        SnackbarWidget.showMessage(context, "Success", "Deregistering Event Successful", ContentType.success);
       });
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
   void handleCreateTeam(String teamName) {
+    EasyLoading.show(status: "Creating Team...");
     CreateTeamModel createTeam = CreateTeamModel(team_name: teamName, event: widget.eventId);
-    TeamEventApi.createTeam(createTeam).then((value) {
-      UserApi.getUser().then((value) {
+    TeamEventApi.createTeam(createTeam, context).then((value) {
+      UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         isExpanded = false;
+        EasyLoading.dismiss();
+        SnackbarWidget.showMessage(context, "Success", "Team Creation Successful", ContentType.success);
       });
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
   void handleJoinTeam(String teamId) {
+    EasyLoading.show(status: "Joining Team...");
     JoinTeamModel joinTeam = JoinTeamModel(event: widget.eventId, user: widget.emailId, team_id: teamId);
-    TeamEventApi.joinTeam(joinTeam).then((value) {
-      UserApi.getUser().then((value) {
+    TeamEventApi.joinTeam(joinTeam, context).then((value) {
+      UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
         isExpanded = false;
+        EasyLoading.dismiss();
+        SnackbarWidget.showMessage(context, "Success", "Successfully Joined Team", ContentType.success);
       });
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
     });
   }
 
@@ -98,7 +119,7 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                   widget.eventName,
                   style: const TextStyle(
                     color: Color(0xFFFEB139),
-                    fontSize: 32,
+                    fontSize: 24,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -210,34 +231,37 @@ class _MyEventCardWidgetState extends State<MyEventCardWidget> {
                   ),
                 ),
           SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFF55353),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+              width: double.infinity,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(
+                    color: Color(0xFFF55353), // Set the border color to match the background color
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
-              ),
-              onPressed: handleDeregisterEvent,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.delete_rounded,
-                    color: Colors.white,
-                    size: 16,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 4),
-                    child: const Text('Deregister Event',
+                onPressed: handleDeregisterEvent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.delete_rounded,
+                      color: Color(0xFFF55353), // Set the icon color to match the border color
+                      size: 16,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 4),
+                      child: const Text(
+                        'Deregister Event',
                         style: TextStyle(
-                          color: Colors.white,
-                        )),
-                  ),
-                ],
-              ),
-            ),
-          ),
+                          color: Color(0xFFF55353), // Set the text color to match the border color
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
           Visibility(
             visible: isExpanded,
             child: Column(

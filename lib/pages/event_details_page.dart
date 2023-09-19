@@ -1,7 +1,10 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/user.dart';
 import 'package:login/models/user.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
+import 'package:login/widgets/snackbar_widget.dart';
 import 'package:login/widgets/title_bar_widget.dart';
 import 'package:login/widgets/back_icon_widget.dart';
 import 'package:login/widgets/contacts_card_widget.dart';
@@ -28,15 +31,22 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   }
 
   void registerUser(UserModel user) {
+    EasyLoading.show(status: "Registering...");
     UserEventModel userEvent = UserEventModel(event: widget.event.eventId, user: user.email);
-    UserApi.registerEvent(userEvent).then((value) {
-      UserApi.getUser().then((value) {
+    UserApi.registerEvent(userEvent, context).then((value) {
+      UserApi.getUser(context).then((value) {
         Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        EasyLoading.dismiss();
         Navigator.of(context).pop();
+        SnackbarWidget.showMessage(context, 'Success', 'Event registration Successful', ContentType.success);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => EventDetailsPage(event: widget.event)),
         );
       });
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(context, 'Failed', err.message, ContentType.failure);
+      Navigator.of(context).pop();
     });
   }
 
@@ -393,13 +403,15 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               Container(
                   margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
                   child: isRegistered(user)
-                      ? ElevatedButton(
-                          onPressed: () => {},
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: const Color(0xFFF55353), // Text color
+                      ? OutlinedButton(
+                          onPressed: null, // Set onPressed to null to disable the button
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: Colors.white, // Text color
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10), // Rounded corners
+                            ),
+                            side: const BorderSide(
+                              color: Color(0xFFF55353), // Border color
                             ),
                           ),
                           child: const SizedBox(
@@ -408,6 +420,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               'Registered',
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                color: Color(0xFFF55353),
                                 fontSize: 16, // Text font size
                               ),
                             ),

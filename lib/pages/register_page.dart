@@ -1,17 +1,23 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:login/api/auth.dart';
 import 'package:login/api/user.dart';
 import 'package:login/models/user.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/pages/main_page.dart';
+import 'package:login/providers/app_data_provider.dart';
 import 'package:login/widgets/gradient_background_widget.dart';
+import 'package:login/widgets/snackbar_widget.dart';
 import 'package:login/widgets/text_field_widget.dart';
+import 'package:provider/provider.dart';
 
 import 'form_constants.dart';
 
 class RegisterPage extends StatefulWidget {
   final bool isAlumni;
+
   const RegisterPage({super.key, required this.isAlumni});
 
   @override
@@ -43,8 +49,11 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController accommodationRequiredController = TextEditingController();
 
   int _currentPage = 0;
+  bool hidePassword = true;
+  bool hideConfirmPassword = true;
 
   void _initializeRegistration() {
+    EasyLoading.show(status: "Registering User...");
     UserCreateModel userCreate = UserCreateModel(
         email: studentEmailController.text,
         password: passwordController.text,
@@ -60,17 +69,27 @@ class _RegisterPageState extends State<RegisterPage> {
         degree: degrees[degreeController.text]!,
         stream: streams[streamController.text]!,
         otp: otpController.text);
-    UserApi.createUser(userCreate).then((value) => {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => const MainPage(), // Replace with your LoginPage class
-            ),
-          )
-        });
+    UserApi.createUser(userCreate).then((value) {
+      UserApi.getUser(context).then((value) {
+        Provider.of<AppDataProvider>(context, listen: false).saveUser(value);
+        EasyLoading.dismiss();
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainPage()));
+      });
+    }).catchError((err) {
+      EasyLoading.dismiss();
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
+    });
   }
 
   void _verifyEmailAddress() {
-    AuthApi.verifyEmail(studentEmailController.text);
+    EasyLoading.show(status: 'Sending OTP...');
+    AuthApi.verifyEmail(studentEmailController.text).then((value) {
+      SnackbarWidget.showMessage(context, "Success", "OTP Sent to your Mail", ContentType.success);
+      EasyLoading.dismiss();
+    }).catchError((err) {
+      SnackbarWidget.showMessage(context, "Error", err.message, ContentType.failure);
+      EasyLoading.dismiss();
+    });
   }
 
   void _validatePage() {
@@ -162,10 +181,14 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     List<TextFieldWidget> studentDetailsForm = [
       TextFieldWidget(
-        controller: studentNameController, // Provide the TextEditingController
-        labelText: 'Student Name', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.person, // Provide the prefix icon
+        controller: studentNameController,
+        // Provide the TextEditingController
+        labelText: 'Student Name',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.person,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Student Name is Required';
@@ -174,17 +197,21 @@ class _RegisterPageState extends State<RegisterPage> {
             return 'Student Name should only contain letters and spaces';
           }
 
-          if (value.length < 2) {
+          if (value.length < 3) {
             return 'Student Name should atleast be 3 characters long';
           }
           return null;
         },
       ),
       TextFieldWidget(
-          controller: studentContactController, // Provide the TextEditingController
-          labelText: 'Contact Number', // Provide the label text
-          isPassword: false, // Indicate whether it's a password field
-          prefixIcon: Icons.phone, // Provide the prefix icon
+          controller: studentContactController,
+          // Provide the TextEditingController
+          labelText: 'Contact Number',
+          // Provide the label text
+          isPassword: false,
+          // Indicate whether it's a password field
+          prefixIcon: Icons.phone,
+          // Provide the prefix icon
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Contact Number is Required';
@@ -196,10 +223,14 @@ class _RegisterPageState extends State<RegisterPage> {
           },
           keyboardType: TextInputType.number),
       TextFieldWidget(
-        controller: genderController, // Provide the TextEditingController
-        labelText: 'Gender', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.male_rounded, // Provide the prefix icon
+        controller: genderController,
+        // Provide the TextEditingController
+        labelText: 'Gender',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.male_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select Gender') {
             return 'Gender is Required';
@@ -223,10 +254,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select Gender',
       ),
       TextFieldWidget(
-        controller: studentRollNoController, // Provide the TextEditingController
-        labelText: 'Roll Number', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.tag, // Provide the prefix icon
+        controller: studentRollNoController,
+        // Provide the TextEditingController
+        labelText: 'Roll Number',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.tag,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Student Roll Number is Required';
@@ -235,10 +270,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-        controller: collegeNameController, // Provide the TextEditingController
-        labelText: 'College Name', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.account_balance, // Provide the prefix icon
+        controller: collegeNameController,
+        // Provide the TextEditingController
+        labelText: 'College Name',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.account_balance,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select a College') {
             return 'College Name is Required';
@@ -262,14 +301,19 @@ class _RegisterPageState extends State<RegisterPage> {
         ],
         onDropdownChanged: (value) {
           collegeNameController.text = value!;
+          collegeCodeController.text = collegeCode[collegeNameController.text]!;
         },
         dropdownValue: 'Select a College',
       ),
       TextFieldWidget(
-        controller: collegeCodeController, // Provide the TextEditingController
-        labelText: 'College Code', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.tag, // Provide the prefix icon
+        controller: collegeCodeController,
+        // Provide the TextEditingController
+        labelText: 'College Code',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.tag,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'College Code is Required';
@@ -281,10 +325,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-        controller: degreeController, // Provide the TextEditingController
-        labelText: 'Degree', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.school, // Provide the prefix icon
+        controller: degreeController,
+        // Provide the TextEditingController
+        labelText: 'Degree',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.school,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select a Degree') {
             return 'Degree is Required';
@@ -308,10 +356,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select a Degree',
       ),
       TextFieldWidget(
-        controller: streamController, // Provide the TextEditingController
-        labelText: 'Stream', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.fork_right_rounded, // Provide the prefix icon
+        controller: streamController,
+        // Provide the TextEditingController
+        labelText: 'Stream',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.fork_right_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select a Stream') {
             return 'Stream is Required';
@@ -335,10 +387,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select a Stream',
       ),
       TextFieldWidget(
-        controller: yearOfStudyController, // Provide the TextEditingController
-        labelText: 'Year of Study', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.calendar_month, // Provide the prefix icon
+        controller: yearOfStudyController,
+        // Provide the TextEditingController
+        labelText: 'Year of Study',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.calendar_month,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select Year of Study') {
             return 'Year of Study is Required';
@@ -364,10 +420,14 @@ class _RegisterPageState extends State<RegisterPage> {
     ];
     List<TextFieldWidget> alumniDetailsForm = [
       TextFieldWidget(
-        controller: studentNameController, // Provide the TextEditingController
-        labelText: 'Alumnus Name', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.person, // Provide the prefix icon
+        controller: studentNameController,
+        // Provide the TextEditingController
+        labelText: 'Alumnus Name',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.person,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Alumnus Name is Required';
@@ -383,10 +443,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-          controller: studentContactController, // Provide the TextEditingController
-          labelText: 'Contact Number', // Provide the label text
-          isPassword: false, // Indicate whether it's a password field
-          prefixIcon: Icons.phone, // Provide the prefix icon
+          controller: studentContactController,
+          // Provide the TextEditingController
+          labelText: 'Contact Number',
+          // Provide the label text
+          isPassword: false,
+          // Indicate whether it's a password field
+          prefixIcon: Icons.phone,
+          // Provide the prefix icon
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Contact Number is Required';
@@ -398,10 +462,14 @@ class _RegisterPageState extends State<RegisterPage> {
           },
           keyboardType: TextInputType.number),
       TextFieldWidget(
-        controller: genderController, // Provide the TextEditingController
-        labelText: 'Gender', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.male_rounded, // Provide the prefix icon
+        controller: genderController,
+        // Provide the TextEditingController
+        labelText: 'Gender',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.male_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select Gender') {
             return 'Gender is Required';
@@ -425,10 +493,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select Gender',
       ),
       TextFieldWidget(
-        controller: studentRollNoController, // Provide the TextEditingController
-        labelText: 'Roll Number', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.tag, // Provide the prefix icon
+        controller: studentRollNoController,
+        // Provide the TextEditingController
+        labelText: 'Roll Number',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.tag,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Alumnus Roll Number is Required';
@@ -437,10 +509,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-        controller: collegeCodeController, // Provide the TextEditingController
-        labelText: 'Alumnus Code', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.tag, // Provide the prefix icon
+        controller: collegeCodeController,
+        // Provide the TextEditingController
+        labelText: 'Alumnus Code',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.tag,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Alumnus Code is Required';
@@ -449,10 +525,14 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       ),
       TextFieldWidget(
-        controller: streamController, // Provide the TextEditingController
-        labelText: 'Stream', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.fork_right_rounded, // Provide the prefix icon
+        controller: streamController,
+        // Provide the TextEditingController
+        labelText: 'Stream',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.fork_right_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select a Stream') {
             return 'Stream is Required';
@@ -478,10 +558,14 @@ class _RegisterPageState extends State<RegisterPage> {
     ];
     List<TextFieldWidget> verifyEmailForm = [
       TextFieldWidget(
-        controller: studentEmailController, // Provide the TextEditingController
-        labelText: 'Email Address', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.mail, // Provide the prefix icon
+        controller: studentEmailController,
+        // Provide the TextEditingController
+        labelText: 'Email Address',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.mail,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Email Address is Required';
@@ -516,10 +600,14 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
       TextFieldWidget(
-        controller: otpController, // Provide the TextEditingController
-        labelText: 'OTP', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.lock, // Provide the prefix icon
+        controller: otpController,
+        // Provide the TextEditingController
+        labelText: 'OTP',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.lock,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'OTP is Required';
@@ -536,7 +624,7 @@ class _RegisterPageState extends State<RegisterPage> {
       TextFieldWidget(
         controller: passwordController,
         labelText: "Password",
-        isPassword: true,
+        isPassword: hidePassword,
         prefixIcon: Icons.key,
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -567,15 +655,19 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           return null;
         },
-        suffixIcon: Icons.visibility, // Pass the suffix icon
+        suffixIcon: Icons.visibility,
+        // Pass the suffix icon
         onSuffixIconPressed: () {
+          setState(() {
+            hidePassword = !hidePassword;
+          });
           // Handle the suffix icon press (e.g., toggle password visibility)
         },
       ),
       TextFieldWidget(
         controller: confirmPasswordController,
         labelText: "Confirm Password",
-        isPassword: true,
+        isPassword: hideConfirmPassword,
         prefixIcon: Icons.key,
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -587,18 +679,26 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           return null;
         },
-        suffixIcon: Icons.visibility, // Pass the suffix icon
+        suffixIcon: Icons.visibility,
+        // Pass the suffix icon
         onSuffixIconPressed: () {
+          setState(() {
+            hideConfirmPassword = !hideConfirmPassword;
+          });
           // Handle the suffix icon press (e.g., toggle password visibility)
         },
       )
     ];
     List<TextFieldWidget> additionalPreferencesForm = [
       TextFieldWidget(
-        controller: foodPreferenceController, // Provide the TextEditingController
-        labelText: 'Food Preference', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.food_bank_rounded, // Provide the prefix icon
+        controller: foodPreferenceController,
+        // Provide the TextEditingController
+        labelText: 'Food Preference',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.food_bank_rounded,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select Food Preference') {
             return 'Food Preference is Required';
@@ -625,10 +725,14 @@ class _RegisterPageState extends State<RegisterPage> {
         dropdownValue: 'Select Food Preference',
       ),
       TextFieldWidget(
-        controller: accommodationRequiredController, // Provide the TextEditingController
-        labelText: 'Is Accommodation Required?', // Provide the label text
-        isPassword: false, // Indicate whether it's a password field
-        prefixIcon: Icons.home, // Provide the prefix icon
+        controller: accommodationRequiredController,
+        // Provide the TextEditingController
+        labelText: 'Is Accommodation Required?',
+        // Provide the label text
+        isPassword: false,
+        // Indicate whether it's a password field
+        prefixIcon: Icons.home,
+        // Provide the prefix icon
         validator: (value) {
           if (value == null || value.isEmpty || value == 'Select an Option') {
             return 'Field is Required';

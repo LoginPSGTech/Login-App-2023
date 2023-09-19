@@ -51,7 +51,20 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return DropdownButtonFormField<String>(
       value: widget.dropdownValue,
       onChanged: widget.onDropdownChanged,
-      items: widget.dropdownItems!,
+      items: widget.dropdownItems!
+          .map((value) => DropdownMenuItem<String>(
+                value: value.value,
+                child: Text(value.value!),
+              ))
+          .toList(),
+      selectedItemBuilder: (context) => widget.dropdownItems!
+          .map((value) => Text(
+                value.value!,
+                maxLines: 1,
+                overflow: TextOverflow.fade,
+                softWrap: false,
+              ))
+          .toList(),
       isExpanded: true,
       dropdownColor: const Color(0xff152739), //<-- SEE HERE
       style: const TextStyle(
@@ -77,6 +90,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         ),
       ),
       validator: widget.validator,
+      isDense: true,
     );
   }
 

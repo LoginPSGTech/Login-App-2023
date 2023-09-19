@@ -50,6 +50,31 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
   }
 
   Widget buildTeams(List<Team> teams) {
+    if (teams.isEmpty) {
+      return const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.info_rounded, // Use the InfoOutline icon
+                color: Color(0xFFFEB139), // You can adjust the color to match your design
+                size: 16, // You can adjust the size as needed
+              ),
+              Padding(
+                  padding: EdgeInsets.only(left: 4),
+                  child: Text(
+                    "Not a Member of Any Team",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  ))
+            ],
+          )
+        ],
+      );
+    }
     return ListView.builder(
       itemCount: teams.length,
       itemBuilder: (context, index) {
@@ -63,6 +88,31 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
   }
 
   Widget buildMyEvents(List<MyEvent> myEvents, String emailId) {
+    if (myEvents.isEmpty) {
+      return const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.info_rounded, // Use the InfoOutline icon
+                color: Color(0xFFFEB139), // You can adjust the color to match your design
+                size: 16, // You can adjust the size as needed
+              ),
+              Padding(
+                  padding: EdgeInsets.only(left: 4),
+                  child: Text(
+                    "No Registered Events",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  ))
+            ],
+          )
+        ],
+      );
+    }
     return ListView.builder(
       itemCount: myEvents.length,
       itemBuilder: (context, index) {
@@ -91,7 +141,9 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
               eventLogoUrl: events[index].eventLogo,
               eventName: events[index].eventName,
               eventTagline: events[index].eventTagline,
-              eventTeamSize: events[index].teamSize),
+              eventTeamSize: events[index].teamSize,
+              isTechnical: events[index].isTechnical,
+              isOffline: events[index].isOffline),
         );
       },
     );
@@ -121,6 +173,8 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     final mcaEvents = Provider.of<AppDataProvider>(context).appData.mcaEvents;
     final mscEvents = Provider.of<AppDataProvider>(context).appData.mscEvents;
+    final allEvents = mscEvents + mcaEvents;
+    allEvents.sort((a, b) => a.eventName.compareTo(b.eventName));
     UserModel user = Provider.of<AppDataProvider>(context).user;
     List<MyEvent> myEvents = getMyEvents(user);
     List<Team> teams = getTeams(user);
@@ -164,7 +218,7 @@ class _EventsPageState extends State<EventsPage> with SingleTickerProviderStateM
               // Wrap the ListView.builder with Expanded
               child: TabBarView(
             controller: _tabController,
-            children: [buildEvents(mscEvents + mcaEvents), buildMyEvents(myEvents, user.email), buildTeams(teams)],
+            children: [buildEvents(allEvents), buildMyEvents(myEvents, user.email), buildTeams(teams)],
           )),
         ],
       ),

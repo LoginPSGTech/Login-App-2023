@@ -5,11 +5,15 @@ import 'package:login/widgets/title_bar_widget.dart';
 import 'package:provider/provider.dart';
 
 class SchedulePage extends StatefulWidget {
+  const SchedulePage({super.key});
+
   @override
   State<SchedulePage> createState() => _SchedulePageState();
 }
 
 class _SchedulePageState extends State<SchedulePage> {
+  ScrollController _scrollController = ScrollController();
+
   int buttonvalue = 0;
   late List<Schedule> schedule;
   late Color state23;
@@ -47,15 +51,17 @@ class _SchedulePageState extends State<SchedulePage> {
                     child: Row(
                       children: [
                         const Icon(size: 16, Icons.place, color: Colors.white70),
-                        Container(
-                          margin: const EdgeInsets.only(left: 4),
-                          child: Text(
-                            eventsSchedule[index].venue,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 4),
+                            child: Text(
+                              eventsSchedule[index].venue,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -207,6 +213,11 @@ class _SchedulePageState extends State<SchedulePage> {
                       buttonvalue = 0;
                     }
                   });
+                  _scrollController.animateTo(
+                    0.0, // Scroll to the top
+                    duration: const Duration(milliseconds: 500), // Duration of the animation
+                    curve: Curves.easeInOut, // Animation curve
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: state23,
@@ -228,6 +239,11 @@ class _SchedulePageState extends State<SchedulePage> {
                       buttonvalue = 1;
                     }
                   });
+                  _scrollController.animateTo(
+                    0.0, // Scroll to the top
+                    duration: const Duration(milliseconds: 500), // Duration of the animation
+                    curve: Curves.easeInOut, // Animation curve
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: state24,
@@ -244,6 +260,7 @@ class _SchedulePageState extends State<SchedulePage> {
         ]),
         Expanded(
           child: SingleChildScrollView(
+              controller: _scrollController,
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: buildSchedule())),
         )
       ],
