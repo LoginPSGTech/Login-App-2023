@@ -971,11 +971,6 @@
             "eventName": "Algocode",
             "venue": "CSL-2",
             "endTime": "01:00 PM"
-          },
-          {
-            "eventName": "Cybernerd",
-            "venue": "CC Lab",
-            "endTime": "12:00 PM"
           }
         ]
       },
@@ -991,6 +986,16 @@
             "eventName": "Last Stand",
             "venue": "M503",
             "endTime": "01:30 PM"
+          }
+        ]
+      },
+      {
+        "startTime": "11:00 AM",
+        "events": [
+          {
+            "eventName": "Cybernerd",
+            "venue": "CC Lab",
+            "endTime": "01:00 PM"
           }
         ]
       },
